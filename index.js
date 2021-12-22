@@ -2,7 +2,7 @@ kaboom({
   global: true,
   fullscreen: true,
   scale: 0.6,
-  debug: true
+  debug: true,
 })
 
 scene("menu", () => {
@@ -14,18 +14,19 @@ scene("menu", () => {
 	]);
 
 	add([
-		rect(160, 20),
-		pos(240, 180),
+		rect(450, 80),
+		pos(300, 350),
+		origin("center"),
 		"button",
-		{
-			clickAction: () => go('game'),
-		},
 	]);
 
 	add([
 		text("Play game"),
-		pos(240, 180),
-		color(0, 0, 0)
+		pos(300, 350),
+		origin("center"),
+		color(0, 0, 0),
 	]);
 
 });
+
+go("menu");
