@@ -7,27 +7,11 @@ kaboom({
 
 scene("menu", () => {
 
-	add([
-		text("Video game"),
-		pos(240, 80),
-		scale(3),
-	]);
+  add([
+    text("Hello"),
+    pos(200,100)
+  ])
 
-	add([
-		rect(160, 20),
-		pos(240, 180),
-		"button",
-		{
-			clickAction: () => go('game'),
-		},
-	]);
-
-	add([
-		text("Play game"),
-		pos(240, 180),
-		color(0, 0, 0)
-	]);
-
-});
+})
 
 go("menu")
