@@ -1,32 +1,28 @@
-kaboom({
-  global: true,
-  fullscreen: true,
-  scale: 0.6,
-  debug: true,
-})
+import k from "./kaboom";
 
-scene("menu", () => {
+k.scene("menu", () => {
 
-	add([
-		text("Snake game"),
-		pos(240, 80),
-		scale(3),
+	k.add([
+		k.text("Video game"),
+		k.pos(240, 80),
+		k.scale(3),
 	]);
 
-	add([
-		rect(450, 80),
-		pos(300, 350),
-		origin("center"),
+	k.add([
+		k.rect(160, 20),
+		k.pos(240, 180),
 		"button",
+		{
+			clickAction: () => go('game'),
+		},
 	]);
 
-	add([
-		text("Play game"),
-		pos(300, 350),
-		origin("center"),
-		color(0, 0, 0),
+	k.add([
+		k.text("Play game"),
+		k.pos(240, 180),
+		k.color(0, 0, 0),
 	]);
 
 });
 
-go("menu");
+k.go("menu");
