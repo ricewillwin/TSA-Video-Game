@@ -1,11 +1,6 @@
-kaboom({
-  global: true,
-  fullscreen: true,
-  scale: 0.6,
-  debug: true
-})
+import k from "./kaboom";
 
-scene("menu", () => {
+k.scene("menu", () => {
 
   add([
     text("Hello"),
@@ -14,4 +9,4 @@ scene("menu", () => {
 
 })
 
-go("menu")
+k.go("menu");
