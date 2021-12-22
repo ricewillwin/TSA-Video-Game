@@ -29,5 +29,3 @@ scene("menu", () => {
 	]);
 
 });
-
-start("menu");
