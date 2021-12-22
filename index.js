@@ -8,7 +8,7 @@ kaboom({
 scene("menu", () => {
 
 	add([
-		text("Snake game"),
+		text("Video game"),
 		pos(240, 80),
 		scale(3),
 	]);
@@ -29,3 +29,5 @@ scene("menu", () => {
 	]);
 
 });
+
+go("menu")
