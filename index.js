@@ -38,8 +38,6 @@ scene("menu", () => {
     layer("button"),
     color(1, 1, 1),
     origin("center"),
-    width(playButtonText.width),
-    height(playButtonText.height),
     area(),
     pos(width()/2, height()/4 + menuTitle.height + 100),
     "playButton",
