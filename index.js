@@ -30,12 +30,11 @@ scene("menu", () => {
     color(0, 0, 255),
     origin("center"),
     pos(width()/2, height()/4 + menuTitle.height + 100),
-    onClick(() => go("game")),
     "playButtonText",
   ])
 
   const playButton = add([
-    rect(playButtonText.width, playButtonText.height),
+    rect(playButtonText.width + 20, playButtonText.height + 20),
     layer("button"),
     color(1, 1, 1),
     origin("center"),
@@ -45,6 +44,8 @@ scene("menu", () => {
     pos(width()/2, height()/4 + menuTitle.height + 100),
     "playButton",
   ])
+
+  onClick("playButton", () => go("game"))
 
 })
 
