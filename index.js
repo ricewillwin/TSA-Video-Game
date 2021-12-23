@@ -9,7 +9,8 @@ scene("menu", () => {
 
   add([
     text("Hello"),
-    pos(200,100)
+    pos(width()/2,height()/2),
+    origin("center")
   ])
 
 })
