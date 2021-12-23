@@ -38,7 +38,7 @@ scene("menu", () => {
 
 // Start the actual game
 // 
-// Cut scene then picwhich setting / disguse
+// Cut scene then pick which situation
 // After picng starter go to first level
 scene("game", () => {
 
