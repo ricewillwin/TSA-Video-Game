@@ -1,23 +1,11 @@
-kaboom({
-  global: true,
-  fullscreen: true, 
-  scale: 1,
-  debug: true
-})
+import k from "/kaboom.js"
+import sceneOne from "/Levels/level1.js"
 
 scene("menu", () => {
 
-  layers([
-    "bg",
-    "game",
-    "ui",
-    "button",
-    "text",
-], "text")
-
   const menuTitle = add([
     text("iSpy"),
-    layer("text"),
+    layer("ui"),
     origin("center"),
     pos(width()/2, height()/4),
     scale(2),
@@ -25,8 +13,9 @@ scene("menu", () => {
   ])
 
   const playButtonText = add([
+    layer("ui"),
     text("play"),
-    layer("text"),
+    z(1),
     color(0, 0, 255),
     origin("center"),
     pos(width()/2, height()/4 + menuTitle.height + 100),
@@ -35,7 +24,7 @@ scene("menu", () => {
 
   const playButton = add([
     rect(playButtonText.width + 20, playButtonText.height + 20),
-    layer("button"),
+    layer("ui"),
     color(1, 1, 1),
     origin("center"),
     area(),
@@ -47,11 +36,37 @@ scene("menu", () => {
 
 })
 
+// Start the actual game
+// 
+// Cut scene then picwhich setting / disguse
+// After picng starter go to first level
 scene("game", () => {
 
   add([
     text("gamer")
   ])
+
+  const playButtonText = add([
+    text("play"),
+    z(1),
+    layer("ui"),
+    color(0, 0, 255),
+    origin("center"),
+    pos(width()/2, height()/4 + 100),
+    "playButtonText",
+  ])
+
+  const playButton = add([
+    rect(playButtonText.width + 20, playButtonText.height + 20),
+    layer("ui"),
+    color(1, 1, 1),
+    origin("center"),
+    area(),
+    pos(width()/2, height()/4 + 100),
+    "playButton",
+  ])
+
+  onClick("playButton", () => go("level1"))
 
 })
 
