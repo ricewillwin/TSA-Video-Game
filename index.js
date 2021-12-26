@@ -1,6 +1,8 @@
 import k from "./kaboom.js"
 import sceneOne from "./Levels/level1.js"
 
+const buttonPadding = 50
+
 scene("menu", () => {
 
   const menuTitle = add([
@@ -23,7 +25,7 @@ scene("menu", () => {
   ])
 
   const playButton = add([
-    rect(playButtonText.width + 20, playButtonText.height + 20),
+    rect(playButtonText.width + buttonPadding, playButtonText.height + buttonPadding),
     layer("ui"),
     color(1, 1, 1),
     origin("center"),
@@ -43,30 +45,85 @@ scene("menu", () => {
 scene("game", () => {
 
   add([
-    text("gamer")
+    text("situation"),
+    pos(width()/2, height()/4),
+    origin("center"),
+    "situationText"
   ])
 
-  const playButtonText = add([
-    text("play"),
+
+
+
+
+  const situationOneText = add([
+    text("one"),
     z(1),
     layer("ui"),
     color(0, 0, 255),
     origin("center"),
-    pos(width()/2, height()/4 + 100),
-    "playButtonText",
+    pos(width()/4, height()/2),
+    "situationOneText",
   ])
 
-  const playButton = add([
-    rect(playButtonText.width + 20, playButtonText.height + 20),
+  const situationOne = add([
+    rect(situationOneText.width + buttonPadding, situationOneText.height + buttonPadding),
     layer("ui"),
     color(1, 1, 1),
     origin("center"),
     area(),
-    pos(width()/2, height()/4 + 100),
-    "playButton",
+    pos(width()/4, height()/2),
+    "situationOne",
   ])
 
-  onClick("playButton", () => go("level1"))
+  onClick("situationOne", () => go("level1"))
+
+
+
+
+
+  const situationTwoText = add([
+    text("two"),
+    z(1),
+    layer("ui"),
+    color(0, 0, 255),
+    origin("center"),
+    pos(width()/2, height()/2),
+    "situationTwoText",
+  ])
+
+  const situationTwo = add([
+    rect(situationTwoText.width + buttonPadding, situationTwoText.height + buttonPadding),
+    layer("ui"),
+    color(1, 1, 1),
+    origin("center"),
+    area(),
+    pos(width()/2, height()/2),
+    "situationTwo",
+  ])
+
+
+
+
+
+  const situationThreeText = add([
+    text("three"),
+    z(1),
+    layer("ui"),
+    color(0, 0, 255),
+    origin("center"),
+    pos(width()/4 + width()/2, height()/2),
+    "situationThreeText",
+  ])
+
+  const situationThree = add([
+    rect(situationThreeText.width + buttonPadding, situationThreeText.height + buttonPadding),
+    layer("ui"),
+    color(1, 1, 1),
+    origin("center"),
+    area(),
+    pos(width()/4 + width()/2, height()/2),
+    "situationThree",
+  ])
 
 })
 
