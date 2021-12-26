@@ -1,5 +1,5 @@
-import k from "/kaboom.js"
-import sceneOne from "/Levels/level1.js"
+import k from "./kaboom.js"
+import sceneOne from "./Levels/level1.js"
 
 scene("menu", () => {
 
