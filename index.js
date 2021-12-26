@@ -46,8 +46,9 @@ scene("game", () => {
 
   add([
     text("situation"),
-    pos(width()/2, height()/4),
+    pos(width()/2 - 100, height()/4),
     origin("center"),
+    scale(1.5),
     "situationText"
   ])
 
