@@ -1,8 +1,11 @@
 export const k = kaboom({
+  background: [134, 135, 247],
   global: true,
-  fullscreen: true, 
-  scale: 1,
+  height: 480,
+  width: 640,
+  scale: 2,
   debug: true,
+  canvas: document.querySelector("#game"),
 })
 
 k.layers([
