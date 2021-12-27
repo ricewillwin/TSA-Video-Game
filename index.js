@@ -6,7 +6,7 @@ const buttonPadding = 50
 scene("menu", () => {
 
   const menuTitle = add([
-    text("iSpy"),
+    text("i Spy"),
     layer("ui"),
     origin("center"),
     pos(width()/2, height()/4),
