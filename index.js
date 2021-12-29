@@ -1,7 +1,6 @@
 import k from "./kaboom.js"
 import sceneOne from "./Levels/level1.js"
 
-const buttonPadding = 50
 loadSprite("background", "./Tiles/mainBackground.png")
 
 scene("menu", () => {
@@ -18,11 +17,11 @@ scene("menu", () => {
   ])
 
   const menuTitle = add([
-    text(" iSpy "),
+    text("iSpy"),
     layer("ui"),
     origin("center"),
     pos(width()/2, height()/4),
-    scale(2),
+    scale(0.75),
     "menuText",
   ])
 
@@ -32,12 +31,13 @@ scene("menu", () => {
     z(1),
     color(0, 0, 255),
     origin("center"),
+    scale(0.5),
     pos(width()/2, height()/4 + menuTitle.height + 100),
     "playButtonText",
   ])
 
   const playButton = add([
-    rect(playButtonText.width + buttonPadding, playButtonText.height + buttonPadding),
+    rect(playButtonText.width, playButtonText.height),
     layer("ui"),
     color(1, 1, 1),
     origin("center"),
@@ -80,7 +80,7 @@ scene("game", () => {
   ])
 
   const situationOne = add([
-    rect(situationOneText.width + buttonPadding, situationOneText.height + buttonPadding),
+    rect(situationOneText.width, situationOneText.height),
     layer("ui"),
     color(1, 1, 1),
     origin("center"),
@@ -108,7 +108,7 @@ scene("game", () => {
   ])
 
   const situationTwo = add([
-    rect(situationTwoText.width + buttonPadding, situationTwoText.height + buttonPadding),
+    rect(situationTwoText.width, situationTwoText.height),
     layer("ui"),
     color(1, 1, 1),
     scale(0.5),
@@ -134,7 +134,7 @@ scene("game", () => {
   ])
 
   const situationThree = add([
-    rect(situationThreeText.width + buttonPadding, situationThreeText.height + buttonPadding),
+    rect(situationThreeText.width, situationThreeText.height),
     layer("ui"),
     color(1, 1, 1),
     origin("center"),
