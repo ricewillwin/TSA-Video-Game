@@ -1,5 +1,6 @@
 import k from "./kaboom.js"
 import sceneOne from "./Levels/level1.js"
+import config from "./config.js"
 
 loadSprite("background", "./Tiles/mainBackground.png")
 
@@ -25,29 +26,18 @@ scene("menu", () => {
 
   const playButtonText = add([
     layer("ui"),
-    text("play"),
+    text("click Space to start"),
     z(1),
     color(0, 0, 255),
     origin("center"),
-    scale(0.5),
+    scale(0.33),
     pos(width()/2, height()/4 + menuTitle.height + 100),
     "playButtonText",
   ])
 
-  const playButton = add([
-    rect(playButtonText.width, playButtonText.height),
-    layer("ui"),
-    color(1, 1, 1),
-    origin("center"),
-    area(),
-    pos(width()/2, height()/4 + menuTitle.height + 100),
-    "playButton",
-  ])
-
-  onClick("playButton", () => go("game"))
+  onKeyPress("space", () => {go("game")})
 
 })
-
 // Start the actual game
 // 
 // Cut scene then pick which situation
@@ -62,10 +52,6 @@ scene("game", () => {
     "situationText"
   ])
 
-
-
-
-
   const situationOneText = add([
     text("one"),
     z(1),
@@ -76,22 +62,6 @@ scene("game", () => {
     scale(0.5),
     "situationOneText",
   ])
-
-  const situationOne = add([
-    rect(situationOneText.width, situationOneText.height),
-    layer("ui"),
-    color(1, 1, 1),
-    origin("center"),
-    scale(0.5),
-    area(),
-    pos(width()/4, height()/2),
-    "situationOne",
-  ])
-
-  onClick("situationOne", () => go("level1"))
-
-
-
 
 
   const situationTwoText = add([
@@ -105,20 +75,6 @@ scene("game", () => {
     "situationTwoText",
   ])
 
-  const situationTwo = add([
-    rect(situationTwoText.width, situationTwoText.height),
-    layer("ui"),
-    color(1, 1, 1),
-    scale(0.5),
-    origin("center"),
-    area(),
-    pos(width()/2, height()/2),
-    "situationTwo",
-  ])
-
-
-
-
 
   const situationThreeText = add([
     text("three"),
@@ -131,16 +87,7 @@ scene("game", () => {
     "situationThreeText",
   ])
 
-  const situationThree = add([
-    rect(situationThreeText.width, situationThreeText.height),
-    layer("ui"),
-    color(1, 1, 1),
-    origin("center"),
-    scale(0.5),
-    area(),
-    pos(width()/4 + width()/2, height()/2),
-    "situationThree",
-  ])
+  onKeyPress("enter", () => {go("level1")})
 
 })
 
