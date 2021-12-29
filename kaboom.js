@@ -1,9 +1,12 @@
+import config from "./config.js"
+
 export const k = kaboom({
   background: [134, 135, 247],
   global: true,
-  height: 480,
-  width: 640,
-  scale: 2,
+  height: config.gameHeight,
+  width: config.gameWidth,
+  stretch: true,
+  scale: 1,
   debug: true,
   canvas: document.querySelector("#game"),
 })

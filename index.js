@@ -5,8 +5,6 @@ loadSprite("background", "./Tiles/mainBackground.png")
 
 scene("menu", () => {
 
-
-
   add([
     sprite("background"),
     origin("center"),
@@ -53,7 +51,7 @@ scene("menu", () => {
 // Start the actual game
 // 
 // Cut scene then pick which situation
-// After picng starter go to first level
+// After picking starter go to first level
 scene("game", () => {
 
   add([
