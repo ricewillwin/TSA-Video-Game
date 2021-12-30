@@ -1,9 +1,11 @@
 import { k } from "./kaboom.js";
 import { loadLevel1 } from "./Levels/level1.js";
 import { addButton } from "./spriteMaker.js";
+import { addLayers } from "./layers.js";
 
 k.loadSprite("background", "./Tiles/mainBackground.png");
 loadLevel1();
+addLayers();
 
 k.scene("menu", () => {
 

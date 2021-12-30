@@ -12,9 +12,3 @@ const kaboomOpts = {
 };
 
 export const k = kaboom(kaboomOpts);
-
-k.layers([
-  "bg",
-  "game",
-  "ui",
-], "game");
