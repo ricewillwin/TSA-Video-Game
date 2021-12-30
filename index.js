@@ -1,7 +1,7 @@
 import { k } from "./kaboom.js";
 import { loadLevel1 } from "./Levels/level1.js";
+import { addButton } from "./spriteMaker.js";
 
-const buttonPadding = 50;
 k.loadSprite("background", "./Tiles/mainBackground.png");
 loadLevel1();
 
@@ -25,25 +25,16 @@ k.scene("menu", () => {
     "menuText",
   ]);
 
-  const playButtonText = k.add([
-    k.layer("ui"),
-    k.text("play"),
-    k.z(1),
-    k.color(0, 0, 255),
-    k.origin("center"),
-    k.pos(k.width()/2, k.height()/4 + menuTitle.height + 100),
-    "playButtonText",
-  ]);
-
-  const playButton = k.add([
-    k.rect(playButtonText.width + buttonPadding, playButtonText.height + buttonPadding),
-    k.layer("ui"),
-    k.color(1, 1, 1),
-    k.origin("center"),
-    k.area(),
-    k.pos(k.width()/2, k.height()/4 + menuTitle.height + 100),
-    "playButton",
-  ]);
+  const { playButtonText, playButton } = addButton(
+    "play",
+    k.width()/2,
+    k.height()/4 + menuTitle.height + 100,
+    1,
+    [0, 0, 255],
+    [1, 1, 1],
+    ["playButtonText"],
+    ["playButton"],
+  );
 
   k.onClick("playButton", () => k.go("game"));
 
@@ -63,76 +54,40 @@ k.scene("game", () => {
     "situationText",
   ]);
 
-  const situationOneText = k.add([
-    k.text("one"),
-    k.z(1),
-    k.layer("ui"),
-    k.color(0, 0, 255),
-    k.origin("center"),
-    k.pos(k.width()/4, k.height()/2),
-    k.scale(0.5),
-    "situationOneText",
-  ]);
-
-  const situationOne = k.add([
-    k.rect(situationOneText.width + buttonPadding, situationOneText.height + buttonPadding),
-    k.layer("ui"),
-    k.color(1, 1, 1),
-    k.origin("center"),
-    k.scale(0.5),
-    k.area(),
-    k.pos(k.width()/4, k.height()/2),
-    "situationOne",
-  ]);
+  const { situationOneText, situationOne } = addButton(
+    "one",
+    k.width()/4,
+    k.height()/2,
+    0.5,
+    [0, 0, 255],
+    [1, 1, 1],
+    ["situationOneText"],
+    ["situationOne"],
+  );
 
   k.onClick("situationOne", () => k.go("level1"));
 
+  const { situationTwoText, situationTwo } = addButton(
+    "two",
+    k.width()/2,
+    k.height()/2,
+    0.5,
+    [0, 0, 255],
+    [1, 1, 1],
+    ["situationTwoText"],
+    ["situationTwo"],
+  );
 
-  const situationTwoText = k.add([
-    k.text("two"),
-    k.z(1),
-    k.layer("ui"),
-    k.color(0, 0, 255),
-    k.scale(0.5),
-    k.origin("center"),
-    k.pos(k.width()/2, k.height()/2),
-    "situationTwoText",
-  ]);
-
-  const situationTwo = k.add([
-    k.rect(situationTwoText.width + buttonPadding, situationTwoText.height + buttonPadding),
-    k.layer("ui"),
-    k.color(1, 1, 1),
-    k.scale(0.5),
-    k.origin("center"),
-    k.area(),
-    k.pos(k.width()/2, k.height()/2),
-    "situationTwo",
-  ]);
-
-
-  const situationThreeText = k.add([
-    k.text("three"),
-    k.z(1),
-    k.scale(0.5),
-    k.layer("ui"),
-    k.color(0, 0, 255),
-    k.origin("center"),
-    k.pos(k.width()/4 + k.width()/2, k.height()/2),
-    "situationThreeText",
-  ]);
-
-  const situationThree = k.add([
-    k.rect(situationThreeText.width + buttonPadding, situationThreeText.height + buttonPadding),
-    k.layer("ui"),
-    k.color(1, 1, 1),
-    k.origin("center"),
-    k.scale(0.5),
-    k.area(),
-    k.pos(k.width()/4 + k.width()/2, k.height()/2),
-    "situationThree",
-  ]);
-
+  const { situationThreeText, situationThree } = addButton(
+    "three",
+    3*k.width()/4,
+    k.height()/2,
+    0.5,
+    [0, 0, 255],
+    [1, 1, 1],
+    ["situationThreeText"],
+    ["situationThree"],
+  );
 });
 
 k.go("menu");
