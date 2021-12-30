@@ -23,7 +23,7 @@ k.scene("menu", () => {
     k.layer("ui"),
     k.origin("center"),
     k.pos(k.width()/2, k.height()/4),
-    k.scale(2),
+    k.scale(0.75),
     "menuText",
   ]);
 
@@ -37,11 +37,10 @@ k.scene("menu", () => {
     ["playButtonText"],
     ["playButton"],
   );
-
-  k.onClick("playButton", () => k.go("game"));
+  
+  k.onKeyPress("space", () => {k.go("game")});
 
 });
-
 // Start the actual game
 // 
 // Cut scene then pick which situation
@@ -67,8 +66,6 @@ k.scene("game", () => {
     ["situationOne"],
   );
 
-  k.onClick("situationOne", () => k.go("level1"));
-
   const { situationTwoText, situationTwo } = addButton(
     "two",
     k.width()/2,
@@ -90,6 +87,8 @@ k.scene("game", () => {
     ["situationThreeText"],
     ["situationThree"],
   );
+
+  k.onKeyPress("enter", () => k.go("level1"));
 });
 
 k.go("menu");
