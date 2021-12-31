@@ -1,4 +1,4 @@
-import k from "./kaboom.js"
+import { k } from "./kaboom.js"
 
 const gameWidth = 640;
 const gameHeight = 480;

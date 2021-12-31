@@ -1,11 +1,9 @@
-import kaboom from "../kaboom.js"
+import { k } from "../kaboom.js";
 
-export default scene("level1", () => {
-
-	add([
-		text("level1"),
-		origin("center"),
-		pos(width()/2, height()/2)
-	])
-
-})
+export const loadLevel1 = () => k.scene("level1", () => {
+  k.add([
+    k.text("level1"),
+    k.origin("center"),
+    k.pos(k.width()/2, k.height()/2),
+  ]);
+});
