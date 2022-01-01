@@ -1,18 +1,23 @@
-import { k } from "./kaboom.js";
+import { k } from "../kaboom.js";
 
 const defaultPadding = 50;
 const defaultTextColor = [0, 0, 255];
 const defaultFillColor = [1, 1, 1];
 const defaultScale = 1;
+const normalOutline = [ 3, k.rgb(0, 0, 0) ]
+const selectedOutline = [ 4, k.rgb(0, 255, 0) ];
 
+/**
+ * @classdesc Handles the text and fill objects associated with the button.
+ */
 export class Button {
   #buttonText = null;
   #buttonFill = null;
   #enabled = true;
   #onPush = () => {};
 
-  /**Creates a button with given parameters.
-   *
+  /**@constructor
+   * Creates a button with given parameters.
    * @param {string} name component names; both will be tagged with "nameButton", and each will be tagged with
    *   "nameButtonText" and "nameButtonFill" accordingly.
    * @param {string=} text text to display on button; defaults to name
@@ -58,6 +63,7 @@ export class Button {
     }
     textObjComps.push(`${name}Button`);
     textObjComps.push(`${name}ButtonText`);
+    textObjComps.push("buttonText");
 
     this.#buttonText = k.add(textObjComps);
 
@@ -66,11 +72,13 @@ export class Button {
       k.layer("ui"),
       k.scale(scale),
       k.color(...buttonColor),
+      k.outline(...normalOutline),
       k.origin("center"),
       k.area(),
       k.pos(x, y),
       `${name}Button`,
       `${name}ButtonFill`,
+      "buttonFill",
     ];
 
     this.#buttonFill = k.add(fillObjComps);
@@ -79,14 +87,40 @@ export class Button {
     this.#enabled = enabled;
   }
 
+  /**
+   *
+   * @returns {boolean} boolean indicating whether the button will activate when pressed
+   */
   get enabled() {
     return this.#enabled;
   }
 
+  /**
+   *
+   * @param {boolean} enabled whether the button will activate when pressed
+   */
   set enabled(enabled) {
     this.#enabled = enabled;
   }
 
+  /**
+   * Changes the outline based on whether the button is selected or not.
+   * @param {boolean} selected whether the button is currently selected
+   */
+  set selected(selected) {
+    if (selected) {
+      this.#buttonFill.unuse("outline");
+      this.#buttonFill.use(k.outline(...selectedOutline));
+    }
+    else {
+      this.#buttonFill.unuse("outline");
+      this.#buttonFill.use(k.outline(...normalOutline))
+    }
+  }
+
+  /**
+   * Activates button if the button is enabled.
+   */
   push() {
     if (this.#enabled) {
       this.#onPush();
