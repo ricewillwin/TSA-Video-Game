@@ -1,6 +1,7 @@
 import { k } from "./kaboom.js";
 import { loadLevel1 } from "./Levels/level1.js";
-import { addButton } from "./spriteMaker.js";
+import { Button } from "./ui/button.js";
+import { ButtonSeries } from "./ui/buttonSeries.js"
 import { addLayers } from "./layers.js";
 
 k.loadSprite("background", "./Tiles/mainBackground.png");
@@ -27,20 +28,17 @@ k.scene("menu", () => {
     "menuText",
   ]);
 
-  const { playButtonText, playButton } = addButton(
-    "play",
-    k.width()/2,
-    k.height()/4 + menuTitle.height + 100,
-    1,
-    [0, 0, 255],
-    [1, 1, 1],
-    ["playButtonText"],
-    ["playButton"],
-  );
-  
-  k.onKeyPress("space", () => {k.go("game")});
+  const menuButtonSeries = new ButtonSeries([
+    new Button({
+      name: "play",
+      x: k.width()/2,
+      y: k.height()/4 + menuTitle.height + 100,
+    }, () => { k.go("game"); }),
+  ]);
 
+  k.onKeyPress(["space", "enter"], () => {menuButtonSeries.push()});
 });
+
 // Start the actual game
 // 
 // Cut scene then pick which situation
@@ -55,40 +53,33 @@ k.scene("game", () => {
     "situationText",
   ]);
 
-  const { situationOneText, situationOne } = addButton(
-    "one",
-    k.width()/4,
-    k.height()/2,
-    0.5,
-    [0, 0, 255],
-    [1, 1, 1],
-    ["situationOneText"],
-    ["situationOne"],
-  );
+  const situationButtonSeries = new ButtonSeries([
+    new Button({
+      name: "situationOne",
+      text: "one",
+      x: k.width()/4,
+      y: k.height()/2,
+      scale: 0.5,
+    }, () => k.go("level1")),
+    new Button({
+      name: "situationTwo",
+      text: "two",
+      x: k.width()/2,
+      y: k.height()/2,
+      scale: 0.5,
+    }, () => k.debug.log("2")),
+    new Button({
+      name: "situationThree",
+      text: "three",
+      x: 3*k.width()/4,
+      y: k.height()/2,
+      scale: 0.5,
+    }, () => k.debug.log("3")),
+  ], 2);
 
-  const { situationTwoText, situationTwo } = addButton(
-    "two",
-    k.width()/2,
-    k.height()/2,
-    0.5,
-    [0, 0, 255],
-    [1, 1, 1],
-    ["situationTwoText"],
-    ["situationTwo"],
-  );
-
-  const { situationThreeText, situationThree } = addButton(
-    "three",
-    3*k.width()/4,
-    k.height()/2,
-    0.5,
-    [0, 0, 255],
-    [1, 1, 1],
-    ["situationThreeText"],
-    ["situationThree"],
-  );
-
-  k.onKeyPress("enter", () => k.go("level1"));
+  k.onKeyPress(["left", "a"], () => situationButtonSeries.back());
+  k.onKeyPress(["right", "d"], () => situationButtonSeries.fwd());
+  k.onKeyPress(["space", "enter"], () => situationButtonSeries.push());
 });
 
 k.go("menu");
