@@ -1,14 +1,14 @@
-export const k = kaboom({
-  global: true,
-  fullscreen: true, 
+import config from "./config.js";
+
+const kaboomOpts = {
+  background: [134, 135, 247],
+  global: false,
+  height: config.gameHeight,
+  width: config.gameWidth,
+  stretch: true,
   scale: 1,
   debug: true,
-})
+  canvas: document.querySelector("#game"),
+};
 
-k.layers([
-	"bg",
-	"game",
-	"ui",
-], "game")
-
-export default k
+export const k = kaboom(kaboomOpts);

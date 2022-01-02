@@ -1,131 +1,85 @@
-import k from "./kaboom.js"
-import sceneOne from "./Levels/level1.js"
+import { k } from "./kaboom.js";
+import { loadLevel1 } from "./Levels/level1.js";
+import { Button } from "./ui/button.js";
+import { ButtonSeries } from "./ui/buttonSeries.js"
+import { addLayers } from "./layers.js";
 
-const buttonPadding = 50
+k.loadSprite("background", "./Tiles/mainBackground.png");
+loadLevel1();
+addLayers();
 
-scene("menu", () => {
+k.scene("menu", () => {
 
-  const menuTitle = add([
-    text("iSpy"),
-    layer("ui"),
-    origin("center"),
-    pos(width()/2, height()/4),
-    scale(2),
+  k.add([
+    k.sprite("background"),
+    k.origin("center"),
+    k.pos(k.width()/2, k.height()/2),
+    k.layer("bg"),
+    k.area(),
+    k.scale(3.75),
+  ]);
+
+  const menuTitle = k.add([
+    k.text(" iSpy "),
+    k.layer("ui"),
+    k.origin("center"),
+    k.pos(k.width()/2, k.height()/4),
+    k.scale(0.75),
     "menuText",
-  ])
+  ]);
 
-  const playButtonText = add([
-    layer("ui"),
-    text("play"),
-    z(1),
-    color(0, 0, 255),
-    origin("center"),
-    pos(width()/2, height()/4 + menuTitle.height + 100),
-    "playButtonText",
-  ])
+  const menuButtonSeries = new ButtonSeries([
+    new Button({
+      name: "play",
+      x: k.width()/2,
+      y: k.height()/4 + menuTitle.height + 100,
+    }, () => { k.go("game"); }),
+  ]);
 
-  const playButton = add([
-    rect(playButtonText.width + buttonPadding, playButtonText.height + buttonPadding),
-    layer("ui"),
-    color(1, 1, 1),
-    origin("center"),
-    area(),
-    pos(width()/2, height()/4 + menuTitle.height + 100),
-    "playButton",
-  ])
-
-  onClick("playButton", () => go("game"))
-
-})
+  k.onKeyPress(["space", "enter"], () => {menuButtonSeries.push()});
+});
 
 // Start the actual game
 // 
 // Cut scene then pick which situation
-// After picng starter go to first level
-scene("game", () => {
+// After picking starter go to first level
+k.scene("game", () => {
 
-  add([
-    text("situation"),
-    pos(width()/2 - 100, height()/4),
-    origin("center"),
-    scale(1.5),
-    "situationText"
-  ])
+  k.add([
+    k.text("situation"),
+    k.pos(k.width()/2, k.height()/4),
+    k.origin("center"),
+    k.scale(0.8),
+    "situationText",
+  ]);
 
+  const situationButtonSeries = new ButtonSeries([
+    new Button({
+      name: "situationOne",
+      text: "one",
+      x: k.width()/4,
+      y: k.height()/2,
+      scale: 0.5,
+    }, () => k.go("level1")),
+    new Button({
+      name: "situationTwo",
+      text: "two",
+      x: k.width()/2,
+      y: k.height()/2,
+      scale: 0.5,
+    }, () => k.debug.log("2")),
+    new Button({
+      name: "situationThree",
+      text: "three",
+      x: 3*k.width()/4,
+      y: k.height()/2,
+      scale: 0.5,
+    }, () => k.debug.log("3")),
+  ], 2);
 
+  k.onKeyPress(["left", "a"], () => situationButtonSeries.back());
+  k.onKeyPress(["right", "d"], () => situationButtonSeries.fwd());
+  k.onKeyPress(["space", "enter"], () => situationButtonSeries.push());
+});
 
-
-
-  const situationOneText = add([
-    text("one"),
-    z(1),
-    layer("ui"),
-    color(0, 0, 255),
-    origin("center"),
-    pos(width()/4, height()/2),
-    "situationOneText",
-  ])
-
-  const situationOne = add([
-    rect(situationOneText.width + buttonPadding, situationOneText.height + buttonPadding),
-    layer("ui"),
-    color(1, 1, 1),
-    origin("center"),
-    area(),
-    pos(width()/4, height()/2),
-    "situationOne",
-  ])
-
-  onClick("situationOne", () => go("level1"))
-
-
-
-
-
-  const situationTwoText = add([
-    text("two"),
-    z(1),
-    layer("ui"),
-    color(0, 0, 255),
-    origin("center"),
-    pos(width()/2, height()/2),
-    "situationTwoText",
-  ])
-
-  const situationTwo = add([
-    rect(situationTwoText.width + buttonPadding, situationTwoText.height + buttonPadding),
-    layer("ui"),
-    color(1, 1, 1),
-    origin("center"),
-    area(),
-    pos(width()/2, height()/2),
-    "situationTwo",
-  ])
-
-
-
-
-
-  const situationThreeText = add([
-    text("three"),
-    z(1),
-    layer("ui"),
-    color(0, 0, 255),
-    origin("center"),
-    pos(width()/4 + width()/2, height()/2),
-    "situationThreeText",
-  ])
-
-  const situationThree = add([
-    rect(situationThreeText.width + buttonPadding, situationThreeText.height + buttonPadding),
-    layer("ui"),
-    color(1, 1, 1),
-    origin("center"),
-    area(),
-    pos(width()/4 + width()/2, height()/2),
-    "situationThree",
-  ])
-
-})
-
-go("menu");
+k.go("menu");
