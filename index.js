@@ -4,7 +4,7 @@ import { Button } from "./ui/button.js";
 import { ButtonSeries } from "./ui/buttonSeries.js"
 import { addLayers } from "./layers.js";
 
-k.loadSprite("background", "./Tiles/mainBackground.png");
+k.loadSprite("background", "./tiles/main_bg.png");
 loadLevel1();
 addLayers();
 
