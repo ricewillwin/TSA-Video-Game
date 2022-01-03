@@ -14,6 +14,17 @@ export const layout = {
   addIns: {
     "car": [0, 4],
   },
+  keys: {
+    "#": "outer wall",
+    "(": "left door",
+    ")": "right door",
+    "_": "sidewalk",
+    "B": "bouncer",
+    "*": "pavement",
+    "!": "pavement with vertical line",
+    "~": "pavement with horizontal line",
+    "j": "pavement with junction up",
+  },
 };
 
 export const loadLevel1 = () => k.scene("level1", () => {
