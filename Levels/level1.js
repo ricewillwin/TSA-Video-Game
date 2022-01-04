@@ -16,15 +16,47 @@ export const layout = {
     "car_red": [[0, 4]],
   },
   keys: {
-    "#": "outer wall",
-    "(": "left door",
-    ")": "right door",
-    "_": "sidewalk",
-    "B": "bouncer",
-    "*": "pavement",
-    "!": "pavement with vertical line",
-    "~": "pavement with horizontal line",
-    "j": "pavement with junction up",
+    "#": (ctx) => ([
+      k.sprite("wall_outer"),
+      k.area(),
+      k.solid(),
+    ]),
+    "(": (ctx) => ([
+      k.sprite( "door_left"),
+      k.area(),
+      k.solid(),
+    ]),
+    ")": (ctx) => ([
+      k.sprite("door_right"),
+      k.area(),
+      k.solid(),
+    ]),
+    "_": (ctx) => ([
+      k.sprite("sidewalk"),
+      k.area(),
+    ]),
+    "B": (ctx) => ([
+      k.sprite("bouncer"),
+      k.area(),
+      k.solid(),
+    ]),
+    "*": (ctx) => ([
+      k.sprite("pavement"),
+      k.area(),
+    ]),
+    "!": (ctx) => ([
+      k.sprite("pavement_vert"),
+      k.area(),
+    ]),
+    "~": (ctx) => ([
+      k.sprite("pavement_horiz"),
+      k.area(),
+    ]),
+    "j": (ctx) => ([
+      k.sprite("pavement_junction_up"),
+      k.area(),
+      k.solid(),
+    ])
   },
 };
 
