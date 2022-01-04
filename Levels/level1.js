@@ -1,5 +1,7 @@
 import { k } from "../kaboom.js";
 
+export const mapObj = null;
+
 export const layout = {
   map: [
     "####################",
@@ -65,7 +67,7 @@ export const loadLevel1 = () => k.scene("level1", () => {
   //   k.pos(k.width()/2, k.height()/2),
   // ]);
 
-  k.addLevel(layout.map, {
+  mapObj = k.addLevel(layout.map, {
     "width": 16,
     "height": 16,
     "pos": k.pos(...layout.playerPos),
