@@ -73,4 +73,6 @@ export const loadLevel1 = () => k.scene("level1", () => {
     "pos": k.pos(...layout.playerPos),
     ...layout.keys,
   });
+
+  k.camScale(3);
 });
