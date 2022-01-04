@@ -9,7 +9,7 @@ export const spriteLoader = {
     await k.loadSprite("pavement_vert", "sprites/tiles/pavement_vert.png");
     await k.loadSprite("pavement_junction_up", "sprites/tiles/pavement_junction_up.png");
     await k.loadSprite("sidewalk", "sprites/tiles/sidewalk.png");
-    await k.loadSprite("wall_outer", "sprites/tiles/wall_outer.png");
+    await k.loadSprite("wall_stone", "sprites/tiles/wall_stone.png");
     await k.loadSprite("wood_floor", "sprites/tiles/wood_floor.png");
   },
   loadPlayers: async () => {

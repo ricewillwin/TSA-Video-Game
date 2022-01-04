@@ -2,13 +2,10 @@ import { k } from "../kaboom.js";
 
 export const layout = {
   map: [
+    "####################",
     "#########()#########",
     "____________________",
     "********************",
-    "********************",
-    "**!**!**!**!**!**!**",
-    "**!**!**!**!**!**!**",
-    "**!**!**!**!**!**!**",
     "~~j~~j~~j~~j~~j~~j~~",
   ],
   objs: {
@@ -17,7 +14,7 @@ export const layout = {
   },
   keys: {
     "#": (ctx) => ([
-      k.sprite("wall_outer"),
+      k.sprite("wall_stone"),
       k.area(),
       k.solid(),
     ]),
@@ -58,12 +55,20 @@ export const layout = {
       k.solid(),
     ])
   },
+  playerPos: [ 9, 3 ],
 };
 
 export const loadLevel1 = () => k.scene("level1", () => {
-  k.add([
-    k.text("level1"),
-    k.origin("center"),
-    k.pos(k.width()/2, k.height()/2),
-  ]);
+  // k.add([
+  //   k.text("level1"),
+  //   k.origin("center"),
+  //   k.pos(k.width()/2, k.height()/2),
+  // ]);
+
+  k.addLevel(layout.map, {
+    "width": 16,
+    "height": 16,
+    "pos": k.pos(...layout.playerPos),
+    ...layout.keys,
+  });
 });

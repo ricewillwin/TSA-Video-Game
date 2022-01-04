@@ -9,6 +9,7 @@ const kaboomOpts = {
   scale: 1,
   debug: true,
   canvas: document.querySelector("#game"),
+  font: "sink",
 };
 
 export const k = kaboom(kaboomOpts);
