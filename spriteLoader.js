@@ -13,9 +13,9 @@ export const spriteLoader = {
     await k.loadSprite("wood_floor", "sprites/tiles/wood_floor.png");
   },
   loadPlayers: async () => {
-    await k.loadSprite("player_bad", "sprites/players/player_1.png");
-    await k.loadSprite("player_meh", "sprites/players/player_2.png");
-    await k.loadSprite("player_good", "sprites/players/player_3.png");
+    await k.loadSprite("player_bad", "sprites/players/player_bad.png");
+    await k.loadSprite("player_meh", "sprites/players/player_meh.png");
+    await k.loadSprite("player_good", "sprites/players/player_good.png");
   },
   loadNPCs: async () => {
     await k.loadSprite("bouncer", "sprites/NPCs/bouncer.png");
