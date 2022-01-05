@@ -8,7 +8,7 @@ import { spriteLoader } from "./spriteLoader.js";
 await k.loadSprite("background", "./sprites/main_bg.png");
 await spriteLoader.loadNPCs();
 await spriteLoader.loadStructure();
-focus();
+k.focus();
 loadLevel1();
 addLayers();
 
