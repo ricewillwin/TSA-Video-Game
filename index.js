@@ -38,7 +38,7 @@ k.scene("menu", () => {
       scale: 1.75,
       x: k.width()/2,
       y: k.height()/4 + menuTitle.height + 100,
-    }, () => { k.go("game"); }),
+    }, () => { k.go("level1"); }),
   ]);
 
   k.onKeyPress(["space", "enter"], () => {menuButtonSeries.push()});
@@ -48,43 +48,43 @@ k.scene("menu", () => {
 // 
 // Cut scene then pick which situation
 // After picking starter go to first level
-k.scene("game", () => {
+// k.scene("game", () => {
 
-  k.add([
-    k.text("situation"),
-    k.pos(k.width()/2, k.height()/4),
-    k.origin("center"),
-    k.scale(3),
-    "situationText",
-  ]);
+//   k.add([
+//     k.text("situation"),
+//     k.pos(k.width()/2, k.height()/4),
+//     k.origin("center"),
+//     k.scale(3),
+//     "situationText",
+//   ]);
 
-  const situationButtonSeries = new ButtonSeries([
-    new Button({
-      name: "situationOne",
-      text: "one",
-      x: k.width()/4,
-      y: k.height()/2,
-      scale: 1.5,
-    }, () => k.go("level1")),
-    new Button({
-      name: "situationTwo",
-      text: "two",
-      x: k.width()/2,
-      y: k.height()/2,
-      scale: 1.5,
-    }, () => k.debug.log("2")),
-    new Button({
-      name: "situationThree",
-      text: "three",
-      x: 3*k.width()/4,
-      y: k.height()/2,
-      scale: 1.5,
-    }, () => k.debug.log("3")),
-  ], 2);
+//   const situationButtonSeries = new ButtonSeries([
+//     new Button({
+//       name: "situationOne",
+//       text: "one",
+//       x: k.width()/4,
+//       y: k.height()/2,
+//       scale: 1.5,
+//     }, () => k.go("level1")),
+//     new Button({
+//       name: "situationTwo",
+//       text: "two",
+//       x: k.width()/2,
+//       y: k.height()/2,
+//       scale: 1.5,
+//     }, () => k.debug.log("2")),
+//     new Button({
+//       name: "situationThree",
+//       text: "three",
+//       x: 3*k.width()/4,
+//       y: k.height()/2,
+//       scale: 1.5,
+//     }, () => k.debug.log("3")),
+//   ], 2);
 
-  k.onKeyPress(["left", "a"], () => situationButtonSeries.back());
-  k.onKeyPress(["right", "d"], () => situationButtonSeries.fwd());
-  k.onKeyPress(["space", "enter"], () => situationButtonSeries.push());
-});
+//   k.onKeyPress(["left", "a"], () => situationButtonSeries.back());
+//   k.onKeyPress(["right", "d"], () => situationButtonSeries.fwd());
+//   k.onKeyPress(["space", "enter"], () => situationButtonSeries.push());
+// });
 
 k.go("menu");
