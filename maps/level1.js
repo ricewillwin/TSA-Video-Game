@@ -30,14 +30,14 @@ export const mapArray = {
       ],
     },
     {
-      pos: [[0, 4]], comps: [
+      pos: [[27, 10]], comps: [
         k.sprite("car_red", { frame: 0 }),
         k.area(),
         k.solid(),
       ],
     },
     {
-      pos: [[0, 5]], comps: [
+      pos: [[29, 10]], comps: [
         k.sprite("car_red", { frame: 1 }),
         k.area(),
         k.solid(),
