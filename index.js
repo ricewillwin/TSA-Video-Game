@@ -1,13 +1,13 @@
 import { k } from "./kaboom.js";
-import { loadLevel1 } from "./Levels/level1.js";
+import { loadLevel1 } from "./maps/level1.js";
 import { Button } from "./ui/button.js";
 import { ButtonSeries } from "./ui/buttonSeries.js"
 import { addLayers } from "./layers.js";
 import { spriteLoader } from "./spriteLoader.js";
 
 await k.loadSprite("background", "./sprites/main_bg.png");
-spriteLoader.loadNPCs();
-spriteLoader.loadStructure();
+await spriteLoader.loadNPCs();
+await spriteLoader.loadStructure();
 
 loadLevel1();
 addLayers();
