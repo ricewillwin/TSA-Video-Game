@@ -22,28 +22,6 @@ export const mapArray = {
     "##################################",
     "##################################",
   ],
-  objs: [
-    {
-      pos: [[8, 1], [11, 1]], comps: [
-        k.area(),
-        k.solid(),
-      ],
-    },
-    {
-      pos: [[27, 10]], comps: [
-        k.sprite("car_red", { frame: 0 }),
-        k.area(),
-        k.solid(),
-      ],
-    },
-    {
-      pos: [[29, 10]], comps: [
-        k.sprite("car_red", { frame: 1 }),
-        k.area(),
-        k.solid(),
-      ],
-    },
-  ],
   legend: {
     width: 16,
     height: 16,
@@ -95,7 +73,7 @@ export const mapArray = {
       k.area(),
     ])
   },
-  spawn: [ 16, 6 ],
+  spawn: [ 17, 5 ],
 
 };
 
@@ -125,10 +103,118 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
   ]);
 
+
   k.onCollide("player", "door", () => {
     loadLevel2();
     k.go("level2");
+    music.stop()
   })
 
   k.camScale(4);
+
+
+
+
+
+
+  const redCar = k.add([
+    k.sprite("car_red"),
+    k.pos((17*16),(6*16)),
+    k.solid(),
+    k.z(1),
+    k.area({width: 32, height: 16}),
+    k.rotate(90),
+    k.origin("center")
+  ]);
+  const yellowCar = k.add([
+    k.sprite("car_yellow"),
+    k.pos((23*16),(9.3*16)),
+    k.solid(),
+    k.z(1),
+    k.area({width: 32, height: 16}),
+    k.rotate(270),
+    k.origin("center")
+  ]);
+  const greenCar = k.add([
+    k.sprite("car_green"),
+    k.pos((7*16),(6.5*16)),
+    k.solid(),
+    k.z(1),
+    k.area({width: 32, height: 16}),
+    k.rotate(90),
+    k.origin("center")
+  ]);
+
+  const blockade1 = k.add([
+    k.sprite("car_red"),
+    k.pos((4.4*16),(4*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    k.origin("center")
+  ]);
+  const blockade2 = k.add([
+    k.sprite("car_blue"),
+    k.pos((4.5*16),(6*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    k.origin("center")
+  ]);
+  const blockade3 = k.add([
+    k.sprite("car_green"),
+    k.pos((4.75*16),(8*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    k.origin("center")
+  ]);
+  const blockade4 = k.add([
+    k.sprite("car_striped"),
+    k.pos((4.6*16),(10*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    k.origin("center"),
+    k.rotate(180)
+  ]);
+
+
+
+  const blockade5 = k.add([
+    k.sprite("car_striped"),
+    k.pos((29.6*16),(4*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    k.origin("center")
+  ]);
+  const blockade6 = k.add([
+    k.sprite("car_blue"),
+    k.pos((29.2*16),(6*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    k.origin("center"),
+    k.rotate(180)
+  ]);
+  const blockade7 = k.add([
+    k.sprite("car_green"),
+    k.pos((29.4*16),(8*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    k.origin("center"),
+    k.rotate(180)
+  ]);
+  const blockade8 = k.add([
+    k.sprite("car_yellow"),
+    k.pos((29.5*16),(10*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    k.origin("center"),
+  ]);
+
+  
 });

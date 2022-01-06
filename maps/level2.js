@@ -115,7 +115,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
   ]);
 
   const billiardguy1 = k.add([
-    k.sprite("billiardguy1", {anim: "idle", animSpeed: 0.5}),
+    k.sprite("billiardguy1", {anim: "idle", animSpeed: 0.2}),
     k.pos((4.5*16), (4*16)),
     k.solid(),
     k.z(2),
@@ -132,7 +132,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
   ]);
 
   const billiardguy2 = k.add([
-    k.sprite("billiardguy2", {anim: "idle", animSpeed: 0.5}),
+    k.sprite("billiardguy2", {anim: "idle", animSpeed: 0.3}),
     k.pos((8.5*16), (4.2*16)),
     k.solid(),
     k.z(2),
