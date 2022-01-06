@@ -1,23 +1,21 @@
 import { k } from "../kaboom.js";
 import { initializePlayer, player, BASE_SPEED } from "../player.js";
 import { GameMap } from "./index.js";
-import { loadLevel1 } from "./level1.js"
-import { loadLevel3 } from "./level3.js"
 
 export var mapObj = null;
 
 export const mapArray = {
   map: [
+    "##############",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "#wwww####wwww#",
+    "#wwttttttttww#",
+    "#wwttttttttww#",
+    "#wwttttttttww#",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
     "######()######",
-    "#wwwwwwwwwwww#",
-    "#wwwwwwwwwwww#",
-    "#wwwwwwwwwwww#",
-    "#wwwwwwwwwwww#",
-    "#wwwwwwwwwwww#",
-    "#wwwwwwwwwwww#",
-    "#wwwwwwwwwwww#",
-    "#wwwwwwwwwwww#",
-    "######{}######",
   ],
   legend: {
     width: 16,
@@ -31,25 +29,13 @@ export const mapArray = {
       k.sprite( "door_left"),
       k.area(),
       k.solid(),
-      "nextdoor",
+      "door",
     ]),
     ")": (ctx) => ([
       k.sprite("door_right"),
       k.area(),
       k.solid(),
-      "nextdoor",
-    ]),
-    "{": (ctx) => ([
-      k.sprite( "door_left"),
-      k.area(),
-      k.solid(),
-      "exitdoor",
-    ]),
-    "}": (ctx) => ([
-      k.sprite("door_right"),
-      k.area(),
-      k.solid(),
-      "exitdoor",
+      "door",
     ]),
     "_": (ctx) => ([
       k.sprite("sidewalk"),
@@ -95,7 +81,7 @@ export const mapArray = {
   spawn: [ 7, 8.4 ],
 };
 
-export const loadLevel2 = () => k.scene("level2", async () => {
+export const loadLevel3 = () => k.scene("level3", async () => {
   const music = k.play("openworld", {
     volume: 0.05,
   });
@@ -104,49 +90,6 @@ export const loadLevel2 = () => k.scene("level2", async () => {
   mapObj = new GameMap(mapArray);
 
   await initializePlayer("player", mapObj);
-
-  const table_left = k.add([
-    k.sprite("table"),
-    k.pos((7*16), (5*16)),
-    k.origin("center"),
-    k.solid(),
-    k.z(1),
-    k.area({ width: 48, height: 34, offset: k.vec2(0, -2)}),
-  ]);
-
-  const billiardguy1 = k.add([
-    k.sprite("billiardguy1", {anim: "idle", animSpeed: 0.2}),
-    k.pos((4.5*16), (3.8*16)),
-    k.solid(),
-    k.z(2),
-    k.area({ width: 10, height: 14, offset: k.vec2(3, 2) }),
-    "NPC",
-    {
-      dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Get out of mee way buddo",
-               "Com'on shoo",
-               "Really ya kiddo, move",
-               "The key to the next room is gamer"]
-    },
-  ]);
-
-  const billiardguy2 = k.add([
-    k.sprite("billiardguy2", {anim: "idle", animSpeed: 0.3}),
-    k.pos((8.5*16), (4.2*16)),
-    k.solid(),
-    k.z(2),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
-    "NPC",
-    {
-      dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Boy I do love billiards",
-               "Billiards",
-               "Ever heard of Billiards",
-               "Billiards is the best game ever"]
-    },
-  ]);
 
   const billiardguy3 = k.add([
     k.sprite("billiardguy3", {anim: "idle", animSpeed: 0.3}),
@@ -166,17 +109,20 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     },
   ]);
 
-  k.onCollide("player", "exitdoor", () => {
-    loadLevel1();
-    k.go("level1");
-    music.stop()
-  })
-
-  k.onCollide("player", "nextdoor", () => {
-    loadLevel3();
-    k.go("level3");
-    music.stop()
-  })
+	const bouncerRight = k.add([
+    k.sprite("bouncer_right", {anim: "idle"}),
+    k.pos((5*16),(7.8*16)),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["What ya looking at kiddo",
+               "Dont cause any ruckus now"]
+    },
+  ]);
 
   k.camScale(4);
 });
