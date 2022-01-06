@@ -11,7 +11,7 @@ export const spriteLoader = {
     await k.loadSprite("sidewalk", "./sprites/tiles/sidewalk.png");
     await k.loadSprite("wall_stone", "./sprites/tiles/wall_stone.png");
     await k.loadSprite("wood_floor", "./sprites/tiles/wood_floor.png");
-    await k.loadSprite("table", "./sprites/tiles/table.png");
+    await k.loadSprite("table", "./sprites/tiles/BilliardTable.png");
     
   },
   loadPlayers: async () => {
@@ -47,6 +47,39 @@ export const spriteLoader = {
         idle: {
           from: 0,
           to: 4,
+          loop: true
+        }
+      }
+    });
+    await k.loadSprite("billiardguy1", "./sprites/NPCs/billiardguy1.png", {
+      sliceX: 2,
+      sliceY: 1,
+      anims: {
+        idle: {
+          from: 0,
+          to: 1,
+          loop: true
+        }
+      }
+    });
+    await k.loadSprite("billiardguy2", "./sprites/NPCs/billiardguy2.png", {
+      sliceX: 2,
+      sliceY: 1,
+      anims: {
+        idle: {
+          from: 0,
+          to: 1,
+          loop: true
+        }
+      }
+    });
+    await k.loadSprite("billiardguy3", "./sprites/NPCs/billiardguy3.png", {
+      sliceX: 15,
+      sliceY: 1,
+      anims: {
+        idle: {
+          from: 0,
+          to: 14,
           loop: true
         }
       }
