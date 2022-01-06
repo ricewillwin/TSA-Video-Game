@@ -1,5 +1,6 @@
 import { k } from "./kaboom.js";
 import { spriteLoader } from "./spriteLoader.js";
+import { createDialogText, nextDialog } from "./maps/level2.js";
 
 export const BASE_SPEED = 60;
 
@@ -163,6 +164,25 @@ export const setListeners = () => {
 		}
 		playerHandler.updateAnim(keys.RIGHT);
 	});
+
+	k.onKeyPress("space", () => {
+		let npcs = k.get("NPC");
+		let touchingNPC = null;
+		console.log(npcs);
+		for (const npc in npcs) {
+			if (player.isColliding(npc)) {
+				touchingNPC = npc;
+				break;
+			}
+		}
+		if (touchingNPC !== null) {
+			if (touchingNPC.dialogObj === null) {
+				createDialogText(touchingNPC);
+			} else {
+				nextDialog(touchingNPC);
+			}
+		}
+	})
 }
 
 export const initializePlayer = async (name, gameMap) => {

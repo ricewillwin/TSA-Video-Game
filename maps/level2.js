@@ -17,28 +17,6 @@ export const mapArray = {
     "#wwwwwwwwwwww#",
     "######()######",
   ],
-  objs: [
-    {
-      pos: [[8, 1], [11, 1]], comps: [
-        k.area(),
-        k.solid(),
-      ],
-    },
-    {
-      pos: [[27, 10]], comps: [
-        k.sprite("car_red", { frame: 0 }),
-        k.area(),
-        k.solid(),
-      ],
-    },
-    {
-      pos: [[29, 10]], comps: [
-        k.sprite("car_red", { frame: 1 }),
-        k.area(),
-        k.solid(),
-      ],
-    },
-  ],
   legend: {
     width: 16,
     height: 16,
@@ -103,6 +81,19 @@ export const mapArray = {
   spawn: [ 7, 8.4 ],
 };
 
+export const createDialogText = (npc) => {
+  npc.dialogObj = k.add([
+    k.text(npc.dialog[npc.currentDialog]),
+    k.origin("bot"),
+    k.pos(npc.pos.add(0, -8)),
+  ]);
+};
+
+export const nextDialog = (npc) => {
+  npc.currentDialog = (npc.currentDialog + 1) % npc.dialog.length;
+  npc.dialogObj.use(k.text(npc.dialog[npc.currentDialog]));
+}
+
 export const loadLevel2 = () => k.scene("level2", async () => {
   const music = k.play("openworld", {
     volume: 0.1,
@@ -129,12 +120,15 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
     {
+      dialogObj: null,
+      currentDialog: null,
       dialog: ["Get out of mee way buddo",
                "Com'on shoo",
                "Really ya kiddo, move",
                "The key to the next room is gamer"]
-    }
+    },
   ]);
 
   const billiardguy2 = k.add([
@@ -143,12 +137,15 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
     {
+      dialogObj: null,
+      currentDialog: null,
       dialog: ["Boy I do love billiards",
                "Billiards",
                "Ever heard of Billiards",
                "Billiards is the best game ever"]
-    }
+    },
   ]);
 
   const billiardguy3 = k.add([
@@ -157,13 +154,16 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
     {
+      dialogObj: null,
+      currentDialog: 0,
       dialog: ["Fire is epic",
                "Fire",
                "Flame",
                "Yo kiddo you want the key to the next room?",
                "Go talk to the guy in the green with the stick."]
-    }
+    },
   ]);
 
   k.camScale(4);
