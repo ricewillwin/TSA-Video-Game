@@ -129,6 +129,12 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    {
+      dialog: ["Get out of mee way buddo",
+               "Com'on shoo",
+               "Really ya kiddo, move",
+               "The key to the next room is gamer"]
+    }
   ]);
 
   const billiardguy2 = k.add([
@@ -137,6 +143,12 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    {
+      dialog: ["Boy I do love billiards",
+               "Billiards",
+               "Ever heard of Billiards",
+               "Billiards is the best game ever"]
+    }
   ]);
 
   const billiardguy3 = k.add([
@@ -145,6 +157,13 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    {
+      dialog: ["Fire is epic",
+               "Fire",
+               "Flame",
+               "Yo kiddo you want the key to the next room?",
+               "Go talk to the guy in the green with the stick."]
+    }
   ]);
 
   k.camScale(4);
