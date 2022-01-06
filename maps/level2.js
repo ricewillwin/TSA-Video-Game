@@ -13,9 +13,9 @@ export const mapArray = {
     "###########wwwwwwwwwwwwwwwwwwww###########",
     "###########wwwwwwwwwwwwwwwwwwww###########",
     "###########wwwwwwwwwwwwwwwwwwww###########",
-    "###########wwttwwwwwwwwwwwwttww###########",
-    "###########wwttwwwwwwwwwwwwttww###########",
-    "###########wwttwwwwwwwwwwwwttww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwtttwwwwwwwwwwtttww###########",
+    "###########wwtttwwwwwwwwwwtttww###########",
     "###########wwwwwwwwwwwwwwwwwwww###########",
     "###########wwwwwwwwwwwwwwwwwwww###########",
     "###########wwwwwwwwwwwwwwwwwwww###########",
@@ -116,6 +116,12 @@ export const loadLevel2 = () => k.scene("level2", async () => {
   mapObj = new GameMap(mapArray);
 
   await initializePlayer("player_bad", mapObj);
-
+  const table_left = k.add([
+    k.sprite("table"),
+    k.pos(206,142),
+    k.solid(),
+    k.z(2),
+    k.area({ width: 48, height: 32 }),
+  ]);
   k.camScale(1);
 });
