@@ -1,6 +1,6 @@
 import { k } from "../kaboom.js";
 
-const defaultPadding = 50;
+const defaultPadding = 15;
 const defaultTextColor = [0, 0, 255];
 const defaultFillColor = [1, 1, 1];
 const defaultScale = 1;
