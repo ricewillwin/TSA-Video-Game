@@ -103,7 +103,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   mapObj = new GameMap(mapArray);
 
-  await initializePlayer("player_bad", mapObj);
+  await initializePlayer("player", mapObj);
 
   k.camScale(4);
 });

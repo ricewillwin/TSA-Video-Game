@@ -5,6 +5,26 @@ export const BASE_SPEED = 60;
 
 export var player = null;
 
+export const playerHandler = {
+	anim: (key, walk) => {
+		return key[0] + "_" + (walk ? "walk" : "idle");
+	},
+
+	setAnim: (anim) => {
+		if (player.curAnim() !== anim) {
+			player.play(anim);
+		}
+	},
+
+	updateAnim: (last) => {
+		if (player.currentHoriz === null) {
+			playerHandler.setAnim(playerHandler.anim(last, false));
+		} else {
+			playerHandler.setAnim(playerHandler.anim(player.currentHoriz, true));
+		}
+	},
+};
+
 export const createPlayer = async (name, pos) => {
 	await spriteLoader.loadPlayers();
 	if (player !== null) k.destroy(player);
@@ -45,10 +65,12 @@ export const addPlayerOpts = (name, pos) => [
 export const setListeners = () => {
 	player.onUpdate(() => {
 		k.camPos(player.pos);
+		player.isMoving = player.currentHoriz || player.currentVert;
 	});
 
 	k.onKeyPress(keys.RIGHT, () => {
 		player.currentHoriz = keys.RIGHT;
+		playerHandler.updateAnim(keys.RIGHT);
 	});
 
 	k.onKeyDown(keys.RIGHT, () => {
@@ -67,10 +89,12 @@ export const setListeners = () => {
 		} else {
 			player.currentHoriz = null;
 		}
+		playerHandler.updateAnim(keys.RIGHT);
 	});
 
 	k.onKeyPress(keys.LEFT, () => {
 		player.currentHoriz = keys.LEFT;
+		playerHandler.updateAnim(keys.LEFT);
 	});
 
 	k.onKeyDown(keys.LEFT, () => {
@@ -89,6 +113,7 @@ export const setListeners = () => {
 		} else {
 			player.currentHoriz = null;
 		}
+		playerHandler.updateAnim(keys.LEFT);
 	});
 
 	k.onKeyPress(keys.UP, () => {
@@ -115,6 +140,7 @@ export const setListeners = () => {
 
 	k.onKeyPress(keys.DOWN, () => {
 		player.currentVert = keys.DOWN;
+		playerHandler.updateAnim(keys.DOWN);
 	});
 
 	k.onKeyDown(keys.DOWN, () => {

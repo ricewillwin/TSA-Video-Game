@@ -13,9 +13,18 @@ export const spriteLoader = {
     await k.loadSprite("wood_floor", "sprites/tiles/wood_floor.png");
   },
   loadPlayers: async () => {
-    await k.loadSprite("player_bad", "sprites/players/player_bad.png");
-    await k.loadSprite("player_meh", "sprites/players/player_meh.png");
-    await k.loadSprite("player_good", "sprites/players/player_good.png");
+    await k.loadSprite("player", "sprites/players/player.png", {
+      sliceX: 5,
+      sliceY: 6,
+      anims: {
+        "left_grab": { "from": 0, "to": 3 },
+        "left_walk": { "from": 5, "to": 8, "loop": true },
+        "left_idle": { "from": 10, "to": 14, "loop": true },
+        "right_grab": { "from": 15, "to": 18 },
+        "right_walk": { "from": 20, "to": 23, "loop": true },
+        "right_idle": { "from": 25, "to": 29, "loop": true },
+      },
+    });
   },
   loadNPCs: async () => {
     await k.loadSprite("bouncer", "sprites/NPCs/bouncer.png");
