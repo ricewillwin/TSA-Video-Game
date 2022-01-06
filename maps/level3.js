@@ -106,7 +106,7 @@ export const loadLevel3 = () => k.scene("level3", async () => {
       dialog: ["Boy I do love dancing",
                "dancing.",
                "Ever heard of dancing",
-               "dancing is the best game ever"]
+               "Dancing is the best game ever"]
     },
   ]);
   const billiardguy22 = k.add([
@@ -122,7 +122,7 @@ export const loadLevel3 = () => k.scene("level3", async () => {
       dialog: ["Boy I do love dancing",
                "dancing.",
                "Ever heard of dancing",
-               "dancing is the best game ever"]
+               "Dancing is the best game ever"]
     },
   ]);
   const billiardguy23 = k.add([
@@ -138,7 +138,7 @@ export const loadLevel3 = () => k.scene("level3", async () => {
       dialog: ["Boy I do love dancing",
                "dancing.",
                "Ever heard of dancing",
-               "dancing is the best game ever"]
+               "Dancing is the best game ever"]
     },
   ]);
   const billiardguy24 = k.add([
@@ -154,7 +154,7 @@ export const loadLevel3 = () => k.scene("level3", async () => {
       dialog: ["Boy I do love dancing",
                "dancing",
                "Ever heard of dancing",
-               "dancing is the best game ever"]
+               "Dancing is the best game ever"]
     },
   ]);
   
