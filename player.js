@@ -168,8 +168,8 @@ export const setListeners = () => {
 
   cancellers.push(k.onKeyPress("space", () => {
     let npcs = k.get("NPC");
+		npcs = npcs.slice(0, npcs.length / 2);
     let touchingNPC = null;
-    console.log(npcs);
     for (const npc in npcs) {
       if (player.isColliding(npc)) {
         touchingNPC = npc;
@@ -188,8 +188,8 @@ export const setListeners = () => {
 
 export const initializePlayer = async (name, gameMap) => {
   await createPlayer(name, gameMap.getWorldPos(gameMap.spawn));
-  for (let i = 0; i < cancellers.length; i++) {
-    cancellers[0]();
+	for (let i = 0; i < cancellers.length; i++) {
+    cancellers[i]();
   }
   cancellers = [];
   setListeners();
