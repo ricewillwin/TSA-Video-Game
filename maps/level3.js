@@ -83,7 +83,7 @@ export const mapArray = {
 
 export const loadLevel3 = () => k.scene("level3", async () => {
   const music = k.play("openworld", {
-    volume: 0.05,
+    volume: 0.025,
   });
   music.loop();
 
