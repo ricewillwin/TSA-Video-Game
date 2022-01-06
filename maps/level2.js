@@ -115,10 +115,11 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   const table_left = k.add([
     k.sprite("table"),
-    k.pos((5.5*16), (6*16)),
+    k.pos((7*16), (6*16)),
+    k.origin("center"),
     k.solid(),
     k.z(2),
-    k.area({ width: 48, height: 32 }),
+    k.area({ width: 48, height: 34, offset: k.vec2(0, -2)}),
   ]);
 
   k.camScale(4);
