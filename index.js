@@ -5,14 +5,16 @@ import { Button } from "./ui/button.js";
 import { ButtonSeries } from "./ui/buttonSeries.js"
 import { addLayers } from "./layers.js";
 import { spriteLoader } from "./spriteLoader.js";
-
+k.focus();
 addLayers();
 await k.loadSprite("background", "./sprites/main_bg.png");
 await k.loadSound("menu", "./music/newtitlescreen.wav")
 await k.loadSound("openworld", "./music/openworld.wav")
+await k.loadSprite("bouncer", "./sprites/NPCs/bouncer.png")
+
 await spriteLoader.loadNPCs();
 await spriteLoader.loadStructure();
-k.focus();
+
 
 k.scene("menu", () => {
   const music = k.play("menu", {
@@ -28,7 +30,9 @@ k.scene("menu", () => {
     k.area(),
     k.scale(3.75),
   ]);
-
+  
+ 
+  
   const menuTitle = k.add([
     k.text("iSpy"),
     k.layer("ui"),
@@ -51,7 +55,7 @@ k.scene("menu", () => {
       music.stop()
     }),
   ]);
-
+  
   k.onKeyPress(["space", "enter"], () => {menuButtonSeries.push()});
 });
 
