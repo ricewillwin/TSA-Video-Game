@@ -110,7 +110,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.sprite("bouncer_left", {anim: "idle"}),
     k.pos(286,38),
     k.solid(),
-    k.z(2),
+    k.z(1),
     k.area({ width: 9, height: 16, offset: k.vec2(3, 0) }),
   ]);
 
@@ -118,7 +118,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.sprite("bouncer_right", {anim: "idle"}),
     k.pos(242,38),
     k.solid(),
-    k.z(2),
+    k.z(1),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
   ]);
 
