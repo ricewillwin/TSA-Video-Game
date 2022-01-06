@@ -96,7 +96,7 @@ export const nextDialog = (npc) => {
 
 export const loadLevel2 = () => k.scene("level2", async () => {
   const music = k.play("openworld", {
-    volume: 0.1,
+    volume: 0.05,
   });
   music.loop();
 
