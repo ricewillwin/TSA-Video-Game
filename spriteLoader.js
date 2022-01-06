@@ -2,8 +2,8 @@ import { k } from "./kaboom.js"
 
 export const spriteLoader = {
   loadStructure: async () => {
-    await k.loadSprite("door_left", "./sprites/tiles/door_left.png");
-    await k.loadSprite("door_right", "./sprites/tiles/door_right.png");
+    await k.loadSprite("door_left", "./sprites/tiles/DoorClosed.png");
+    await k.loadSprite("door_right", "./sprites/tiles/DoorClosedRight.png");
     await k.loadSprite("pavement", "./sprites/tiles/pavement.png");
     await k.loadSprite("pavement_horiz", "./sprites/tiles/pavement_horiz.png");
     await k.loadSprite("pavement_vert", "./sprites/tiles/pavement_vert.png");

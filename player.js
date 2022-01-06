@@ -18,7 +18,7 @@ export const playerHandler = {
 
 	updateAnim: (last) => {
 		if (player.currentHoriz === null) {
-			playerHandler.setAnim(playerHandler.anim(last, false));
+			playerHandler.setAnim(playerHandler.anim(last, player.currentVert !== null));
 		} else {
 			playerHandler.setAnim(playerHandler.anim(player.currentHoriz, true));
 		}
@@ -118,6 +118,7 @@ export const setListeners = () => {
 
 	k.onKeyPress(keys.UP, () => {
 		player.currentVert = keys.UP;
+		playerHandler.updateAnim(keys.RIGHT);
 	});
 
 	k.onKeyDown(keys.UP, () => {
@@ -136,11 +137,12 @@ export const setListeners = () => {
 		} else {
 			player.currentVert = null;
 		}
+		playerHandler.updateAnim(keys.RIGHT);
 	});
 
 	k.onKeyPress(keys.DOWN, () => {
 		player.currentVert = keys.DOWN;
-		playerHandler.updateAnim(keys.DOWN);
+		playerHandler.updateAnim(keys.RIGHT);
 	});
 
 	k.onKeyDown(keys.DOWN, () => {
@@ -159,6 +161,7 @@ export const setListeners = () => {
 		} else {
 			player.currentVert = null;
 		}
+		playerHandler.updateAnim(keys.RIGHT);
 	});
 }
 
