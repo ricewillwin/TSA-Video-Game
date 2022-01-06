@@ -5,8 +5,10 @@ import { Button } from "./ui/button.js";
 import { ButtonSeries } from "./ui/buttonSeries.js"
 import { addLayers } from "./layers.js";
 import { spriteLoader } from "./spriteLoader.js";
+
 k.focus();
 addLayers();
+loadLevel1();
 await k.loadSprite("background", "./sprites/main_bg.png");
 await k.loadSound("menu", "./music/newtitlescreen.wav")
 await k.loadSound("openworld", "./music/openworld.wav")
@@ -50,7 +52,7 @@ k.scene("menu", () => {
       y: k.height()/4 + menuTitle.height + 100,
     }, () => { 
       loadLevel2();
-      k.go("level2");
+      k.go("level1");
       music.stop()
     }),
   ]);
