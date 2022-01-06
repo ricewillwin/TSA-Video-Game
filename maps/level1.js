@@ -96,6 +96,11 @@ export const mapArray = {
 };
 
 export const loadLevel1 = () => k.scene("level1", async () => {
+  const music = k.play("openworld", {
+    volume: 0.1,
+  });
+  music.loop();
+
   mapObj = new GameMap(mapArray);
 
   await initializePlayer("player_bad", mapObj);

@@ -6,6 +6,8 @@ import { addLayers } from "./layers.js";
 import { spriteLoader } from "./spriteLoader.js";
 
 await k.loadSprite("background", "./sprites/main_bg.png");
+await k.loadSound("menu", "./music/newtitlescreen.wav")
+await k.loadSound("openworld", "./music/openworld.wav")
 await spriteLoader.loadNPCs();
 await spriteLoader.loadStructure();
 k.focus();
@@ -13,6 +15,10 @@ loadLevel1();
 addLayers();
 
 k.scene("menu", () => {
+  const music = k.play("menu", {
+    volume: 0.1,
+  });
+  music.loop();
 
   k.add([
     k.sprite("background"),
@@ -38,53 +44,13 @@ k.scene("menu", () => {
       scale: 1.75,
       x: k.width()/2,
       y: k.height()/4 + menuTitle.height + 100,
-    }, () => { k.go("level1"); }),
+    }, () => { 
+      k.go("level1");
+      music.stop()
+    }),
   ]);
 
   k.onKeyPress(["space", "enter"], () => {menuButtonSeries.push()});
 });
-
-// Start the actual game
-// 
-// Cut scene then pick which situation
-// After picking starter go to first level
-// k.scene("game", () => {
-
-//   k.add([
-//     k.text("situation"),
-//     k.pos(k.width()/2, k.height()/4),
-//     k.origin("center"),
-//     k.scale(3),
-//     "situationText",
-//   ]);
-
-//   const situationButtonSeries = new ButtonSeries([
-//     new Button({
-//       name: "situationOne",
-//       text: "one",
-//       x: k.width()/4,
-//       y: k.height()/2,
-//       scale: 1.5,
-//     }, () => k.go("level1")),
-//     new Button({
-//       name: "situationTwo",
-//       text: "two",
-//       x: k.width()/2,
-//       y: k.height()/2,
-//       scale: 1.5,
-//     }, () => k.debug.log("2")),
-//     new Button({
-//       name: "situationThree",
-//       text: "three",
-//       x: 3*k.width()/4,
-//       y: k.height()/2,
-//       scale: 1.5,
-//     }, () => k.debug.log("3")),
-//   ], 2);
-
-//   k.onKeyPress(["left", "a"], () => situationButtonSeries.back());
-//   k.onKeyPress(["right", "d"], () => situationButtonSeries.fwd());
-//   k.onKeyPress(["space", "enter"], () => situationButtonSeries.push());
-// });
 
 k.go("menu");
