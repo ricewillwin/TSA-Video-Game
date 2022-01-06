@@ -33,6 +33,7 @@ k.scene("menu", () => {
     k.text("iSpy"),
     k.layer("ui"),
     k.origin("center"),
+    k.color(40, 40, 40),
     k.pos(k.width()/2, k.height()/4),
     k.scale(5),
     "menuText",
