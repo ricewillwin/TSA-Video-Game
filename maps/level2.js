@@ -6,20 +6,22 @@ export var mapObj = null;
 
 export const mapArray = {
   map: [
-    "##################################",
-    "##################################",
-    "################()################",
-    "__________________________________",
-    "__________________________________",
-    "**********************************",
-    "**********************************",
-    "~~*~~~~~*~~~~~*~~~~~*~~~~~*~~~~~*~",
-    "**********************************",
-    "**********************************",
-    "__________________________________",
-    "##################################",
-    "##################################",
-    "##################################",
+    "##########################################",
+    "##########################################",
+    "##########################################",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwtttwwwwwwwwwwtttww###########",
+    "###########wwtttwwwwwwwwwwtttww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "####################()####################",
+    "##########################################",
+    "##########################################",
   ],
   objs: [
     {
@@ -90,13 +92,22 @@ export const mapArray = {
       k.sprite("pavement_junction_up"),
       k.layer("floor"),
       k.area(),
-    ])
+    ]),
+    "w": (ctx) => ([
+      k.sprite("wood_floor"),
+      k.layer("floor"),
+      k.area(),
+    ]),
+    "t": (ctx) => ([
+      k.sprite("table"),
+      k.layer("floor"),
+      k.area(),
+    ]),
   },
-  spawn: [ 16, 6 ],
-
+  spawn: [ 21, 12 ],
 };
 
-export const loadLevel1 = () => k.scene("level1", async () => {
+export const loadLevel2 = () => k.scene("level2", async () => {
   const music = k.play("openworld", {
     volume: 0.1,
   });
@@ -104,23 +115,13 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   mapObj = new GameMap(mapArray);
 
-  await initializePlayer("player", mapObj);
-
-  const bouncerLeft = k.add([
-    k.sprite("bouncer_left", {anim: "idle"}),
-    k.pos(286,38),
+  await initializePlayer("player_bad", mapObj);
+  const table_left = k.add([
+    k.sprite("table"),
+    k.pos(208,144),
     k.solid(),
-    k.z(1),
-    k.area({ width: 9, height: 16, offset: k.vec2(3, 0) }),
+    k.z(2),
+    k.area({ width: 48, height: 32 }),
   ]);
-
-  const bouncerRight = k.add([
-    k.sprite("bouncer_right", {anim: "idle"}),
-    k.pos(242,38),
-    k.solid(),
-    k.z(1),
-    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
-  ]);
-
-  k.camScale(4);
+  k.camScale(1);
 });

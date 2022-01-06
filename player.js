@@ -5,6 +5,26 @@ export const BASE_SPEED = 60;
 
 export var player = null;
 
+export const playerHandler = {
+	anim: (key, walk) => {
+		return key[0] + "_" + (walk ? "walk" : "idle");
+	},
+
+	setAnim: (anim) => {
+		if (player.curAnim() !== anim) {
+			player.play(anim);
+		}
+	},
+
+	updateAnim: (last) => {
+		if (player.currentHoriz === null) {
+			playerHandler.setAnim(playerHandler.anim(last, player.currentVert !== null));
+		} else {
+			playerHandler.setAnim(playerHandler.anim(player.currentHoriz, true));
+		}
+	},
+};
+
 export const createPlayer = async (name, pos) => {
 	await spriteLoader.loadPlayers();
 	if (player !== null) k.destroy(player);
@@ -31,9 +51,9 @@ export const addPlayerOpts = (name, pos) => [
 	k.origin("center"),
 	k.layer("game"),
 	k.pos(pos),
-	k.area(),
+	k.area({width: 7, height: 6, offset: k.vec2(0, 6)}),
 	k.solid(),
-	k.z(1),
+	k.z(10),
 	"player",
 	{
 		currentHoriz: null,
@@ -45,10 +65,12 @@ export const addPlayerOpts = (name, pos) => [
 export const setListeners = () => {
 	player.onUpdate(() => {
 		k.camPos(player.pos);
+		player.isMoving = player.currentHoriz || player.currentVert;
 	});
 
 	k.onKeyPress(keys.RIGHT, () => {
 		player.currentHoriz = keys.RIGHT;
+		playerHandler.updateAnim(keys.RIGHT);
 	});
 
 	k.onKeyDown(keys.RIGHT, () => {
@@ -67,10 +89,12 @@ export const setListeners = () => {
 		} else {
 			player.currentHoriz = null;
 		}
+		playerHandler.updateAnim(keys.RIGHT);
 	});
 
 	k.onKeyPress(keys.LEFT, () => {
 		player.currentHoriz = keys.LEFT;
+		playerHandler.updateAnim(keys.LEFT);
 	});
 
 	k.onKeyDown(keys.LEFT, () => {
@@ -89,10 +113,12 @@ export const setListeners = () => {
 		} else {
 			player.currentHoriz = null;
 		}
+		playerHandler.updateAnim(keys.LEFT);
 	});
 
 	k.onKeyPress(keys.UP, () => {
 		player.currentVert = keys.UP;
+		playerHandler.updateAnim(keys.RIGHT);
 	});
 
 	k.onKeyDown(keys.UP, () => {
@@ -111,10 +137,12 @@ export const setListeners = () => {
 		} else {
 			player.currentVert = null;
 		}
+		playerHandler.updateAnim(keys.RIGHT);
 	});
 
 	k.onKeyPress(keys.DOWN, () => {
 		player.currentVert = keys.DOWN;
+		playerHandler.updateAnim(keys.RIGHT);
 	});
 
 	k.onKeyDown(keys.DOWN, () => {
@@ -133,6 +161,7 @@ export const setListeners = () => {
 		} else {
 			player.currentVert = null;
 		}
+		playerHandler.updateAnim(keys.RIGHT);
 	});
 }
 
