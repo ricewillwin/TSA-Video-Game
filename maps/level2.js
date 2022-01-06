@@ -105,7 +105,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.pos((4.5*16), (3.8*16)),
     k.solid(),
     k.z(2),
-    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    k.area({ width: 10, height: 14, offset: k.vec2(3, 2) }),
     "NPC",
     {
       dialogObj: null,
@@ -122,7 +122,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.pos((8.5*16), (4.2*16)),
     k.solid(),
     k.z(2),
-    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
     "NPC",
     {
       dialogObj: null,
@@ -139,7 +139,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.pos((7*16), (1.8*16)),
     k.solid(),
     k.z(2),
-    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    k.area({ width: 7, height: 15, offset: k.vec2(4, 1) }),
     "NPC",
     {
       dialogObj: null,
