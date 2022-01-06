@@ -91,38 +91,77 @@ export const loadLevel3 = () => k.scene("level3", async () => {
 
   await initializePlayer("player", mapObj);
 
-  const billiardguy3 = k.add([
-    k.sprite("billiardguy3", {anim: "idle", animSpeed: 0.3}),
-    k.pos((7*16), (1.8*16)),
+  
+
+  const billiardguy21 = k.add([
+    k.sprite("billiardguy2", {anim: "idle", animSpeed: 0.3}),
+    k.pos((4*16), (4.4*16)),
     k.solid(),
     k.z(2),
-    k.area({ width: 7, height: 15, offset: k.vec2(4, 1) }),
+    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
     "NPC",
     {
       dialogObj: null,
       currentDialog: 0,
-      dialog: ["Fire is epic",
-               "Fire",
-               "Flame",
-               "Yo kiddo you want the key to the next room?",
-               "Go talk to the guy in the green with the stick."]
+      dialog: ["Boy I do love dancing",
+               "dancing",
+               "Ever heard of dancing",
+               "dancing is the best game ever"]
     },
   ]);
-
-	const bouncerRight = k.add([
-    k.sprite("bouncer_right", {anim: "idle"}),
-    k.pos((5*16),(7.8*16)),
+  const billiardguy22 = k.add([
+    k.sprite("billiardguy2", {anim: "idle", animSpeed: 0.3}),
+    k.pos((4*16), (5*16)),
     k.solid(),
-    k.z(1),
-    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    k.z(2),
+    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
     "NPC",
     {
       dialogObj: null,
       currentDialog: 0,
-      dialog: ["What ya looking at kiddo",
-               "Dont cause any ruckus now"]
+      dialog: ["Boy I do love dancing",
+               "dancing",
+               "Ever heard of dancing",
+               "dancing is the best game ever"]
     },
   ]);
+  const billiardguy23 = k.add([
+    k.sprite("billiardguy2", {anim: "idle", animSpeed: 0.3}),
+    k.pos((10*16), (5*16)),
+    k.solid(),
+    k.z(3),
+    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Boy I do love dancing",
+               "dancing",
+               "Ever heard of dancing",
+               "dancing is the best game ever"]
+    },
+  ]);
+  const billiardguy24 = k.add([
+    k.sprite("billiardguy2", {anim: "idle", animSpeed: 0.3}),
+    k.pos((10*16), (4.4*16)),
+    k.solid(),
+    k.z(2),
+    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Boy I do love dancing",
+               "dancing",
+               "Ever heard of dancing",
+               "dancing is the best game ever"]
+    },
+  ]);
+  
+  
+  
+
+	
 
   k.camScale(4);
 });
