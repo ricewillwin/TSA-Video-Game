@@ -108,9 +108,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
   const bouncer = k.add([
     k.sprite("bouncer"),  
     k.pos(496,48),  
+    k.solid(),
     k.z(2),
-    k.area(),          
-             
+    k.area(),    
+          
   ]);
   
   k.camScale(4);
