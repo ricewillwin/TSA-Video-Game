@@ -1,18 +1,19 @@
 import { k } from "./kaboom.js";
 import { loadLevel1 } from "./maps/level1.js";
+import { loadLevel2 } from "./maps/level2.js"
 import { Button } from "./ui/button.js";
 import { ButtonSeries } from "./ui/buttonSeries.js"
 import { addLayers } from "./layers.js";
 import { spriteLoader } from "./spriteLoader.js";
-
+k.focus();
+addLayers();
 await k.loadSprite("background", "./sprites/main_bg.png");
 await k.loadSound("menu", "./music/newtitlescreen.wav")
 await k.loadSound("openworld", "./music/openworld.wav")
+
 await spriteLoader.loadNPCs();
 await spriteLoader.loadStructure();
-k.focus();
-loadLevel1();
-addLayers();
+
 
 k.scene("menu", () => {
   const music = k.play("menu", {
@@ -28,7 +29,9 @@ k.scene("menu", () => {
     k.area(),
     k.scale(3.75),
   ]);
-
+  
+ 
+  
   const menuTitle = k.add([
     k.text("iSpy"),
     k.layer("ui"),
@@ -46,11 +49,12 @@ k.scene("menu", () => {
       x: k.width()/2,
       y: k.height()/4 + menuTitle.height + 100,
     }, () => { 
+      loadLevel1();
       k.go("level1");
       music.stop()
     }),
   ]);
-
+  
   k.onKeyPress(["space", "enter"], () => {menuButtonSeries.push()});
 });
 
