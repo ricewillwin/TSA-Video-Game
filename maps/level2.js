@@ -166,12 +166,6 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     },
   ]);
 
-  k.onCollide("player", "exitdoor", () => {
-    loadLevel1();
-    k.go("level1");
-    music.stop()
-  })
-
   k.onCollide("player", "nextdoor", () => {
     loadLevel3();
     k.go("level3");
