@@ -49,8 +49,8 @@ k.scene("menu", () => {
       x: k.width()/2,
       y: k.height()/4 + menuTitle.height + 100,
     }, () => { 
-      loadLevel2();
-      k.go("level2");
+      loadLevel1();
+      k.go("level1");
       music.stop()
     }),
   ]);
