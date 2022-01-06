@@ -5,6 +5,7 @@ import { createDialogText, nextDialog } from "./maps/level2.js";
 export const BASE_SPEED = 60;
 
 export var player = null;
+export var listenersSet = false;
 
 export const playerHandler = {
 	anim: (key, walk) => {
@@ -64,6 +65,7 @@ export const addPlayerOpts = (name, pos) => [
 ];
 
 export const setListeners = () => {
+	listenersSet = true;
 	player.onUpdate(() => {
 		k.camPos(player.pos);
 		player.isMoving = player.currentHoriz || player.currentVert;
@@ -187,5 +189,5 @@ export const setListeners = () => {
 
 export const initializePlayer = async (name, gameMap) => {
 	await createPlayer(name, gameMap.getWorldPos(gameMap.spawn));
-	setListeners();
+	if (!listenersSet) setListeners();
 }

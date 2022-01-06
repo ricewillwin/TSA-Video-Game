@@ -103,7 +103,6 @@ export const loadLevel2 = () => k.scene("level2", async () => {
   mapObj = new GameMap(mapArray);
 
   await initializePlayer("player", mapObj);
-  player.speed = BASE_SPEED / 2;
 
   const table_left = k.add([
     k.sprite("table"),
