@@ -6,20 +6,22 @@ export var mapObj = null;
 
 export const mapArray = {
   map: [
-    "##########################",
-    "##########################",
-    "##########################",
-    "###____________________###",
-    "###____________________###",
-    "###____________________###",
-    "###_______00000________###",
-    "###_______00000________###",
-    "###____________________###",
-    "###____________________###",
-    "###____________________###",
-    "##########################",
-    "##########################",
-    "##########################",
+    "##########################################",
+    "##########################################",
+    "##########################################",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwttwwwwwwwwwwwwttww###########",
+    "###########wwttwwwwwwwwwwwwttww###########",
+    "###########wwttwwwwwwwwwwwwttww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "###########wwwwwwwwwwwwwwwwwwww###########",
+    "####################()####################",
+    "##########################################",
+    "##########################################",
   ],
   objs: [
     {
@@ -90,9 +92,19 @@ export const mapArray = {
       k.sprite("pavement_junction_up"),
       k.layer("floor"),
       k.area(),
-    ])
+    ]),
+    "w": (ctx) => ([
+      k.sprite("wood_floor"),
+      k.layer("floor"),
+      k.area(),
+    ]),
+    "t": (ctx) => ([
+      k.sprite("table"),
+      k.layer("floor"),
+      k.area(),
+    ]),
   },
-  spawn: [ 18, 6 ],
+  spawn: [ 21, 10 ],
 };
 
 export const loadLevel2 = () => k.scene("level2", async () => {
@@ -105,5 +117,5 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   await initializePlayer("player_bad", mapObj);
 
-  k.camScale(4);
+  k.camScale(1);
 });
