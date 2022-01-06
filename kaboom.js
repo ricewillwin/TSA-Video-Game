@@ -1,7 +1,7 @@
 import config from "./config.js";
 
 const kaboomOpts = {
-  background: [0, 0, 0],
+  background: [20, 20, 20],
   global: false,
   height: config.gameHeight,
   width: config.gameWidth,

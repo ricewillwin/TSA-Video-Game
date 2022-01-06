@@ -17,7 +17,7 @@ k.scene("loading", () => {
   ])
 })
 
-k.go("loading")
+k.go("loading");
 
 await k.loadSprite("background", "./sprites/main_bg.png");
 await k.loadSound("menu", "./music/newtitlescreen.wav")
