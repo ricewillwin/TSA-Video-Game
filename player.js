@@ -170,17 +170,26 @@ export const setListeners = (touchingNPC) => {
     let npcs = k.get("NPC");
     npcs = npcs.slice(0, npcs.length / 2);
     
-    k.onCollide("player", "NPC", (p, n) => {
-      console.log(n)
-      touchingNPC = n;
-    })
-    
     if (touchingNPC !== null) {
       if (touchingNPC.dialogObj === null) {
         createDialogText(touchingNPC);
       } else {
         nextDialog(touchingNPC);
       }
+    }
+  }));
+
+  cancellers.push(k.onCollide("player", "NPC", (p, n) => {
+    console.log(n)
+    if ((touchingNPC != null) && (touchingNPC.dialogObj != null)) {
+      touchingNPC.dialogObj.destroy();
+      touchingNPC.dialogObj = null;
+    }
+    touchingNPC = n;
+    if (n.dialogObj === null) {
+      createDialogText(n);
+    } else {
+      nextDialog(n);
     }
   }));
 }
