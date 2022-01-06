@@ -1,6 +1,7 @@
 import { k } from "../kaboom.js";
-import { initializePlayer } from "../player.js";
+import { initializePlayer, player } from "../player.js";
 import { GameMap } from "./index.js";
+import { loadLevel2 } from "./level2.js";
 
 export var mapObj = null;
 
@@ -55,11 +56,13 @@ export const mapArray = {
       k.sprite( "door_left"),
       k.area(),
       k.solid(),
+      "door",
     ]),
     ")": (ctx) => ([
       k.sprite("door_right"),
       k.area(),
       k.solid(),
+      "door",
     ]),
     "_": (ctx) => ([
       k.sprite("sidewalk"),
@@ -121,6 +124,11 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.z(1),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
   ]);
+
+  k.onCollide("player", "door", () => {
+    loadLevel2();
+    k.go("level2");
+  })
 
   k.camScale(4);
 });

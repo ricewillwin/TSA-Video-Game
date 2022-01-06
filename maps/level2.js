@@ -1,21 +1,21 @@
 import { k } from "../kaboom.js";
-import { initializePlayer } from "../player.js";
+import { initializePlayer, player, BASE_SPEED } from "../player.js";
 import { GameMap } from "./index.js";
 
 export var mapObj = null;
 
 export const mapArray = {
   map: [
-    "#############",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "######()#####",
+    "##############",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "######()######",
   ],
   objs: [
     {
@@ -51,11 +51,13 @@ export const mapArray = {
       k.sprite( "door_left"),
       k.area(),
       k.solid(),
+      "door",
     ]),
     ")": (ctx) => ([
       k.sprite("door_right"),
       k.area(),
       k.solid(),
+      "door",
     ]),
     "_": (ctx) => ([
       k.sprite("sidewalk"),
@@ -110,6 +112,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
   mapObj = new GameMap(mapArray);
 
   await initializePlayer("player", mapObj);
+  player.speed = BASE_SPEED / 2;
 
   const table_left = k.add([
     k.sprite("table"),
@@ -126,6 +129,12 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    {
+      dialog: ["Get out of mee way buddo",
+               "Com'on shoo",
+               "Really ya kiddo, move",
+               "The key to the next room is gamer"]
+    }
   ]);
 
   const billiardguy2 = k.add([
@@ -134,6 +143,12 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    {
+      dialog: ["Boy I do love billiards",
+               "Billiards",
+               "Ever heard of Billiards",
+               "Billiards is the best game ever"]
+    }
   ]);
 
   const billiardguy3 = k.add([
@@ -142,6 +157,13 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    {
+      dialog: ["Fire is epic",
+               "Fire",
+               "Flame",
+               "Yo kiddo you want the key to the next room?",
+               "Go talk to the guy in the green with the stick."]
+    }
   ]);
 
   k.camScale(4);
