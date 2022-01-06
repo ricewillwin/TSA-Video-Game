@@ -115,7 +115,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   const table_left = k.add([
     k.sprite("table"),
-    k.pos((5.5*16), (6*16)),
+    k.pos((4.5*16), (6*16)),
     k.solid(),
     k.z(2),
     k.area({ width: 48, height: 32 }),
