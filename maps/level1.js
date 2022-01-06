@@ -93,6 +93,7 @@ export const mapArray = {
     ])
   },
   spawn: [ 27, 6 ],
+  
 };
 
 export const loadLevel1 = () => k.scene("level1", async () => {
@@ -104,6 +105,13 @@ export const loadLevel1 = () => k.scene("level1", async () => {
   mapObj = new GameMap(mapArray);
 
   await initializePlayer("player_bad", mapObj);
-
+  const bouncer = k.add([
+    k.sprite("bouncer"),  
+    k.pos(496,48),  
+    k.z(2),
+    k.area(),          
+             
+  ]);
+  
   k.camScale(4);
 });
