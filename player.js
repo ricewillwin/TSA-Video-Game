@@ -1,6 +1,6 @@
 import { k } from "./kaboom.js";
 import { spriteLoader } from "./spriteLoader.js";
-import { createDialogText, nextDialog } from "./maps/level2.js";
+import { createDialogText, nextDialog } from "./dialog.js"
 
 export const BASE_SPEED = 60;
 

@@ -81,20 +81,6 @@ export const mapArray = {
   spawn: [ 7, 8.4 ],
 };
 
-export const createDialogText = (npc) => {
-  npc.dialogObj = k.add([
-    k.text(npc.dialog[npc.currentDialog]),
-    k.scale(0.5),
-    k.origin("bot"),
-    k.pos(npc.pos.add(0, -8)),
-  ]);
-};
-
-export const nextDialog = (npc) => {
-  npc.currentDialog = (npc.currentDialog + 1) % npc.dialog.length;
-  npc.dialogObj.use(k.text(npc.dialog[npc.currentDialog]));
-}
-
 export const loadLevel2 = () => k.scene("level2", async () => {
   const music = k.play("openworld", {
     volume: 0.05,

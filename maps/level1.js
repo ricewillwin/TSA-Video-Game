@@ -94,6 +94,13 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 9, height: 16, offset: k.vec2(3, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
   ]);
 
   const bouncerRight = k.add([
@@ -102,6 +109,13 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
   ]);
 
 
@@ -120,12 +134,19 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   const redCar = k.add([
     k.sprite("car_red"),
-    k.pos((17*16),(6*16)),
+    k.pos((18*16),(5.5*16)),
     k.solid(),
     k.z(1),
-    k.area({width: 32, height: 16}),
+    k.area({width: 32, height: 16, offset: k.vec2(-32, 0)}),
     k.rotate(90),
-    k.origin("center")
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Go get those files",
+               "Don't get caught"]
+    },
+    
   ]);
   const yellowCar = k.add([
     k.sprite("car_yellow"),
@@ -160,7 +181,14 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.z(1),
     k.area(),
-    k.origin("center")
+    k.origin("center"),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Why do I exist?",
+               "Cars shouldn't be alive."]
+    },
   ]);
   const blockade3 = k.add([
     k.sprite("car_green"),
