@@ -104,7 +104,7 @@ export const loadLevel3 = () => k.scene("level3", async () => {
       dialogObj: null,
       currentDialog: 0,
       dialog: ["Boy I do love dancing",
-               "dancing",
+               "dancing.",
                "Ever heard of dancing",
                "dancing is the best game ever"]
     },
@@ -120,7 +120,7 @@ export const loadLevel3 = () => k.scene("level3", async () => {
       dialogObj: null,
       currentDialog: 0,
       dialog: ["Boy I do love dancing",
-               "dancing",
+               "dancing.",
                "Ever heard of dancing",
                "dancing is the best game ever"]
     },
@@ -136,7 +136,7 @@ export const loadLevel3 = () => k.scene("level3", async () => {
       dialogObj: null,
       currentDialog: 0,
       dialog: ["Boy I do love dancing",
-               "dancing",
+               "dancing.",
                "Ever heard of dancing",
                "dancing is the best game ever"]
     },
