@@ -6,16 +6,16 @@ export var mapObj = null;
 
 export const mapArray = {
   map: [
-    "#############",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "######()#####",
+    "##############",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "#wwwwwwwwwwww#",
+    "######()######",
   ],
   objs: [
     {
