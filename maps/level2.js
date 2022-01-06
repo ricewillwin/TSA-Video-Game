@@ -100,7 +100,7 @@ export const mapArray = {
       k.area(),
     ]),
   },
-  spawn: [ 6, 6 ],
+  spawn: [ 7, 10.4 ],
 };
 
 export const loadLevel2 = () => k.scene("level2", async () => {
@@ -115,7 +115,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   const table_left = k.add([
     k.sprite("table"),
-    k.pos(96,96),
+    k.pos((5.5*16), (6*16)),
     k.solid(),
     k.z(2),
     k.area({ width: 48, height: 32 }),
