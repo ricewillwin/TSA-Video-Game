@@ -167,14 +167,19 @@ export const setListeners = () => {
   }));
 
   cancellers.push(k.onKeyPress("space", () => {
+    let touchingNPC = null;
     let npcs = k.get("NPC");
 		npcs = npcs.slice(0, npcs.length / 2);
-    let touchingNPC = null;
-    for (const npc in npcs) {
-      if (player.isColliding(npc)) {
+    for (const npcNum in npcs) {
+			var npc = npcs[npcNum]
+			if (player.isColliding(npc)) {
+				console.log("Touching - " + npcNum);
         touchingNPC = npc;
         break;
       }
+			else {
+				console.log("Not - " + npcNum);
+			}
     }
     if (touchingNPC !== null) {
       if (touchingNPC.dialogObj === null) {
