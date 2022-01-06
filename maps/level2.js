@@ -53,11 +53,13 @@ export const mapArray = {
       k.sprite( "door_left"),
       k.area(),
       k.solid(),
+      "door",
     ]),
     ")": (ctx) => ([
       k.sprite("door_right"),
       k.area(),
       k.solid(),
+      "door",
     ]),
     "_": (ctx) => ([
       k.sprite("sidewalk"),
