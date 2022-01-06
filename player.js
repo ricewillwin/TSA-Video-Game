@@ -51,7 +51,7 @@ export const addPlayerOpts = (name, pos) => [
 	k.origin("center"),
 	k.layer("game"),
 	k.pos(pos),
-	k.area(),
+	k.area({width: 7, height: 15, offset: k.vec2(0, 1)}),
 	k.solid(),
 	k.z(1),
 	"player",
