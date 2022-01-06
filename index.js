@@ -15,6 +15,7 @@ await k.loadSound("openworld", "./music/openworld.wav")
 
 await spriteLoader.loadNPCs();
 await spriteLoader.loadStructure();
+await spriteLoader.loadObjects();
 
 
 k.scene("menu", () => {
