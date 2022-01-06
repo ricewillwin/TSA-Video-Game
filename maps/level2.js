@@ -6,18 +6,18 @@ export var mapObj = null;
 
 export const mapArray = {
   map: [
-    "######################",
-    "#wwwwwwwwwwwwwwwwwwww#",
-    "#wwwwwwwwwwwwwwwwwwww#",
-    "#wwwwwwwwwwwwwwwwwwww#",
-    "#wwwwwwwwwwwwwwwwwwww#",
-    "#wwwwwwwwwwwwwwwwwwww#",
-    "#wwtttwwwwwwwwwwtttww#",
-    "#wwtttwwwwwwwwwwtttww#",
-    "#wwwwwwwwwwwwwwwwwwww#",
-    "#wwwwwwwwwwwwwwwwwwww#",
-    "#wwwwwwwwwwwwwwwwwwww#",
-    "##########()##########",
+    "#############",
+    "#wwwwwwwwwww#",
+    "#wwwwwwwwwww#",
+    "#wwwwwwwwwww#",
+    "#wwwwwwwwwww#",
+    "#wwwwwwwwwww#",
+    "#wwwwwwwwwww#",
+    "#wwwwwwwwwww#",
+    "#wwwwwwwwwww#",
+    "#wwwwwwwwwww#",
+    "#wwwwwwwwwww#",
+    "######()#####",
   ],
   objs: [
     {
@@ -100,7 +100,7 @@ export const mapArray = {
       k.area(),
     ]),
   },
-  spawn: [ 21, 12 ],
+  spawn: [ 6, 6 ],
 };
 
 export const loadLevel2 = () => k.scene("level2", async () => {
@@ -111,13 +111,15 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   mapObj = new GameMap(mapArray);
 
-  await initializePlayer("player_bad", mapObj);
+  await initializePlayer("player", mapObj);
+
   const table_left = k.add([
     k.sprite("table"),
-    k.pos(208,144),
+    k.pos(96,96),
     k.solid(),
     k.z(2),
     k.area({ width: 48, height: 32 }),
   ]);
-  k.camScale(1);
+
+  k.camScale(4);
 });
