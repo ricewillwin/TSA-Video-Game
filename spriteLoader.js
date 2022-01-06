@@ -18,7 +18,28 @@ export const spriteLoader = {
     await k.loadSprite("player_good", "./sprites/players/player_good.png");
   },
   loadNPCs: async () => {
-    await k.loadSprite("bouncer", "./sprites/NPCs/bouncer.png");
+    await k.loadSprite("bouncer_left", "./sprites/NPCs/idlebouncer2.png", {
+      sliceX: 5,
+      sliceY: 1,
+      anims: {
+        idle: {
+          from: 0,
+          to: 4,
+          loop: true
+        }
+      }
+    });
+    await k.loadSprite("bouncer_right", "./sprites/NPCs/idlebouncer2right.png", {
+      sliceX: 5,
+      sliceY: 1,
+      anims: {
+        idle: {
+          from: 0,
+          to: 4,
+          loop: true
+        }
+      }
+    });
   },
   loadObjects: async () => {
     await k.loadSpriteAtlas("./sprites/objects/cars.png", {
