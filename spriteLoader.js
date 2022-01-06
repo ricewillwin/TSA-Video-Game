@@ -51,6 +51,39 @@ export const spriteLoader = {
         }
       }
     });
+    await k.loadSprite("billiardguy1", "./sprites/NPCs/billiardguy1.png", {
+      sliceX: 2,
+      sliceY: 1,
+      anims: {
+        idle: {
+          from: 0,
+          to: 1,
+          loop: true
+        }
+      }
+    });
+    await k.loadSprite("billiardguy2", "./sprites/NPCs/billiardguy2.png", {
+      sliceX: 2,
+      sliceY: 1,
+      anims: {
+        idle: {
+          from: 0,
+          to: 1,
+          loop: true
+        }
+      }
+    });
+    await k.loadSprite("billiardguy3", "./sprites/NPCs/billiardguy3.png", {
+      sliceX: 15,
+      sliceY: 1,
+      anims: {
+        idle: {
+          from: 0,
+          to: 14,
+          loop: true
+        }
+      }
+    });
   },
   loadObjects: async () => {
     await k.loadSpriteAtlas("./sprites/objects/cars.png", {
