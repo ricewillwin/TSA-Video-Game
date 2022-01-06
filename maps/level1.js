@@ -107,7 +107,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
   await initializePlayer("player_bad", mapObj);
   const bouncer = k.add([
     k.sprite("bouncer"),  
-    k.pos(496,48),  
+    k.pos(496,48),
     k.z(2),
     k.area(),          
              
