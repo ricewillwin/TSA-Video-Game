@@ -15,8 +15,6 @@ export const mapArray = {
     "#wwwwwwwwwww#",
     "#wwwwwwwwwww#",
     "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
-    "#wwwwwwwwwww#",
     "######()#####",
   ],
   objs: [
@@ -100,7 +98,7 @@ export const mapArray = {
       k.area(),
     ]),
   },
-  spawn: [ 7, 10.4 ],
+  spawn: [ 7, 8.4 ],
 };
 
 export const loadLevel2 = () => k.scene("level2", async () => {
@@ -115,11 +113,35 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   const table_left = k.add([
     k.sprite("table"),
-    k.pos((7*16), (6*16)),
+    k.pos((7*16), (5*16)),
     k.origin("center"),
     k.solid(),
-    k.z(2),
+    k.z(1),
     k.area({ width: 48, height: 34, offset: k.vec2(0, -2)}),
+  ]);
+
+  const billiardguy1 = k.add([
+    k.sprite("billiardguy1", {anim: "idle", animSpeed: 0.5}),
+    k.pos((4.5*16), (4*16)),
+    k.solid(),
+    k.z(2),
+    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+  ]);
+
+  const billiardguy2 = k.add([
+    k.sprite("billiardguy2", {anim: "idle", animSpeed: 0.5}),
+    k.pos((8.5*16), (4.2*16)),
+    k.solid(),
+    k.z(2),
+    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+  ]);
+
+  const billiardguy3 = k.add([
+    k.sprite("billiardguy3", {anim: "idle", animSpeed: 0.3}),
+    k.pos((7*16), (2*16)),
+    k.solid(),
+    k.z(2),
+    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
   ]);
 
   k.camScale(4);
