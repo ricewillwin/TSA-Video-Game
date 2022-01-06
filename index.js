@@ -11,7 +11,6 @@ addLayers();
 
 await k.loadSprite("background", "./sprites/main_bg.png");
 await k.loadSound("menu", "./music/newtitlescreen.wav")
-await k.loadSound("openworld", "./music/openworld.wav")
 
 await spriteLoader.loadNPCs();
 await spriteLoader.loadStructure();

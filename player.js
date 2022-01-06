@@ -64,7 +64,7 @@ export const addPlayerOpts = (name, pos) => [
   },
 ];
 
-export const setListeners = () => {
+export const setListeners = (touchingNPC) => {
   cancellers.push(player.onUpdate(() => {
     k.camPos(player.pos);
     player.isMoving = player.currentHoriz || player.currentVert;
@@ -167,20 +167,14 @@ export const setListeners = () => {
   }));
 
   cancellers.push(k.onKeyPress("space", () => {
-    let touchingNPC = null;
     let npcs = k.get("NPC");
-		npcs = npcs.slice(0, npcs.length / 2);
-    for (const npcNum in npcs) {
-			var npc = npcs[npcNum]
-			if (player.isColliding(npc)) {
-				console.log("Touching - " + npcNum);
-        touchingNPC = npc;
-        break;
-      }
-			else {
-				console.log("Not - " + npcNum);
-			}
-    }
+    npcs = npcs.slice(0, npcs.length / 2);
+    
+    k.onCollide("player", "NPC", (p, n) => {
+      console.log(n)
+      touchingNPC = n;
+    })
+    
     if (touchingNPC !== null) {
       if (touchingNPC.dialogObj === null) {
         createDialogText(touchingNPC);
@@ -193,9 +187,10 @@ export const setListeners = () => {
 
 export const initializePlayer = async (name, gameMap) => {
   await createPlayer(name, gameMap.getWorldPos(gameMap.spawn));
-	for (let i = 0; i < cancellers.length; i++) {
+  for (let i = 0; i < cancellers.length; i++) {
     cancellers[i]();
   }
   cancellers = [];
-  setListeners();
+  var touchingNPC = null;
+  setListeners(touchingNPC);
 }

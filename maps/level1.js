@@ -4,6 +4,7 @@ import { GameMap } from "./index.js";
 import { loadLevel2 } from "./level2.js";
 
 export var mapObj = null;
+await k.loadSound("openworld", "./music/openworld.wav")
 
 export const mapArray = {
   map: [

@@ -84,6 +84,7 @@ export const mapArray = {
 export const createDialogText = (npc) => {
   npc.dialogObj = k.add([
     k.text(npc.dialog[npc.currentDialog]),
+    k.scale(0.5),
     k.origin("bot"),
     k.pos(npc.pos.add(0, -8)),
   ]);
@@ -115,14 +116,14 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   const billiardguy1 = k.add([
     k.sprite("billiardguy1", {anim: "idle", animSpeed: 0.2}),
-    k.pos((4.5*16), (4*16)),
+    k.pos((4.5*16), (3.8*16)),
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
     {
       dialogObj: null,
-      currentDialog: null,
+      currentDialog: 0,
       dialog: ["Get out of mee way buddo",
                "Com'on shoo",
                "Really ya kiddo, move",
@@ -139,7 +140,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     "NPC",
     {
       dialogObj: null,
-      currentDialog: null,
+      currentDialog: 0,
       dialog: ["Boy I do love billiards",
                "Billiards",
                "Ever heard of Billiards",
@@ -149,7 +150,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   const billiardguy3 = k.add([
     k.sprite("billiardguy3", {anim: "idle", animSpeed: 0.3}),
-    k.pos((7*16), (2*16)),
+    k.pos((7*16), (1.8*16)),
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
