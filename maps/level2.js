@@ -17,28 +17,6 @@ export const mapArray = {
     "#wwwwwwwwwwww#",
     "######()######",
   ],
-  objs: [
-    {
-      pos: [[8, 1], [11, 1]], comps: [
-        k.area(),
-        k.solid(),
-      ],
-    },
-    {
-      pos: [[27, 10]], comps: [
-        k.sprite("car_red", { frame: 0 }),
-        k.area(),
-        k.solid(),
-      ],
-    },
-    {
-      pos: [[29, 10]], comps: [
-        k.sprite("car_red", { frame: 1 }),
-        k.area(),
-        k.solid(),
-      ],
-    },
-  ],
   legend: {
     width: 16,
     height: 16,
@@ -105,14 +83,13 @@ export const mapArray = {
 
 export const loadLevel2 = () => k.scene("level2", async () => {
   const music = k.play("openworld", {
-    volume: 0.1,
+    volume: 0.05,
   });
   music.loop();
 
   mapObj = new GameMap(mapArray);
 
   await initializePlayer("player", mapObj);
-  player.speed = BASE_SPEED / 2;
 
   const table_left = k.add([
     k.sprite("table"),
@@ -125,16 +102,19 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   const billiardguy1 = k.add([
     k.sprite("billiardguy1", {anim: "idle", animSpeed: 0.2}),
-    k.pos((4.5*16), (4*16)),
+    k.pos((4.5*16), (3.8*16)),
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
     {
+      dialogObj: null,
+      currentDialog: 0,
       dialog: ["Get out of mee way buddo",
                "Com'on shoo",
                "Really ya kiddo, move",
                "The key to the next room is gamer"]
-    }
+    },
   ]);
 
   const billiardguy2 = k.add([
@@ -143,27 +123,33 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
     {
+      dialogObj: null,
+      currentDialog: 0,
       dialog: ["Boy I do love billiards",
                "Billiards",
                "Ever heard of Billiards",
                "Billiards is the best game ever"]
-    }
+    },
   ]);
 
   const billiardguy3 = k.add([
     k.sprite("billiardguy3", {anim: "idle", animSpeed: 0.3}),
-    k.pos((7*16), (2*16)),
+    k.pos((7*16), (1.8*16)),
     k.solid(),
     k.z(2),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
     {
+      dialogObj: null,
+      currentDialog: 0,
       dialog: ["Fire is epic",
                "Fire",
                "Flame",
                "Yo kiddo you want the key to the next room?",
                "Go talk to the guy in the green with the stick."]
-    }
+    },
   ]);
 
   k.camScale(4);
