@@ -412,6 +412,54 @@ export const loadLevel3 = () => k.scene("level3", async () => {
     },
   ]);
 
+
+
+
+  const musicianOne = k.add([
+    k.sprite("musician", {anim: "idle", animSpeed: 0.2}),
+    k.pos(5*16,1.2*16),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+
+  const musicianTwo = k.add([
+    k.sprite("musician", {anim: "idle", animSpeed: 0.2}),
+    k.pos(6.2*16, 1.3*16),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+
+  const musicianThree = k.add([
+    k.sprite("musician", {anim: "idle", animSpeed: 0.2}),
+    k.pos(7.4*16, 1.1*16),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+
 	
 
   k.camScale(4);
