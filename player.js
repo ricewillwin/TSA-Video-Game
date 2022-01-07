@@ -66,12 +66,16 @@ export const addPlayerOpts = (name, pos) => [
     keytwo: null,
     keythree: null,
     documents: null,
+    dialogTextObj: null,
   },
 ];
 
 export const setListeners = (touchingNPC) => {
   cancellers.push(player.onUpdate(() => {
     k.camPos(player.pos);
+    if (player.dialogTextObj != null) {
+      player.dialogTextObj.pos = player.pos.add(8, -2);
+    }
     player.isMoving = player.currentHoriz || player.currentVert;
   }));
 
