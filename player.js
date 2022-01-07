@@ -34,10 +34,11 @@ export const createPlayer = async (name, pos) => {
 };
 
 const keys = {
-  RIGHT: ["right", "d"],
-  LEFT: ["left", "a"],
-  UP: ["up", "w"],
-  DOWN: ["down", "s"],
+  RIGHT: ["right", "d", "k"],
+  LEFT: ["left", "a", "h"],
+  UP: ["up", "w", "u"],
+  DOWN: ["down", "s", "j"],
+  INTERACT: ["space", "e", "enter"],
 
   isKeyDown: (key) => {
     return k.isKeyDown(key[0]) || k.isKeyDown(key[1]);
@@ -166,7 +167,7 @@ export const setListeners = (touchingNPC) => {
     playerHandler.updateAnim(keys.RIGHT);
   }));
 
-  cancellers.push(k.onKeyPress("space", () => {
+  cancellers.push(k.onKeyPress(keys.INTERACT, () => {
     let npcs = k.get("NPC");
     npcs = npcs.slice(0, npcs.length / 2);
     
