@@ -1,7 +1,7 @@
 import { k } from "./kaboom.js";
 import { spriteLoader } from "./spriteLoader.js";
 import { createDialogText, nextDialog } from "./dialog.js";
-import { setGameListeners } from "./setListeners.js";
+import { setGameListeners } from "./input.js";
 
 export const BASE_SPEED = 60;
 
@@ -33,7 +33,7 @@ export const createPlayer = async (name, pos) => {
   player = k.add(addPlayerOpts(name, pos));
 };
 
-const keys = {
+export const keys = {
   RIGHT: ["right", "d", "k"],
   LEFT: ["left", "a", "h"],
   UP: ["up", "w", "u"],
@@ -72,6 +72,5 @@ export const addPlayerOpts = (name, pos) => [
 
 export const initializePlayer = async (name, gameMap) => {
   await createPlayer(name, gameMap.getWorldPos(gameMap.spawn));
-  var touchingNPC = null;
-  setGameListeners(touchingNPC);
+  setGameListeners(null);
 }

@@ -1,7 +1,8 @@
 import { k } from "./kaboom.js";
-import { player } from "./player.js";
+import { keys, player, playerHandler } from "./player.js";
+import { createDialogText, nextDialog } from "./dialog.js";
 
-const cancellers = [];
+let cancellers = [];
 
 export const setGameListeners = (touchingNPC) => {
   for (let i = 0; i < cancellers.length; i++) {
