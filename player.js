@@ -62,6 +62,10 @@ export const addPlayerOpts = (name, pos) => [
     currentHoriz: null,
     currentVert: null,
     speed: BASE_SPEED,
+    keyone: null,
+    keytwo: null,
+    keythree: null,
+    documents: null,
   },
 ];
 

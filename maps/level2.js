@@ -1,8 +1,7 @@
 import { k } from "../kaboom.js";
 import { initializePlayer, player, BASE_SPEED } from "../player.js";
 import { GameMap } from "./index.js";
-import { loadLevel1 } from "./level1.js"
-import { loadLevel3 } from "./level3.js"
+import { loadLevel3, loadLevel3a } from "./level3.js"
 
 export var mapObj = null;
 
@@ -95,6 +94,19 @@ export const mapArray = {
   spawn: [ 7, 8.4 ],
 };
 
+export const loadLevel2a = () => k.scene("level2Transistion", async () => {
+  k.add([
+    k.text("Level One"),
+    k.scale(3),
+    k.origin("center"),
+    k.pos(k.width()/2, k.height()/2),
+  ]);
+
+  k.wait(3, () => {
+    k.go("level2")
+  });
+});
+
 export const loadLevel2 = () => k.scene("level2", async () => {
   const music = k.play("openworld", {
     volume: 0.05,
@@ -155,6 +167,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.z(2),
     k.area({ width: 7, height: 15, offset: k.vec2(4, 1) }),
     "NPC",
+    "lighter_dude",
     {
       dialogObj: null,
       currentDialog: 0,
@@ -166,11 +179,18 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     },
   ]);
 
+  k.onCollide("player", "lighter_dude", () => {
+    player.keytwo = "lighter";
+  }),
+
   k.onCollide("player", "nextdoor", () => {
-    loadLevel3();
-    k.go("level3");
-    music.stop()
-  })
+    if(player.keytwo == "lighter") {
+      loadLevel3();
+      loadLevel3a();
+      k.go("level3Transistion");
+      music.stop()
+    }
+  });
 
   k.camScale(4);
 });

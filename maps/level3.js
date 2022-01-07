@@ -81,6 +81,19 @@ export const mapArray = {
   spawn: [ 7, 8.4 ],
 };
 
+export const loadLevel3a = () => k.scene("level3Transistion", async () => {
+  k.add([
+    k.text("Level Two"),
+    k.origin("center"),
+    k.scale(3),
+    k.pos(k.width()/2, k.height()/2),
+  ]);
+
+  k.wait(3, () => {
+    k.go("level3")
+  });
+});
+
 export const loadLevel3 = () => k.scene("level3", async () => {
   const music = k.play("openworld", {
     volume: 0.025,

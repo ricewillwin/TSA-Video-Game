@@ -1,5 +1,5 @@
 import { k } from "./kaboom.js";
-import { loadLevel1 } from "./maps/level1.js";
+import { loadLevel1, loadLevel1a } from "./maps/level1.js";
 import { loadLevel2 } from "./maps/level2.js"
 import { Button } from "./ui/button.js";
 import { ButtonSeries } from "./ui/buttonSeries.js"
@@ -61,7 +61,8 @@ k.scene("menu", () => {
       y: k.height()/4 + menuTitle.height + 100,
     }, () => { 
       loadLevel1();
-      k.go("level1");
+      loadLevel1a();
+      k.go("level1Transistion");
       music.stop();
     }),
   ]);
