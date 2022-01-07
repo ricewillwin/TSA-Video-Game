@@ -2,7 +2,7 @@ import { k } from "./kaboom.js";
 import { spriteLoader } from "./spriteLoader.js";
 import { createDialogText, nextDialog } from "./dialog.js"
 
-export const BASE_SPEED = 60;
+export const BASE_SPEED = 45;
 
 export var player = null;
 export var cancellers = [];
