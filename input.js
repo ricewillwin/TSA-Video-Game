@@ -4,6 +4,10 @@ import { player } from "./player.js";
 const cancellers = [];
 
 export const setGameListeners = (touchingNPC) => {
+  for (let i = 0; i < cancellers.length; i++) {
+    cancellers[i]();
+  }
+  cancellers = [];
   cancellers.push(player.onUpdate(() => {
     k.camPos(player.pos);
     if (player.dialogTextObj != null) {

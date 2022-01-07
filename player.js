@@ -6,7 +6,6 @@ import { setGameListeners } from "./setListeners.js";
 export const BASE_SPEED = 60;
 
 export var player = null;
-export var cancellers = [];
 
 export const playerHandler = {
   anim: (key, walk) => {
@@ -73,10 +72,6 @@ export const addPlayerOpts = (name, pos) => [
 
 export const initializePlayer = async (name, gameMap) => {
   await createPlayer(name, gameMap.getWorldPos(gameMap.spawn));
-  for (let i = 0; i < cancellers.length; i++) {
-    cancellers[i]();
-  }
-  cancellers = [];
   var touchingNPC = null;
   setGameListeners(touchingNPC);
 }
