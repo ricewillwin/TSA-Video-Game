@@ -42,12 +42,10 @@ export class DialogChoice extends DialogPart {
 export class Dialog {
   #dialogParts = null;
   #idx = 0;
-  #nextDialog = null;
   #speakers = null;
 
-  constructor(nextDialog, speakers, ...dialogParts) {
+  constructor(speakers, ...dialogParts) {
     this.#dialogParts = dialogParts;
-    this.#nextDialog = nextDialog;
     this.#speakers = speakers;
     for (const speaker in this.#speakers) {
       if (speaker.dialogTextObj == null) {
@@ -63,10 +61,6 @@ export class Dialog {
     }
   }
 
-  get nextDialog() {
-    return this.#nextDialog;
-  }
-
   next() {
     this.#idx++;
     if (this.#idx >= this.#dialogParts) {
@@ -79,10 +73,11 @@ export class Dialog {
 
   update() {
     if (this.#dialogParts[this.#idx].type == "line") {
-      this.#textObj.use(k.text(this.#dialogParts[this.#idx].text));
+      this.#dialogParts[this.#idx].speaker.use(k.text(this.#dialogParts[this.#idx].text));
       for (const speaker in this.#speakers) {
         speaker.dialogTextObj.hidden = speaker == this.#dialogParts[this.#idx].speaker;
       }
+      return this;
     } else if (this.#dialogParts[this.#idx].type == "choice") {
       //
     } else {

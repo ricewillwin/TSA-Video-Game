@@ -7,6 +7,6 @@ export class DialogButton extends Button {
   constructor({ name, text="", x, y, scale=defaultScale, textColor=defaultTextColor, buttonColor=defaultFillColor, padding=defaultPadding }, dialog) {
     super({ name ?? text, text, x, y, scale, textColor, buttonColor, padding }, () => {
       return dialog;
-    })
+    });
   }
 }
