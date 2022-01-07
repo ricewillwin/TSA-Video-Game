@@ -1,5 +1,5 @@
 import { k } from "./kaboom.js";
-import { loadLevel1 } from "./maps/level1.js";
+import { loadLevel1, loadLevel1a } from "./maps/level1.js";
 import { loadLevel2 } from "./maps/level2.js"
 import { Button } from "./ui/button.js";
 import { ButtonSeries } from "./ui/buttonSeries.js"
@@ -9,13 +9,22 @@ import { spriteLoader } from "./spriteLoader.js";
 k.focus();
 addLayers();
 
+k.scene("loading", () => {
+  k.add([
+    k.text("loading"),
+    k.origin("center"),
+    k.pos(k.width()/2, k.height()/2),
+  ])
+})
+
+k.go("loading");
+
 await k.loadSprite("background", "./sprites/main_bg.png");
 await k.loadSound("menu", "./music/newtitlescreen.wav")
 
 await spriteLoader.loadNPCs();
 await spriteLoader.loadStructure();
 await spriteLoader.loadObjects();
-
 
 k.scene("menu", () => {
   const music = k.play("menu", {
@@ -52,8 +61,9 @@ k.scene("menu", () => {
       y: k.height()/4 + menuTitle.height + 100,
     }, () => { 
       loadLevel1();
-      k.go("level1");
-      music.stop()
+      loadLevel1a();
+      k.go("level1Transistion");
+      music.stop();
     }),
   ]);
   

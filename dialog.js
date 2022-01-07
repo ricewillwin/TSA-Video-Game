@@ -4,7 +4,7 @@ export const createDialogText = (npc) => {
   npc.dialogObj = k.add([
     k.text(npc.dialog[npc.currentDialog]),
     k.scale(0.5),
-    k.z(5),
+    k.z(11),
     k.origin("center"),
     k.pos(npc.pos.add(8, -2)),
   ]);

@@ -1,7 +1,7 @@
 import { k } from "../kaboom.js";
 import { initializePlayer, player } from "../player.js";
 import { GameMap } from "./index.js";
-import { loadLevel2 } from "./level2.js";
+import { loadLevel2, loadLevel2a } from "./level2.js";
 
 export var mapObj = null;
 await k.loadSound("openworld", "./music/openworld.wav")
@@ -78,6 +78,37 @@ export const mapArray = {
 
 };
 
+export const loadLevel1a = () => k.scene("level1Transistion", async () => {
+
+  const exposition = k.add([
+    k.text("You are a spy during the Cold War"),
+    k.scale(1),
+    k.origin("center"),
+    k.pos(k.width()/2, k.height()/2),
+  ]);
+
+  k.wait(5, () => {
+    exposition.use(k.text("A dossier with your name and image have been stolen by Russian operatives"));
+  });
+
+  k.wait(10, () => {
+    exposition.use(k.text("To retrieve the dossier\nYou must disguise yourself as a security guard\nInfiltrate the party\nAnd steal it back."));
+  });
+
+  k.wait(15, () => {
+    exposition.use(k.text("Like any good spy\nYou must be able to use people to your advantage\nSo remember to communicate with the members of the party\n(while maintaining your cover, of course)\nFind your information before your identity is compromised!"));
+  });
+
+  k.wait(27, () => {
+    exposition.use(k.text("Level Zero"));
+    exposition.use(k.scale(3));
+  });
+
+  k.wait(29, () => {
+    k.go("level1")
+  });
+});
+
 export const loadLevel1 = () => k.scene("level1", async () => {
   const music = k.play("openworld", {
     volume: 0.1,
@@ -95,6 +126,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.z(1),
     k.area({ width: 9, height: 16, offset: k.vec2(3, 0) }),
     "NPC",
+    "bouncer",
     {
       dialogObj: null,
       currentDialog: 0,
@@ -110,6 +142,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.z(1),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
+    "bouncer",
     {
       dialogObj: null,
       currentDialog: 0,
@@ -118,12 +151,19 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     },
   ]);
 
+  k.onCollide("player", "bouncer", () => {
+    player.keyone = "explained";
+  }),
+
 
   k.onCollide("player", "door", () => {
-    loadLevel2();
-    k.go("level2");
-    music.stop()
-  })
+    if (player.keyone == "explained") {
+      loadLevel2();
+      loadLevel2a();
+      k.go("level2Transistion");
+      music.stop()
+    }
+  });
 
   k.camScale(4);
 
