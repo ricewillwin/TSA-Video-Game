@@ -72,13 +72,13 @@ export class Dialog {
   }
 
   update() {
-    if (this.#dialogParts[this.#idx].type == "line") {
+    if (this.#dialogParts[this.#idx].type === "line") {
       this.#dialogParts[this.#idx].speaker.use(k.text(this.#dialogParts[this.#idx].text));
       for (const speaker in this.#speakers) {
-        speaker.dialogTextObj.hidden = speaker == this.#dialogParts[this.#idx].speaker;
+        speaker.dialogTextObj.hidden = speaker === this.#dialogParts[this.#idx].speaker;
       }
       return this;
-    } else if (this.#dialogParts[this.#idx].type == "choice") {
+    } else if (this.#dialogParts[this.#idx].type === "choice") {
       //
     } else {
       throw new Error("invalid DialogParts type");
