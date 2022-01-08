@@ -200,7 +200,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.pos(2.5*16,3*16),
     k.solid(),
     k.z(1),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
     {
       dialogObj: null,
@@ -215,7 +215,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.pos(1.5*16,5.2*16),
     k.solid(),
     k.z(1),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
     {
       dialogObj: null,
@@ -230,7 +230,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.pos(2.1*16,5.3*16),
     k.solid(),
     k.z(1),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
     {
       dialogObj: null,
@@ -245,7 +245,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.pos(9.7*16,6.6*16),
     k.solid(),
     k.z(1),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
     {
       dialogObj: null,
@@ -260,7 +260,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.pos(9.5*16,7.2*16),
     k.solid(),
     k.z(1),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
     {
       dialogObj: null,
@@ -275,7 +275,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.pos(2*16,2.9*16),
     k.solid(),
     k.z(1),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
     {
       dialogObj: null,
@@ -290,7 +290,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.pos(10.3*16,7.1*16),
     k.solid(),
     k.z(1),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
     {
       dialogObj: null,

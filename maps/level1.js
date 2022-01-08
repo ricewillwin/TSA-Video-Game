@@ -162,7 +162,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.pos(14*16,3.0*16),
     k.solid(),
     k.z(1),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
     {
       dialogObj: null,
@@ -177,7 +177,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.pos(12.5*16,2.7*16),
     k.solid(),
     k.z(1),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
     {
       dialogObj: null,
@@ -192,7 +192,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.pos(12*16,2.8*16),
     k.solid(),
     k.z(1),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
     {
       dialogObj: null,
@@ -207,7 +207,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.pos(10.5*16,2.7*16),
     k.solid(),
     k.z(1),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
     {
       dialogObj: null,
@@ -222,7 +222,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.pos(9.5*16,2.4*16),
     k.solid(),
     k.z(1),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
     "NPC",
     {
       dialogObj: null,
