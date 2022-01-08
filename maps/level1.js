@@ -78,7 +78,7 @@ export const mapArray = {
 
 };
 
-export const loadLevel1a = () => k.scene("level1Transistion", async () => {
+export const loadLevel1a = () => k.scene("level1Transition", async () => {
 
   const exposition = k.add([
     k.text("You are a spy during the Cold War"),
@@ -157,10 +157,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
 
   k.onCollide("player", "door", () => {
-    if (player.keyone == "explained") {
+    if (player.keyone === "explained") {
       loadLevel2();
       loadLevel2a();
-      k.go("level2Transistion");
+      k.go("level2Transition");
       music.stop()
     }
   });

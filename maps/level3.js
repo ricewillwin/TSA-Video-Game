@@ -81,7 +81,7 @@ export const mapArray = {
   spawn: [ 7, 8.4 ],
 };
 
-export const loadLevel3a = () => k.scene("level3Transistion", async () => {
+export const loadLevel3a = () => k.scene("level3Transition", async () => {
   k.add([
     k.text("Level Two"),
     k.origin("center"),

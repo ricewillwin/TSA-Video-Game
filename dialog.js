@@ -1,4 +1,5 @@
 import { k } from "./kaboom.js"
+import { setChoiceListeners } from "./input.js";
 
 export class DialogPart {
   _speaker = null;
@@ -31,11 +32,15 @@ export class DialogLine extends DialogPart {
 }
 
 export class DialogChoice extends DialogPart {
-  #dialogButtons = null;
+  #uncreatedDialogButtonSeries = null;
 
-  constructor(speaker, ...dialogButtons) {
+  constructor(speaker, dialogButtonSeries) {
     super(speaker, "choice");
-    this.#dialogButtons = dialogButtons;
+    this.#uncreatedDialogButtonSeries = dialogButtonSeries;
+  }
+
+  get uncreatedDialogButtonSeries() {
+    return this.#uncreatedDialogButtonSeries;
   }
 }
 
@@ -43,12 +48,13 @@ export class Dialog {
   #dialogParts = null;
   #idx = 0;
   #speakers = null;
+  #nextDialog = null;
 
   constructor(speakers, ...dialogParts) {
     this.#dialogParts = dialogParts;
     this.#speakers = speakers;
     for (const speaker in this.#speakers) {
-      if (speaker.dialogTextObj == null) {
+      if (speaker.dialogTextObj === null) {
         speaker.dialogTextObj = k.add([
           k.text(""),
           k.scale(0.5),
@@ -71,15 +77,20 @@ export class Dialog {
     }
   }
 
+  set nextDialog(nextDialog) {
+    this.#nextDialog = nextDialog;
+  }
+
   update() {
     if (this.#dialogParts[this.#idx].type === "line") {
       this.#dialogParts[this.#idx].speaker.use(k.text(this.#dialogParts[this.#idx].text));
       for (const speaker in this.#speakers) {
         speaker.dialogTextObj.hidden = speaker === this.#dialogParts[this.#idx].speaker;
       }
-      return this;
+      return null;
     } else if (this.#dialogParts[this.#idx].type === "choice") {
-      //
+      setChoiceListeners(this.#dialogParts[this.#idx].uncreatedDialogButtonSeries.create());
+      return this.#nextDialog ?? null;
     } else {
       throw new Error("invalid DialogParts type");
     }
@@ -89,11 +100,11 @@ export class Dialog {
 export class dialogHandler {
   #initialDialog = null;
   #currentDialog = null;
-  #returnDialog = null;
+  #loopDialog = null;
 
-  constructor(initialDialog, returnDialog) {
+  constructor(initialDialog, loopDialog) {
     this.#initialDialog = initialDialog;
-    this.#returnDialog = returnDialog;
+    this.#loopDialog = loopDialog;
     this.#currentDialog = this.#initialDialog;
   }
 

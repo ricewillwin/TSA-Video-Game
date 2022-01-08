@@ -4,6 +4,10 @@ import { createDialogText, nextDialog } from "./dialog.js";
 
 let cancellers = [];
 
+/**
+ * Change event listeners to in-game keys.
+ * @param {Object} touchingNPC NPC currently touching
+ */
 export const setGameListeners = (touchingNPC) => {
   for (let i = 0; i < cancellers.length; i++) {
     cancellers[i]();
@@ -139,4 +143,28 @@ export const setGameListeners = (touchingNPC) => {
       nextDialog(n);
     }
   }));
-}
+};
+
+/**
+ * Change event listeners to dialog choice.
+ * @param {ButtonSeries} buttonSeries ButtonSeries of dialog choice.
+ */
+export const setChoiceListeners = (buttonSeries) => {
+  for (let i = 0; i < cancellers.length; i++) {
+    cancellers[i]();
+  }
+  cancellers = [];
+
+  cancellers.push(k.onKeyPress(keys.INTERACT, () => {
+    buttonSeries.push();
+  }));
+
+  cancellers.push(k.onKeyPress(keys.LEFT, () => {
+    buttonSeries.back();
+  }));
+
+  cancellers.push(k.onKeyPress(keys.RIGHT, () => {
+    buttonSeries.fwd();
+  }));
+};
+

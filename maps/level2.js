@@ -94,7 +94,7 @@ export const mapArray = {
   spawn: [ 7, 8.4 ],
 };
 
-export const loadLevel2a = () => k.scene("level2Transistion", async () => {
+export const loadLevel2a = () => k.scene("level2Transition", async () => {
   k.add([
     k.text("Level One"),
     k.scale(3),
@@ -184,10 +184,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
   }),
 
   k.onCollide("player", "nextdoor", () => {
-    if(player.keytwo == "lighter") {
+    if(player.keytwo === "lighter") {
       loadLevel3();
       loadLevel3a();
-      k.go("level3Transistion");
+      k.go("level3Transition");
       music.stop()
     }
   });
