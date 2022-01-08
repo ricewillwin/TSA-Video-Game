@@ -1,5 +1,6 @@
 import { k } from "../kaboom.js";
 import { initializePlayer, player, BASE_SPEED } from "../player.js";
+import { loadLevel4, loadLevel4a } from "./level4.js"
 import { GameMap } from "./index.js";
 
 export var mapObj = null;
@@ -29,13 +30,13 @@ export const mapArray = {
       k.sprite( "door_left"),
       k.area(),
       k.solid(),
-      "door",
+      "nextdoor",
     ]),
     ")": (ctx) => ([
       k.sprite("door_right"),
       k.area(),
       k.solid(),
-      "door",
+      "nextdoor",
     ]),
     "{": (ctx) => ([
       k.sprite( "door_left"),
@@ -460,7 +461,11 @@ export const loadLevel3 = () => k.scene("level3", async () => {
     },
   ]);
 
-	
+  k.onCollide("player", "nextdoor", () => {
+    loadLevel4();
+    loadLevel4a();
+    k.go("level4Transistion")
+  });
 
   k.camScale(4);
 });

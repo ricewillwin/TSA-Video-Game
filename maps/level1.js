@@ -109,10 +109,10 @@ export const loadLevel1a = () => k.scene("level1Transistion", async () => {
     k.go("level1");
   });
 
-  k.onKeyPress("p", () => {
-    loadLevel3();
-    k.go("level3");
-  });
+  // k.onKeyPress("p", () => {
+  //   loadLevel3();
+  //   k.go("level3");
+  // });
 });
 
 export const loadLevel1 = () => k.scene("level1", async () => {
