@@ -107,13 +107,30 @@ export const loadLevel3a = () => k.scene("level3Transistion", async () => {
 
 export const loadLevel3 = () => k.scene("level3", async () => {
   const music = k.play("openworld", {
-    volume: 0.025,
+    volume: 0.1,
   });
   music.loop();
 
   mapObj = new GameMap(mapArray);
 
   await initializePlayer("player", mapObj);
+  
+
+  const bouncerLeft = k.add([
+    k.sprite("bouncer_left", {anim: "idle"}),
+    k.pos((11*16), (0.4*16)),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    "bouncer",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
   
   
 
@@ -125,6 +142,7 @@ export const loadLevel3 = () => k.scene("level3", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "napkin_dude",
     "NPC",
     {
       dialogObj: null,
@@ -461,10 +479,17 @@ export const loadLevel3 = () => k.scene("level3", async () => {
     },
   ]);
 
+  k.onCollide("player", "napkin_dude", () => {
+    player.keythree = "napkin";
+  }),
+
   k.onCollide("player", "nextdoor", () => {
-    loadLevel4();
-    loadLevel4a();
-    k.go("level4Transistion")
+    if(player.keythree == "napkin") {
+      music.stop();
+      loadLevel4();
+      loadLevel4a();
+      k.go("level4Transistion");
+    }
   });
 
   k.camScale(4);

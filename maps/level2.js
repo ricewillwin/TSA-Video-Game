@@ -109,7 +109,7 @@ export const loadLevel2a = () => k.scene("level2Transistion", async () => {
 
 export const loadLevel2 = () => k.scene("level2", async () => {
   const music = k.play("openworld", {
-    volume: 0.05,
+    volume: 0.1,
   });
   music.loop();
 
@@ -187,11 +187,9 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     {
       dialogObj: null,
       currentDialog: 0,
-      dialog: ["Fire is epic",
-               "Fire",
-               "Flame",
-               "Yo kiddo you want the key to the next room?",
-               "Go talk to the guy in the green with the stick."]
+      dialog: ["Here is my lighter",
+               "You took my lighter",
+               "I miss my lighter"]
     },
   ]);
 
@@ -304,14 +302,21 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   k.onCollide("player", "lighter_dude", () => {
     player.keytwo = "lighter";
+    console.log()
+    billiardguy3.use(k.sprite("billiardguy3"));
+    k.wait(1, () => {
+      if (billiardguy3.dialog.indexOf("Here is my lighter") !== -1) {
+        billiardguy3.dialog.splice(billiardguy3.dialog.indexOf("Here is my lighter"), billiardguy3.dialog.indexOf("Here is my lighter")+1);
+      }
+    });
   }),
 
   k.onCollide("player", "nextdoor", () => {
     if(player.keytwo == "lighter") {
+      music.stop()
       loadLevel3();
       loadLevel3a();
       k.go("level3Transistion");
-      music.stop()
     }
   });
 
