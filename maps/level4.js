@@ -119,6 +119,21 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     },
   ]);
 
+  const personOne = k.add([
+    k.sprite("guy_five", {anim: "idle", animSpeed: 0.4}),
+    k.pos(2.75*16,2.9*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+      "You're good, go in"]
+    },
+  ]);
+
   const chair11 = k.add([
     k.sprite("chair_auction"),
     k.pos(2.75*16,3*16),
@@ -143,12 +158,42 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.area(),
   ]);
 
+  const personTwo = k.add([
+    k.sprite("guy_six", {anim: "idle", animSpeed: 0.4}),
+    k.pos(7.25*16,2.9*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+      "You're good, go in"]
+    },
+  ]);
+
   const chair14 = k.add([
     k.sprite("chair_auction"),
     k.pos(7.25*16,3*16),
     k.solid(),
     k.z(1),
     k.area(),
+  ]);
+
+  const personThree = k.add([
+    k.sprite("guy_seven", {anim: "idle", animSpeed: 0.4}),
+    k.pos(8.75*16,2.9*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+      "You're good, go in"]
+    },
   ]);
 
   const chair15 = k.add([
@@ -169,12 +214,42 @@ export const loadLevel4 = () => k.scene("level4", async () => {
 
 
 
+  const personFour = k.add([
+    k.sprite("guy_eight", {anim: "idle", animSpeed: 0.4}),
+    k.pos(2.75*16,4.4*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+      "You're good, go in"]
+    },
+  ]);
+
   const chair21 = k.add([
     k.sprite("chair_auction"),
     k.pos(2.75*16,4.5*16),
     k.solid(),
     k.z(1),
     k.area(),
+  ]);
+
+  const personFive = k.add([
+    k.sprite("guy_two", {anim: "idle", animSpeed: 0.4}),
+    k.pos(4.25*16,4.4*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+      "You're good, go in"]
+    },
   ]);
 
   const chair22 = k.add([
@@ -201,12 +276,42 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.area(),
   ]);
 
+  const personSix = k.add([
+    k.sprite("guy_three", {anim: "idle", animSpeed: 0.4}),
+    k.pos(8.75*16,4.4*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+      "You're good, go in"]
+    },
+  ]);
+
   const chair25 = k.add([
     k.sprite("chair_auction"),
     k.pos(8.75*16,4.5*16),
     k.solid(),
     k.z(1),
     k.area(),
+  ]);
+
+  const personSeven = k.add([
+    k.sprite("gal_one", {anim: "idle", animSpeed: 0.4}),
+    k.pos(10.25*16,4.4*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+      "You're good, go in"]
+    },
   ]);
 
   const chair26 = k.add([
@@ -234,6 +339,21 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.area(),
   ]);
 
+  const personEight = k.add([
+    k.sprite("guy_four", {anim: "idle", animSpeed: 0.4}),
+    k.pos(5.75*16,5.9*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+      "You're good, go in"]
+    },
+  ]);
+
   const chair33 = k.add([
     k.sprite("chair_auction"),
     k.pos(5.75*16,6*16),
@@ -250,12 +370,42 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.area(),
   ]);
 
+  const personNine = k.add([
+    k.sprite("gal_two", {anim: "idle", animSpeed: 0.4}),
+    k.pos(8.75*16,5.9*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+      "You're good, go in"]
+    },
+  ]);
+
   const chair35 = k.add([
     k.sprite("chair_auction"),
     k.pos(8.75*16,6*16),
     k.solid(),
     k.z(1),
     k.area(),
+  ]);
+
+  const personTen = k.add([
+    k.sprite("gal_three", {anim: "idle", animSpeed: 0.4}),
+    k.pos(10.25*16,5.9*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+      "You're good, go in"]
+    },
   ]);
 
   const chair36 = k.add([
