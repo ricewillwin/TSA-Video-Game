@@ -24,58 +24,27 @@ export const mapArray = {
       k.sprite("wall_stone"),
       k.area(),
       k.solid(),
+      "tile",
     ]),
     "(": (ctx) => ([
       k.sprite( "door_left"),
       k.area(),
       k.solid(),
+      "tile",
       "nextdoor",
     ]),
     ")": (ctx) => ([
       k.sprite("door_right"),
       k.area(),
       k.solid(),
+      "tile",
       "nextdoor",
-    ]),
-    "_": (ctx) => ([
-      k.sprite("sidewalk"),
-      k.layer("floor"),
-      k.area(),
-    ]),
-    "B": (ctx) => ([
-      k.sprite("bouncer"),
-      k.area(),
-      k.solid(),
-    ]),
-    "*": (ctx) => ([
-      k.sprite("pavement"),
-      k.layer("floor"),
-      k.area(),
-    ]),
-    "!": (ctx) => ([
-      k.sprite("pavement_vert"),
-      k.layer("floor"),
-      k.area(),
-    ]),
-    "~": (ctx) => ([
-      k.sprite("pavement_horiz"),
-      k.layer("floor"),
-      k.area(),
-    ]),
-    "j": (ctx) => ([
-      k.sprite("pavement_junction_up"),
-      k.layer("floor"),
-      k.area(),
     ]),
     "w": (ctx) => ([
       k.sprite("wood_floor"),
       k.layer("floor"),
       k.area(),
-    ]),
-    "t": (ctx) => ([
-      k.sprite("table"),
-      k.layer("floor"),
-      k.area(),
+      "tile",
     ]),
   },
   spawn: [ 7, 8.4 ],
@@ -96,7 +65,7 @@ export const loadLevel4a = () => k.scene("level4Transistion", async () => {
 
 export const loadLevel4 = () => k.scene("level4", async () => {
   const music = k.play("openworld", {
-    volume: 0.05,
+    volume: 0.1,
   });
   music.loop();
 
@@ -106,7 +75,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
 
   const auctioneer = k.add([
     k.sprite("auctioneer", {anim: "idle", animSpeed: 0.5}),
-    k.pos(7.5*16,1.5*16),
+    k.pos(6.5*16,1.5*16),
     k.solid(),
     k.z(1),
     k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
@@ -120,7 +89,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   const personOne = k.add([
-    k.sprite("guy_five", {anim: "idle", animSpeed: 0.4}),
+    k.sprite("guy_five", {anim: "idle", animSpeed: 0.5}),
     k.pos(2.75*16,2.9*16),
     k.solid(),
     k.z(1),
@@ -182,7 +151,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   const personThree = k.add([
-    k.sprite("guy_seven", {anim: "idle", animSpeed: 0.4}),
+    k.sprite("guy_seven", {anim: "idle", animSpeed: 0.3}),
     k.pos(8.75*16,2.9*16),
     k.solid(),
     k.z(1),
@@ -238,7 +207,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   const personFive = k.add([
-    k.sprite("guy_two", {anim: "idle", animSpeed: 0.4}),
+    k.sprite("guy_two", {anim: "idle", animSpeed: 0.2}),
     k.pos(4.25*16,4.4*16),
     k.solid(),
     k.z(1),
@@ -277,7 +246,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   const personSix = k.add([
-    k.sprite("guy_three", {anim: "idle", animSpeed: 0.4}),
+    k.sprite("guy_three", {anim: "idle", animSpeed: 0.7}),
     k.pos(8.75*16,4.4*16),
     k.solid(),
     k.z(1),
@@ -300,7 +269,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   const personSeven = k.add([
-    k.sprite("gal_one", {anim: "idle", animSpeed: 0.4}),
+    k.sprite("gal_one", {anim: "idle", animSpeed: 0.5}),
     k.pos(10.25*16,4.4*16),
     k.solid(),
     k.z(1),
@@ -340,7 +309,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   const personEight = k.add([
-    k.sprite("guy_four", {anim: "idle", animSpeed: 0.4}),
+    k.sprite("guy_four", {anim: "idle", animSpeed: 0.1}),
     k.pos(5.75*16,5.9*16),
     k.solid(),
     k.z(1),
@@ -394,7 +363,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   const personTen = k.add([
-    k.sprite("gal_three", {anim: "idle", animSpeed: 0.4}),
+    k.sprite("gal_three", {anim: "idle", animSpeed: 0.3}),
     k.pos(10.25*16,5.9*16),
     k.solid(),
     k.z(1),
@@ -414,6 +383,112 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.solid(),
     k.z(1),
     k.area(),
+  ]);
+
+  const bouncerRight_1 = k.add([
+    k.sprite("bouncer_right", {anim: "idle"}),
+    k.pos(1.4*16,2.5*16),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    "NPC",
+    "bouncer",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+  const bouncerLeft_1 = k.add([
+    k.sprite("bouncer_left", {anim: "idle"}),
+    k.pos((3.5*16), (2.5*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    "NPC",
+    "bouncer",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+  const bouncerLeft_2 = k.add([
+    k.sprite("bouncer_left", {anim: "idle"}),
+    k.pos((5*16), (2.5*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    "NPC",
+    "bouncer",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+  const bouncerRight_2 = k.add([
+    k.sprite("bouncer_right", {anim: "idle"}),
+    k.pos((6.6*16), (2.5*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    "NPC",
+    "bouncer",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+  const bouncerLeft_3 = k.add([
+    k.sprite("bouncer_left", {anim: "idle"}),
+    k.pos((8*16), (2.5*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    "NPC",
+    "bouncer",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+  const bouncerRight_3 = k.add([
+    k.sprite("bouncer_right", {anim: "idle"}),
+    k.pos((9.5*16), (2.5*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    "NPC",
+    "bouncer",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+  const bouncerRight_4 = k.add([
+    k.sprite("bouncer_right", {anim: "idle"}),
+    k.pos((11.6*16), (2.5*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    "NPC",
+    "bouncer",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
   ]);
 
   k.camScale(4);
