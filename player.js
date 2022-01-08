@@ -185,7 +185,7 @@ export const setListeners = (touchingNPC) => {
   }));
 
   cancellers.push(k.onCollide("player", "NPC", (p, n) => {
-    console.log(n)
+    // console.log(n)
     if ((touchingNPC != null) && (touchingNPC.dialogObj != null)) {
       touchingNPC.dialogObj.destroy();
       touchingNPC.dialogObj = null;

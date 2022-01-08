@@ -241,10 +241,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   k.onCollide("player", "door", () => {
     if (player.keyone == "explained") {
+      music.stop()
       loadLevel2();
       loadLevel2a();
       k.go("level2Transistion");
-      music.stop()
     }
   });
 
