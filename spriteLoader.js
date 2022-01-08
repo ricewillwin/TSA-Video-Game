@@ -13,7 +13,9 @@ export const spriteLoader = {
     await k.loadSprite("wood_floor", "./sprites/tiles/wood_floor.png");
     await k.loadSprite("table", "./sprites/tiles/BilliardTable.png");
     await k.loadSprite("dancetable", "./sprites/tiles/tablegood.png");
-    
+    await k.loadSprite("chair_right", "./sprites/tiles/chairright.png");
+    await k.loadSprite("chair_left", "./sprites/tiles/chair.png");
+    await k.loadSprite("chair_auction", "./sprites/tiles/auctionchair.png");
   },
   loadPlayers: async () => {
     await k.loadSprite("player", "sprites/players/player.png", {
