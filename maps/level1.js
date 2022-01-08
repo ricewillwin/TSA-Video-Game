@@ -2,6 +2,8 @@ import { k } from "../kaboom.js";
 import { initializePlayer, player } from "../player.js";
 import { GameMap } from "./index.js";
 import { loadLevel2, loadLevel2a } from "./level2.js";
+import { DialogChoice, DialogLine, nextDialog } from "../ui/dialog.js";
+import { UncreatedDialogButtonSeries } from "../ui/dialogButtonSeries.js";
 
 export var mapObj = null;
 await k.loadSound("openworld", "./music/openworld.wav")
@@ -153,7 +155,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   k.onCollide("player", "bouncer", () => {
     player.keyone = "explained";
-  }),
+  });
 
 
   k.onCollide("player", "door", () => {
@@ -166,11 +168,6 @@ export const loadLevel1 = () => k.scene("level1", async () => {
   });
 
   k.camScale(4);
-
-
-
-
-
 
   const redCar = k.add([
     k.sprite("car_red"),
@@ -188,6 +185,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     },
     
   ]);
+
   const yellowCar = k.add([
     k.sprite("car_yellow"),
     k.pos((23*16),(9.3*16)),
@@ -197,6 +195,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.rotate(270),
     k.origin("center")
   ]);
+
   const greenCar = k.add([
     k.sprite("car_green"),
     k.pos((7*16),(6.5*16)),
@@ -215,6 +214,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.area(),
     k.origin("center")
   ]);
+
   const blockade2 = k.add([
     k.sprite("car_blue"),
     k.pos((4.5*16),(6*16)),
@@ -230,6 +230,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
                "Cars shouldn't be alive."]
     },
   ]);
+
   const blockade3 = k.add([
     k.sprite("car_green"),
     k.pos((4.75*16),(8*16)),
@@ -238,6 +239,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.area(),
     k.origin("center")
   ]);
+
   const blockade4 = k.add([
     k.sprite("car_striped"),
     k.pos((4.6*16),(10*16)),
@@ -248,8 +250,6 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.rotate(180)
   ]);
 
-
-
   const blockade5 = k.add([
     k.sprite("car_striped"),
     k.pos((29.6*16),(4*16)),
@@ -258,6 +258,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.area(),
     k.origin("center")
   ]);
+
   const blockade6 = k.add([
     k.sprite("car_blue"),
     k.pos((29.2*16),(6*16)),
@@ -267,6 +268,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.origin("center"),
     k.rotate(180)
   ]);
+
   const blockade7 = k.add([
     k.sprite("car_green"),
     k.pos((29.4*16),(8*16)),
@@ -276,6 +278,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.origin("center"),
     k.rotate(180)
   ]);
+
   const blockade8 = k.add([
     k.sprite("car_yellow"),
     k.pos((29.5*16),(10*16)),
@@ -285,5 +288,15 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.origin("center"),
   ]);
 
-  
+  let bouncerLeftParts = [
+    new DialogLine(player, "Hello, I'm here for the party."),
+    new DialogLine(bouncerLeft, "Who are you?"),
+    new DialogChoice(player, new UncreatedDialogButtonSeries(
+      { text: "distract", dialog: new Dialog([player, bouncerLeft], null, [
+            new DialogLine(player, "Hey, look over there! It's a distraction!"),
+            new DialogLine(bouncerLeft, "Nice try."),
+          ])
+      })
+    )
+  ]
 });

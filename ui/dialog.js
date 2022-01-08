@@ -1,56 +1,138 @@
-import { k } from "./kaboom.js"
-import { setChoiceListeners } from "./input.js";
+import { k } from "../kaboom.js"
+import { setChoiceListeners } from "../input.js";
 
+/**
+ *
+ */
 export class DialogPart {
+  /**
+   *
+   * @type {Object}
+   * @private
+   */
   _speaker = null;
+
+  /**
+   *
+   * @private
+   */
   _type;
 
+  /**
+   *
+   * @param {Object} speaker
+   * @param {string} type
+   */
   constructor(speaker, type) {
     this._speaker = speaker;
     this._type = type;
   }
 
+  /**
+   *
+   * @returns {string}
+   */
   get type() {
     return this._type;
   }
 
+  /**
+   *
+   * @returns {Object}
+   */
   get speaker() {
     return this._speaker;
   }
 }
 
+/**
+ *
+ */
 export class DialogLine extends DialogPart {
-  #text = null;
+  /**
+   *
+   * @type {string}
+   */
+  #text = "";
 
-  constructor(speaker) {
+  constructor(speaker, text) {
     super(speaker, "line");
+    this.#text = text;
   }
 
+  /**
+   *
+   * @returns {string}
+   */
   get text() {
     return this.#text;
   }
 }
 
+/**
+ *
+ */
 export class DialogChoice extends DialogPart {
+  /**
+   *
+   * @type {UncreatedDialogButtonSeries}
+   */
   #uncreatedDialogButtonSeries = null;
 
-  constructor(speaker, dialogButtonSeries) {
+  /**
+   *
+   * @param {Object} speaker
+   * @param {UncreatedDialogButtonSeries} uncreatedDialogButtonSeries
+   */
+  constructor(speaker, uncreatedDialogButtonSeries) {
     super(speaker, "choice");
-    this.#uncreatedDialogButtonSeries = dialogButtonSeries;
+    this.#uncreatedDialogButtonSeries = uncreatedDialogButtonSeries;
   }
 
+  /**
+   *
+   * @returns {UncreatedDialogButtonSeries}
+   */
   get uncreatedDialogButtonSeries() {
     return this.#uncreatedDialogButtonSeries;
   }
 }
 
+/**
+ *
+ */
 export class Dialog {
+  /**
+   *
+   * @type {DialogPart[]}
+   */
   #dialogParts = null;
+
+  /**
+   *
+   * @type {number}
+   */
   #idx = 0;
+
+  /**
+   *
+   * @type {Object[]}
+   */
   #speakers = null;
+
+  /**
+   *
+   * @type {Dialog}
+   */
   #nextDialog = null;
 
-  constructor(speakers, ...dialogParts) {
+  /**
+   *
+   * @param {Object[]} speakers
+   * @param {Dialog} nextDialog
+   * @param {...DialogPart} dialogParts
+   */
+  constructor(speakers, nextDialog=null, ...dialogParts) {
     this.#dialogParts = dialogParts;
     this.#speakers = speakers;
     for (const speaker in this.#speakers) {
@@ -65,11 +147,17 @@ export class Dialog {
         speaker.dialogTextObj.hidden = true;
       }
     }
+    this.#nextDialog = nextDialog;
   }
 
+  /**
+   *
+   * @returns {boolean}
+   */
   next() {
     this.#idx++;
     if (this.#idx >= this.#dialogParts) {
+      this.#idx = 0;
       return false;
     } else {
       this.update();
@@ -77,13 +165,29 @@ export class Dialog {
     }
   }
 
+  /**
+   *
+   * @param {} nextDialog
+   */
   set nextDialog(nextDialog) {
     this.#nextDialog = nextDialog;
   }
 
+  /**
+   *
+   * @returns {Dialog}
+   */
+  get nextDialog() {
+    return this.#nextDialog;
+  }
+
+  /**
+   *
+   * @returns {null|Dialog}
+   */
   update() {
     if (this.#dialogParts[this.#idx].type === "line") {
-      this.#dialogParts[this.#idx].speaker.use(k.text(this.#dialogParts[this.#idx].text));
+      this.#dialogParts[this.#idx].speaker.dialogTextObj.use(k.text(this.#dialogParts[this.#idx].text));
       for (const speaker in this.#speakers) {
         speaker.dialogTextObj.hidden = speaker === this.#dialogParts[this.#idx].speaker;
       }
@@ -95,21 +199,54 @@ export class Dialog {
       throw new Error("invalid DialogParts type");
     }
   }
+
+  /**
+   *
+   */
+  hide() {
+    for (const speaker in this.#speakers) {
+      speaker.dialogTextObj.hidden = true;
+    }
+  }
 }
 
-export class dialogHandler {
+/**
+ *
+ */
+export class DialogHandler {
+  /**
+   *
+   * @type {Dialog}
+   */
   #initialDialog = null;
-  #currentDialog = null;
-  #loopDialog = null;
 
-  constructor(initialDialog, loopDialog) {
+  /**
+   *
+   * @type {Dialog}
+   */
+  #currentDialog = null;
+
+  /**
+   *
+   * @param {Dialog} initialDialog
+   */
+  constructor(initialDialog) {
     this.#initialDialog = initialDialog;
-    this.#loopDialog = loopDialog;
     this.#currentDialog = this.#initialDialog;
   }
 
   start() {
-    //
+    this.#currentDialog.update();
+  }
+
+  next() {
+    if (!this.#currentDialog.next()) {
+      if (this.#currentDialog.nextDialog === null) {
+        this.#currentDialog.hide();
+      } else {
+        this.#currentDialog = this.#currentDialog.nextDialog;
+      }
+    }
   }
 }
 
@@ -126,4 +263,4 @@ export const createDialogText = (npc) => {
 export const nextDialog = (npc) => {
   npc.currentDialog = (npc.currentDialog + 1) % npc.dialog.length;
   npc.dialogObj.use(k.text(npc.dialog[npc.currentDialog]));
-}
+};

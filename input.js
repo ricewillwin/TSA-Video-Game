@@ -1,6 +1,6 @@
 import { k } from "./kaboom.js";
 import { keys, player, playerHandler } from "./player.js";
-import { createDialogText, nextDialog } from "./dialog.js";
+import { createDialogText, nextDialog } from "./ui/dialog.js";
 
 let cancellers = [];
 

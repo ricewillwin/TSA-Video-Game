@@ -1,6 +1,6 @@
 import { k } from "./kaboom.js";
 import { spriteLoader } from "./spriteLoader.js";
-import { createDialogText, nextDialog } from "./dialog.js";
+import { createDialogText, nextDialog } from "./ui/dialog.js";
 import { setGameListeners } from "./input.js";
 
 export const BASE_SPEED = 60;
