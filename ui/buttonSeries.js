@@ -113,8 +113,8 @@ export class ButtonSeries {
   }
 
   destroy() {
-    for (const button in this.#buttons) {
-      button.destroy();
+    for (const idx in this.#buttons) {
+      this.#buttons[idx].destroy();
     }
     return this;
   }

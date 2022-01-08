@@ -35,7 +35,7 @@ export class DialogPart {
    * @returns {null}
    */
   get type() {
-    return null;
+    return this._type;
   }
 
   /**
@@ -68,10 +68,6 @@ export class DialogLine extends DialogPart {
    */
   get text() {
     return this.#text;
-  }
-
-  get type() {
-    return "line";
   }
 }
 
@@ -178,7 +174,7 @@ export class Dialog {
    */
   next() {
     this.#idx++;
-    if (this.#idx >= this.#dialogParts) {
+    if (this.#idx >= this.#dialogParts.length) {
       return false;
     } else {
       this.update();
@@ -215,10 +211,9 @@ export class Dialog {
    */
   update() {
     if (this.#dialogParts[this.#idx].type === "line") {
-      console.log(this.#dialogParts[this.#idx].speaker);
       this.#dialogParts[this.#idx].speaker.dialogTextObj.use(k.text(this.#dialogParts[this.#idx].text));
-      for (const speaker in this.#speakers) {
-        speaker.dialogTextObj.hidden = speaker === this.#dialogParts[this.#idx].speaker;
+      for (const idx in this.#speakers) {
+        this.#speakers[idx].dialogTextObj.hidden = this.#speakers[idx] !== this.#dialogParts[this.#idx].speaker;
       }
     }
     else if (this.#dialogParts[this.#idx].type === "choice") {
@@ -235,8 +230,8 @@ export class Dialog {
    *
    */
   hide() {
-    for (const speaker in this.#speakers) {
-      speaker.dialogTextObj.hidden = true;
+    for (const idx in this.#speakers) {
+      this.#speakers[idx].dialogTextObj.hidden = true;
     }
   }
 }
@@ -270,6 +265,10 @@ export class DialogHandler {
   start() {
     this.#started = true;
     this.#currentDialog.update();
+  }
+
+  restart() {
+    this.#currentDialog.restart();
   }
 
   next() {

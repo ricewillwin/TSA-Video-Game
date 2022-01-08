@@ -3,7 +3,7 @@ import { keys, player, playerHandler } from "./player.js";
 import { createDialogText, nextDialog } from "./ui/dialog.js";
 
 let cancellers = [];
-let cancelTimer = null;
+let timeout = null;
 
 /**
  * Change event listeners to in-game keys.
@@ -121,33 +121,34 @@ export const setGameListeners = (touchingNPC) => {
   cancellers.push(k.onKeyPress(keys.INTERACT, () => {
     let npcs = k.get("NPC");
     npcs = npcs.slice(0, npcs.length / 2);
-    
+
     if (touchingNPC !== null) {
       if (touchingNPC.dialogObj === null) {
         createDialogText(touchingNPC);
       } else {
-        nextDialog(touchingNPC);
+        touchingNPC.dialogObj.next();
       }
     }
   }));
 
   cancellers.push(k.onCollide("player", "NPC", (p, n) => {
-    // console.log(n)
     if ((touchingNPC !== null)) {
-      touchingNPC.dialogObj.hide();
-      cancelTimer();
+      if (touchingNPC === n){
+        touchingNPC.dialogObj.hide();
+      } else {
+        touchingNPC.dialogObj.restart();
+      }
+      if (timeout !== null) clearTimeout(timeout);
     }
     touchingNPC = n;
     if (!touchingNPC.dialogObj.started) {
       touchingNPC.dialogObj.start();
-    } else {
-      touchingNPC.dialogObj.next();
     }
 
-    cancelTimer = k.timer(3, () => {
+    timeout = setTimeout(() => {
       touchingNPC.dialogObj.hide();
       touchingNPC = null;
-    });
+    }, 3000);
   }));
 };
 
