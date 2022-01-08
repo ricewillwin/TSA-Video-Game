@@ -74,7 +74,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   await initializePlayer("player", mapObj);
 
   const auctioneer = k.add([
-    k.sprite("auctioneer", {anim: "idle", animSpeed: 0.5}),
+    k.sprite("auctioneer", {anim: "idle", animSpeed: 0.2}),
     k.pos(6.5*16,1.5*16),
     k.solid(),
     k.z(1),
