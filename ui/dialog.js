@@ -1,5 +1,6 @@
-import { k } from "../kaboom.js"
+import { k } from "../kaboom.js";
 import { setChoiceListeners } from "../input.js";
+import { loaded, loadLose } from "../maps/lose.js";
 
 /**
  *
@@ -8,15 +9,16 @@ export class DialogPart {
   /**
    *
    * @type {Object}
-   * @private
+   * @protected
    */
   _speaker = null;
 
   /**
    *
-   * @private
+   * @type {string}
+   * @protected
    */
-  _type;
+  _type = "";
 
   /**
    *
@@ -30,10 +32,10 @@ export class DialogPart {
 
   /**
    *
-   * @returns {string}
+   * @returns {null}
    */
   get type() {
-    return this._type;
+    return null;
   }
 
   /**
@@ -67,6 +69,10 @@ export class DialogLine extends DialogPart {
   get text() {
     return this.#text;
   }
+
+  get type() {
+    return "line";
+  }
 }
 
 /**
@@ -95,6 +101,34 @@ export class DialogChoice extends DialogPart {
    */
   get uncreatedDialogButtonSeries() {
     return this.#uncreatedDialogButtonSeries;
+  }
+}
+
+export class DialogLose extends DialogPart {
+  /**
+   *
+   * @type {string}
+   */
+  #text = "";
+
+  constructor(speaker) {
+    super(speaker, "lose");
+    this.#text = "GUARDS!!!";
+  }
+
+  /**
+   *
+   * @returns {string}
+   */
+  get text() {
+    return this.#text;
+  }
+
+  lose() {
+    if (!loaded) loadLose();
+    k.timer(1, () => {
+      k.go("lose");
+    });
   }
 }
 
@@ -135,18 +169,6 @@ export class Dialog {
   constructor(speakers, nextDialog=null, ...dialogParts) {
     this.#dialogParts = dialogParts;
     this.#speakers = speakers;
-    for (const speaker in this.#speakers) {
-      if (speaker.dialogTextObj === null) {
-        speaker.dialogTextObj = k.add([
-          k.text(""),
-          k.scale(0.5),
-          k.z(11),
-          k.origin("center"),
-          k.pos(speaker.pos.add(8, -2)),
-        ]);
-        speaker.dialogTextObj.hidden = true;
-      }
-    }
     this.#nextDialog = nextDialog;
   }
 
@@ -157,7 +179,6 @@ export class Dialog {
   next() {
     this.#idx++;
     if (this.#idx >= this.#dialogParts) {
-      this.#idx = 0;
       return false;
     } else {
       this.update();
@@ -167,7 +188,15 @@ export class Dialog {
 
   /**
    *
-   * @param {} nextDialog
+   */
+  restart() {
+    this.#idx = 0;
+    this.update();
+  }
+
+  /**
+   *
+   * @param {Dialog} nextDialog
    */
   set nextDialog(nextDialog) {
     this.#nextDialog = nextDialog;
@@ -183,18 +212,20 @@ export class Dialog {
 
   /**
    *
-   * @returns {null|Dialog}
    */
   update() {
     if (this.#dialogParts[this.#idx].type === "line") {
+      console.log(this.#dialogParts[this.#idx].speaker);
       this.#dialogParts[this.#idx].speaker.dialogTextObj.use(k.text(this.#dialogParts[this.#idx].text));
       for (const speaker in this.#speakers) {
         speaker.dialogTextObj.hidden = speaker === this.#dialogParts[this.#idx].speaker;
       }
-      return null;
-    } else if (this.#dialogParts[this.#idx].type === "choice") {
+    }
+    else if (this.#dialogParts[this.#idx].type === "choice") {
       setChoiceListeners(this.#dialogParts[this.#idx].uncreatedDialogButtonSeries.create());
-      return this.#nextDialog ?? null;
+    } else if (this.#dialogParts[this.#idx].type === "lose") {
+      this.#dialogParts[this.#idx].speaker.dialogTextObj.use(k.text(this.#dialogParts[this.#idx].text));
+      this.#dialogParts[this.#idx].lose();
     } else {
       throw new Error("invalid DialogParts type");
     }
@@ -219,6 +250,7 @@ export class DialogHandler {
    * @type {Dialog}
    */
   #initialDialog = null;
+  #started = false;
 
   /**
    *
@@ -236,28 +268,37 @@ export class DialogHandler {
   }
 
   start() {
+    this.#started = true;
     this.#currentDialog.update();
   }
 
   next() {
     if (!this.#currentDialog.next()) {
-      if (this.#currentDialog.nextDialog === null) {
-        this.#currentDialog.hide();
-      } else {
+      if (this.#currentDialog.nextDialog !== null) {
         this.#currentDialog = this.#currentDialog.nextDialog;
+        this.#currentDialog.restart();
       }
     }
+  }
+
+  get started() {
+    return this.#started;
+  }
+
+  hide() {
+    this.#currentDialog.hide();
   }
 }
 
 export const createDialogText = (npc) => {
-  npc.dialogObj = k.add([
-    k.text(npc.dialog[npc.currentDialog]),
+  npc.dialogTextObj = k.add([
+    k.text(""),
     k.scale(0.5),
-    k.z(11),
+    k.layer("ui"),
     k.origin("center"),
     k.pos(npc.pos.add(8, -2)),
   ]);
+  npc.dialogTextObj.hidden = true;
 };
 
 export const nextDialog = (npc) => {

@@ -126,4 +126,10 @@ export class Button {
       this.#onPush();
     }
   }
+
+  destroy() {
+    this.#buttonFill.destroy();
+    this.#buttonText.destroy();
+    return this;
+  }
 }

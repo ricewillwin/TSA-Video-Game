@@ -31,6 +31,7 @@ export const createPlayer = async (name, pos) => {
   await spriteLoader.loadPlayers();
   if (player !== null) k.destroy(player);
   player = k.add(addPlayerOpts(name, pos));
+  createDialogText(player);
 };
 
 export const keys = {

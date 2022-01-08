@@ -3,6 +3,7 @@ import { keys, player, playerHandler } from "./player.js";
 import { createDialogText, nextDialog } from "./ui/dialog.js";
 
 let cancellers = [];
+let cancelTimer = null;
 
 /**
  * Change event listeners to in-game keys.
@@ -132,22 +133,27 @@ export const setGameListeners = (touchingNPC) => {
 
   cancellers.push(k.onCollide("player", "NPC", (p, n) => {
     // console.log(n)
-    if ((touchingNPC != null) && (touchingNPC.dialogObj != null)) {
-      touchingNPC.dialogObj.destroy();
-      touchingNPC.dialogObj = null;
+    if ((touchingNPC !== null)) {
+      touchingNPC.dialogObj.hide();
+      cancelTimer();
     }
     touchingNPC = n;
-    if (n.dialogObj === null) {
-      createDialogText(n);
+    if (!touchingNPC.dialogObj.started) {
+      touchingNPC.dialogObj.start();
     } else {
-      nextDialog(n);
+      touchingNPC.dialogObj.next();
     }
+
+    cancelTimer = k.timer(3, () => {
+      touchingNPC.dialogObj.hide();
+      touchingNPC = null;
+    });
   }));
 };
 
 /**
  * Change event listeners to dialog choice.
- * @param {ButtonSeries} buttonSeries ButtonSeries of dialog choice.
+ * @param {DialogButtonSeries} buttonSeries ButtonSeries of dialog choice.
  */
 export const setChoiceListeners = (buttonSeries) => {
   for (let i = 0; i < cancellers.length; i++) {
@@ -157,6 +163,8 @@ export const setChoiceListeners = (buttonSeries) => {
 
   cancellers.push(k.onKeyPress(keys.INTERACT, () => {
     buttonSeries.push();
+    delete buttonSeries.destroy();
+    setGameListeners(null);
   }));
 
   cancellers.push(k.onKeyPress(keys.LEFT, () => {
