@@ -22,12 +22,21 @@ export class DialogPart {
 
   /**
    *
+   * @type {Function}
+   * @protected
+   */
+  _call;
+
+  /**
+   *
    * @param {Object} speaker
    * @param {string} type
+   * @param {Function=} call
    */
-  constructor(speaker, type) {
+  constructor(speaker, type, call) {
     this._speaker = speaker;
     this._type = type;
+    this._call = call ?? (() => {});
   }
 
   /**
@@ -45,6 +54,10 @@ export class DialogPart {
   get speaker() {
     return this._speaker;
   }
+
+  runCall() {
+    this._call();
+  }
 }
 
 /**
@@ -57,8 +70,14 @@ export class DialogLine extends DialogPart {
    */
   #text = "";
 
-  constructor(speaker, text) {
-    super(speaker, "line");
+  /**
+   *
+   * @param {Object} speaker
+   * @param {string} text
+   * @param {Function=} call
+   */
+  constructor(speaker, text, call) {
+    super(speaker, "line", call);
     this.#text = text;
   }
 
@@ -85,9 +104,10 @@ export class DialogChoice extends DialogPart {
    *
    * @param {Object} speaker
    * @param {UncreatedDialogButtonSeries} uncreatedDialogButtonSeries
+   * @param {Function=} call
    */
-  constructor(speaker, uncreatedDialogButtonSeries) {
-    super(speaker, "choice");
+  constructor(speaker, uncreatedDialogButtonSeries, call) {
+    super(speaker, "choice", call);
     this.#uncreatedDialogButtonSeries = uncreatedDialogButtonSeries;
   }
 
@@ -107,8 +127,13 @@ export class DialogLose extends DialogPart {
    */
   #text = "";
 
-  constructor(speaker) {
-    super(speaker, "lose");
+  /**
+   *
+   * @param {Object} speaker
+   * @param {Function=} call
+   */
+  constructor(speaker, call) {
+    super(speaker, "lose", call);
     this.#text = "GUARDS!!!";
   }
 
@@ -225,6 +250,7 @@ export class Dialog {
     } else {
       throw new Error("invalid DialogParts type");
     }
+    this.#dialogParts[this.#idx].runCall();
   }
 
   /**

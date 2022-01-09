@@ -104,20 +104,22 @@ export const loadLevel1a = () => k.scene("level1Transition", async () => {
   k.wait(3, () => {
     exposition.use(k.text("A dossier with your name and image\nhave been stolen by Russian operatives"));
   });
-  
+
   k.wait(6, () => {
-    exposition.use(k.text("To retrieve the dossier\n\nYou must disguise yourself\n\nInfiltrate the party\n\nAnd steal it back."));
+    exposition.use(k.text(
+      "To retrieve the dossier\n\nYou must disguise yourself\n\nInfiltrate the party\n\nAnd steal it back."));
   });
 
   k.wait(10, () => {
-    exposition.use(k.text("Like any good spy\n\nYou must be able to use people to your advantage\n\nSo remember to communicate with the members of the party\n\n(while maintaining your cover, of course)\n\nFind your information before your identity is compromised!"));
+    exposition.use(k.text(
+      "Like any good spy\n\nYou must be able to use people to your advantage\n\nSo remember to communicate with the members of the party\n\n(while maintaining your cover, of course)\n\nFind your information before your identity is compromised!"));
   });
 
   k.wait(17, () => {
     exposition.use(k.text("Level Zero"));
     exposition.use(k.scale(3));
   });
-  
+
   k.wait(19, () => {
     k.go("level1");
   });
@@ -150,11 +152,6 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     {
       dialogObj: null,
       dialogTextObj: null,
-      currentDialog: 0,
-      dialog: [
-        "Press [Space] to go to next line of dialog",
-        "You're good, go in",
-      ],
     },
   ]);
   createDialogText(Objs.bouncerLeft);
@@ -170,6 +167,19 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     {
       dialogObj: null,
       dialogTextObj: null,
+    },
+  ]);
+  createDialogText(Objs.bouncerRight);
+
+  Objs.personOne = k.add([
+    k.sprite("guy_one", { anim: "idle", animSpeed: 0.3 }),
+    k.pos(14*16, 3.0*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
       currentDialog: 0,
       dialog: [
         "Press [Space] to go to next line of dialog",
@@ -177,26 +187,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
       ],
     },
   ]);
-  createDialogText(Objs.bouncerRight);
-
-  Objs.personOne = k.add([
-    k.sprite("guy_one", {anim: "idle", animSpeed: 0.3}),
-    k.pos(14*16,3.0*16),
-    k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
-    {
-      dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
-    },
-  ]);
 
   Objs.personTwo = k.add([
-    k.sprite("gal_one", {anim: "idle", animSpeed: 0.4}),
-    k.pos(12.5*16,2.7*16),
+    k.sprite("gal_one", { anim: "idle", animSpeed: 0.4 }),
+    k.pos(12.5*16, 2.7*16),
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
@@ -204,14 +198,16 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     {
       dialogObj: null,
       currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialog: [
+        "Press [Space] to go to next line of dialog",
+        "You're good, go in",
+      ],
     },
   ]);
 
   Objs.personThree = k.add([
-    k.sprite("guy_eight", {anim: "idle", animSpeed: 0.2}),
-    k.pos(12*16,2.8*16),
+    k.sprite("guy_eight", { anim: "idle", animSpeed: 0.2 }),
+    k.pos(12*16, 2.8*16),
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
@@ -219,14 +215,16 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     {
       dialogObj: null,
       currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialog: [
+        "Press [Space] to go to next line of dialog",
+        "You're good, go in",
+      ],
     },
   ]);
 
   Objs.personFour = k.add([
-    k.sprite("guy_three", {anim: "idle", animSpeed: 0.5}),
-    k.pos(10.5*16,2.7*16),
+    k.sprite("guy_three", { anim: "idle", animSpeed: 0.5 }),
+    k.pos(10.5*16, 2.7*16),
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
@@ -234,14 +232,16 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     {
       dialogObj: null,
       currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialog: [
+        "Press [Space] to go to next line of dialog",
+        "You're good, go in",
+      ],
     },
   ]);
 
   Objs.personFive = k.add([
-    k.sprite("gal_three", {anim: "idle", animSpeed: 0.1}),
-    k.pos(9.5*16,2.4*16),
+    k.sprite("gal_three", { anim: "idle", animSpeed: 0.1 }),
+    k.pos(9.5*16, 2.4*16),
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
@@ -249,24 +249,19 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     {
       dialogObj: null,
       currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialog: [
+        "Press [Space] to go to next line of dialog",
+        "You're good, go in",
+      ],
     },
   ]);
 
-  k.onCollide("player", "bouncer", () => {
-    k.wait(2, () => {
-      player.keyone = "explained";
-    });
-  });
-
-
   k.onCollide("player", "door", () => {
-    if (player.keyone === "explained") {
-      music.stop()
+    if (player.bouncerPermission) {
+      music.stop();
       loadLevel2();
       loadLevel2a();
-      k.go("level2Transistion");
+      k.go("level2Transition");
     }
   });
 
@@ -438,7 +433,8 @@ export const loadLevel1Dialogs = () => {
             new DialogLine(player, "I'm just a bit late, please don't tell anyone..."),
             new DialogLine(Objs.bouncerLeft, "Hmm..."),
             new DialogLine(Objs.bouncerLeft, "Alright..."),
-            new DialogLine(Objs.bouncerLeft, "I'll let you in, but I've got an eye on you."), // TODO: Let door open
+            new DialogLine(Objs.bouncerLeft, "I'll let you in, but I've got an eye on you.",
+              () => k.wait(3, () => player.bouncerPermission = true)),
             new DialogLine(Objs.bouncerLeft, ""),
           ),
         },
@@ -452,6 +448,64 @@ export const loadLevel1Dialogs = () => {
             new DialogLine(Objs.bouncerLeft, "..."),
             new DialogLine(Objs.bouncerLeft, "You just arrived in a car."),
             new DialogLine(Objs.bouncerLeft, "How do you know what's happening\non the south side?"),
+            new DialogLose(Objs.bouncerLeft),
+          ),
+        },
+      )),
+    ),
+  )));
+  tempUncreatedButtonSeries.dialog = tempDialog;
+
+  Objs.bouncerRight.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.bouncerLeft, Objs.bouncerRight],
+    null,
+    new DialogLine(player, "Hello, I'm here for the party."),
+    new DialogLine(Objs.bouncerRight, "YEAH? WELL, NO!"),
+    new DialogLine(Objs.bouncerRight, "I'm a BOUNCER!"),
+    new DialogLine(Objs.bouncerRight, "And you've been BOUNCED!!!"),
+    new DialogChoice(player, (tempUncreatedButtonSeries = new UncreatedDialogButtonSeries(
+        {
+          text: "fight fire with fire",
+          dialog: new Dialog(
+            [player, Objs.bouncerLeft, Objs.bouncerRight],
+            new Dialog(
+              [player, Objs.bouncerLeft, Objs.bouncerRight],
+              null,
+              new DialogLine(player, "B-B-B-BOUNCED!"),
+              new DialogLine(Objs.bouncerRight, "NO!!!!!"),
+              new DialogLine(Objs.bouncerRight, "You've bounced me AGAIN!!"),
+              new DialogLine(Objs.bouncerRight, ""),
+            ),
+            new DialogLine(player, "YEAH? WELL, GUESS WHAT!"),
+            new DialogLine(player, "I BOUNCE YOU!!"),
+            new DialogLine(player, "AND NO BOUNCE BACKS!!!"),
+            new DialogLine(Objs.bouncerRight, "*sputters*"),
+            new DialogLine(Objs.bouncerRight, "but..."),
+            new DialogLine(Objs.bouncerRight, "you can't out-bounce\nthe bouncer..."),
+          ),
+        },
+        {
+          text: "turn to the other bouncer",
+          dialog: new Dialog(
+            [player, Objs.bouncerLeft, Objs.bouncerRight],
+            new Dialog(
+              [player, Objs.bouncerLeft, Objs.bouncerRight],
+              null,
+              new DialogLine(Objs.bouncerRight, "BOUNCEBOUNCEBOUNCE!!!"),
+              new DialogLine(Objs.bouncerRight, ""),
+            ),
+            new DialogLine(player, "...what...?"),
+            new DialogLine(Objs.bouncerLeft, "Don't mind him,"),
+            new DialogLine(Objs.bouncerLeft, "he's just excited\nabout his job."),
+          ),
+        },
+        {
+          text: "you can't bounce a spy",
+          dialog: new Dialog(
+            [player, Objs.bouncerLeft, Objs.bouncerRight],
+            null,
+            new DialogLine(player, "Yeah? Well, you can't bounce a spy,\nit's against the rules."),
+            new DialogLine(Objs.bouncerLeft, "Did he say spy?"),
             new DialogLose(Objs.bouncerLeft),
           ),
         },
