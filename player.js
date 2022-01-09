@@ -65,7 +65,7 @@ export const addPlayerOpts = (name, pos) => [
     speed: BASE_SPEED,
     bouncerPermission: false,
     hasLighter: false,
-    keythree: null,
+    hasNapkin: false,
     documents: null,
     dialogTextObj: null,
   },
