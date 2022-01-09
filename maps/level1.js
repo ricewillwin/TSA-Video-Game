@@ -10,7 +10,6 @@ import {
   DialogLine,
   DialogLose,
   DialogPart,
-  nextDialog,
 } from "../ui/dialog.js";
 import { UncreatedDialogButtonSeries } from "../ui/dialogButtonSeries.js";
 
@@ -353,7 +352,7 @@ export const loadLevel1aDialogs = () => {
             ),
             new DialogLine(player, "I'm actually a guard working here."),
             new DialogLine(player, "I'm just a bit late, please don't tell anyone..."),
-            new DialogLine(Objs.bouncerLeft, "Hmmm..."),
+            new DialogLine(Objs.bouncerLeft, "Hmm..."),
             new DialogLine(Objs.bouncerLeft, "Alright..."),
             new DialogLine(Objs.bouncerLeft, "I'll let you in, but I've got an eye on you."), // TODO: Let door open
           ),
@@ -375,4 +374,5 @@ export const loadLevel1aDialogs = () => {
     ),
   )));
   tempUncreatedButtonSeries.dialog = tempDialog;
+  console.log(tempDialog)
 };

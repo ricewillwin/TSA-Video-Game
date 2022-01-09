@@ -1,154 +1,185 @@
 import { k } from "./kaboom.js";
 import { keys, player, playerHandler } from "./player.js";
-import { createDialogText, nextDialog } from "./ui/dialog.js";
+import { createDialogText } from "./ui/dialog.js";
 
 let cancellers = [];
-let timeout = null;
-
+export const maxDistance = 3 * 16;
+export var touchingNPC = null;
+export var freeze = false;
 /**
  * Change event listeners to in-game keys.
- * @param {Object} touchingNPC NPC currently touching
  */
-export const setGameListeners = (touchingNPC) => {
+export const setGameListeners = () => {
   for (let i = 0; i < cancellers.length; i++) {
     cancellers[i]();
   }
   cancellers = [];
   cancellers.push(player.onUpdate(() => {
-    k.camPos(player.pos);
-    if (player.dialogTextObj != null) {
-      player.dialogTextObj.pos = player.pos.add(8, -2);
+    if (!freeze) {
+      k.camPos(player.pos);
+      if (player.dialogTextObj != null) {
+        player.dialogTextObj.pos = player.pos.add(8, -10);
+      }
+      if (tooFar()) {
+        touchingNPC.dialogObj.hide();
+      }
+      player.isMoving = player.currentHoriz || player.currentVert;
     }
-    player.isMoving = player.currentHoriz || player.currentVert;
   }));
 
   cancellers.push(k.onKeyPress(keys.RIGHT, () => {
-    player.currentHoriz = keys.RIGHT;
-    playerHandler.updateAnim(keys.RIGHT);
+    if (!freeze) {
+      player.currentHoriz = keys.RIGHT;
+      playerHandler.updateAnim(keys.RIGHT);
+    }
   }));
 
   cancellers.push(k.onKeyDown(keys.RIGHT, () => {
-    if (player.currentHoriz === keys.RIGHT) {
-      if (player.currentVert !== null) {
-        player.move(player.speed / Math.sqrt(2) * (keys.areBothDown(keys.RIGHT) ? 0.5 : 1), 0);
-      } else {
-        player.move(player.speed * (keys.areBothDown(keys.RIGHT) ? 0.5 : 1), 0);
+    if (!freeze) {
+      if (player.currentHoriz === keys.RIGHT) {
+        if (player.currentVert !== null) {
+          player.move(player.speed/Math.sqrt(2)*(keys.areBothDown(keys.RIGHT) ? 0.5 : 1), 0);
+        }
+        else {
+          player.move(player.speed*(keys.areBothDown(keys.RIGHT) ? 0.5 : 1), 0);
+        }
       }
     }
   }));
 
   cancellers.push(k.onKeyRelease(keys.RIGHT, () => {
-    if (keys.isKeyDown(keys.LEFT)) {
-      player.currentHoriz = keys.LEFT;
-    } else {
-      player.currentHoriz = null;
+    if (!freeze) {
+      if (keys.isKeyDown(keys.LEFT)) {
+        player.currentHoriz = keys.LEFT;
+      }
+      else {
+        player.currentHoriz = null;
+      }
+      playerHandler.updateAnim(keys.RIGHT);
     }
-    playerHandler.updateAnim(keys.RIGHT);
   }));
 
   cancellers.push(k.onKeyPress(keys.LEFT, () => {
-    player.currentHoriz = keys.LEFT;
-    playerHandler.updateAnim(keys.LEFT);
+    if (!freeze) {
+      player.currentHoriz = keys.LEFT;
+      playerHandler.updateAnim(keys.LEFT);
+    }
   }));
 
   cancellers.push(k.onKeyDown(keys.LEFT, () => {
-    if (player.currentHoriz === keys.LEFT) {
-      if (player.currentVert !== null) {
-        player.move(-player.speed / Math.sqrt(2) * (keys.areBothDown(keys.LEFT) ? 0.5 : 1), 0);
-      } else {
-        player.move(-player.speed * (keys.areBothDown(keys.LEFT) ? 0.5 : 1), 0);
+    if(!freeze) {
+      if (player.currentHoriz === keys.LEFT) {
+        if (player.currentVert !== null) {
+          player.move(-player.speed/Math.sqrt(2)*(keys.areBothDown(keys.LEFT) ? 0.5 : 1), 0);
+        }
+        else {
+          player.move(-player.speed*(keys.areBothDown(keys.LEFT) ? 0.5 : 1), 0);
+        }
       }
     }
   }));
 
   cancellers.push(k.onKeyRelease(keys.LEFT, () => {
-    if (keys.isKeyDown(keys.RIGHT)) {
-      player.currentHoriz = keys.RIGHT;
-    } else {
-      player.currentHoriz = null;
+    if (!freeze) {
+      if (keys.isKeyDown(keys.RIGHT)) {
+        player.currentHoriz = keys.RIGHT;
+      }
+      else {
+        player.currentHoriz = null;
+      }
+      playerHandler.updateAnim(keys.LEFT);
     }
-    playerHandler.updateAnim(keys.LEFT);
   }));
 
   cancellers.push(k.onKeyPress(keys.UP, () => {
-    player.currentVert = keys.UP;
-    playerHandler.updateAnim(keys.RIGHT);
+    if (!freeze) {
+      player.currentVert = keys.UP;
+      playerHandler.updateAnim(keys.RIGHT);
+    }
   }));
 
   cancellers.push(k.onKeyDown(keys.UP, () => {
-    if (player.currentVert === keys.UP) {
-      if (player.currentHoriz !== null) {
-        player.move(0, -player.speed / Math.sqrt(2) * (keys.areBothDown(keys.UP) ? 0.5 : 1));
-      } else {
-        player.move(0, -player.speed * (keys.areBothDown(keys.UP) ? 0.5 : 1));
+    if (!freeze) {
+      if (player.currentVert === keys.UP) {
+        if (player.currentHoriz !== null) {
+          player.move(0, -player.speed/Math.sqrt(2)*(keys.areBothDown(keys.UP) ? 0.5 : 1));
+        }
+        else {
+          player.move(0, -player.speed*(keys.areBothDown(keys.UP) ? 0.5 : 1));
+        }
       }
     }
   }));
 
   cancellers.push(k.onKeyRelease(keys.UP, () => {
-    if (keys.isKeyDown(keys.DOWN)) {
-      player.currentVert = keys.DOWN;
-    } else {
-      player.currentVert = null;
+    if (!freeze) {
+      if (keys.isKeyDown(keys.DOWN)) {
+        player.currentVert = keys.DOWN;
+      }
+      else {
+        player.currentVert = null;
+      }
+      playerHandler.updateAnim(keys.RIGHT);
     }
-    playerHandler.updateAnim(keys.RIGHT);
   }));
 
   cancellers.push(k.onKeyPress(keys.DOWN, () => {
-    player.currentVert = keys.DOWN;
-    playerHandler.updateAnim(keys.RIGHT);
+    if (!freeze) {
+      player.currentVert = keys.DOWN;
+      playerHandler.updateAnim(keys.RIGHT);
+    }
   }));
 
   cancellers.push(k.onKeyDown(keys.DOWN, () => {
-    if (player.currentVert === keys.DOWN) {
-      if (player.currentHoriz !== null) {
-        player.move(0, player.speed / Math.sqrt(2) * (keys.areBothDown(keys.DOWN) ? 0.5 : 1));
-      } else {
-        player.move(0, player.speed * (keys.areBothDown(keys.DOWN) ? 0.5 : 1));
+    if (!freeze) {
+      if (player.currentVert === keys.DOWN) {
+        if (player.currentHoriz !== null) {
+          player.move(0, player.speed/Math.sqrt(2)*(keys.areBothDown(keys.DOWN) ? 0.5 : 1));
+        }
+        else {
+          player.move(0, player.speed*(keys.areBothDown(keys.DOWN) ? 0.5 : 1));
+        }
       }
     }
   }));
 
   cancellers.push(k.onKeyRelease(keys.DOWN, () => {
-    if (keys.isKeyDown(keys.UP)) {
-      player.currentVert = keys.UP;
-    } else {
-      player.currentVert = null;
+    if (!freeze) {
+      if (keys.isKeyDown(keys.UP)) {
+        player.currentVert = keys.UP;
+      }
+      else {
+        player.currentVert = null;
+      }
+      playerHandler.updateAnim(keys.RIGHT);
     }
-    playerHandler.updateAnim(keys.RIGHT);
   }));
 
   cancellers.push(k.onKeyPress(keys.INTERACT, () => {
-    let npcs = k.get("NPC");
-    npcs = npcs.slice(0, npcs.length / 2);
+    if (!freeze) {
+      let npcs = k.get("NPC");
+      npcs = npcs.slice(0, npcs.length/2);
 
-    if (touchingNPC !== null) {
-      if (touchingNPC.dialogObj === null) {
-        createDialogText(touchingNPC);
-      } else {
-        touchingNPC.dialogObj.next();
+      if (touchingNPC !== null) {
+        if (!touchingNPC.dialogObj.started) {
+          touchingNPC.dialogObj.start();
+        }
+        else {
+          touchingNPC.dialogObj.next();
+        }
       }
     }
   }));
 
   cancellers.push(k.onCollide("player", "NPC", (p, n) => {
-    if ((touchingNPC !== null)) {
-      if (touchingNPC === n){
-        touchingNPC.dialogObj.hide();
-      } else {
-        touchingNPC.dialogObj.restart();
+    if (!freeze) {
+      if ((touchingNPC !== null)) {
+        if (touchingNPC !== n) {
+          touchingNPC.dialogObj.restart();
+        }
       }
-      if (timeout !== null) clearTimeout(timeout);
+      touchingNPC = n;
     }
-    touchingNPC = n;
-    if (!touchingNPC.dialogObj.started) {
-      touchingNPC.dialogObj.start();
-    }
-
-    timeout = setTimeout(() => {
-      touchingNPC.dialogObj.hide();
-      touchingNPC = null;
-    }, 3000);
   }));
 };
 
@@ -165,7 +196,7 @@ export const setChoiceListeners = (buttonSeries) => {
   cancellers.push(k.onKeyPress(keys.INTERACT, () => {
     buttonSeries.push();
     delete buttonSeries.destroy();
-    setGameListeners(null);
+    setGameListeners();
   }));
 
   cancellers.push(k.onKeyPress(keys.LEFT, () => {
@@ -177,3 +208,7 @@ export const setChoiceListeners = (buttonSeries) => {
   }));
 };
 
+export const tooFar = () => {
+  if (touchingNPC === null) return false;
+  return touchingNPC.pos.dist(player.pos) > maxDistance;
+}

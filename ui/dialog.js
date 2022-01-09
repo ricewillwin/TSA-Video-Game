@@ -1,5 +1,5 @@
 import { k } from "../kaboom.js";
-import { setChoiceListeners } from "../input.js";
+import { setChoiceListeners, freeze } from "../input.js";
 import { loaded, loadLose } from "../maps/lose.js";
 
 /**
@@ -121,10 +121,11 @@ export class DialogLose extends DialogPart {
   }
 
   lose() {
+    freeze = true;
     if (!loaded) loadLose();
-    k.timer(1, () => {
+    setTimeout(() => {
       k.go("lose");
-    });
+    }, 1000);
   }
 }
 
@@ -162,7 +163,7 @@ export class Dialog {
    * @param {Dialog} nextDialog
    * @param {...DialogPart} dialogParts
    */
-  constructor(speakers, nextDialog=null, ...dialogParts) {
+  constructor(speakers, nextDialog, ...dialogParts) {
     this.#dialogParts = dialogParts;
     this.#speakers = speakers;
     this.#nextDialog = nextDialog;
@@ -217,6 +218,7 @@ export class Dialog {
       }
     }
     else if (this.#dialogParts[this.#idx].type === "choice") {
+      console.log(this.#dialogParts[this.#idx].uncreatedDialogButtonSeries);
       setChoiceListeners(this.#dialogParts[this.#idx].uncreatedDialogButtonSeries.create());
     } else if (this.#dialogParts[this.#idx].type === "lose") {
       this.#dialogParts[this.#idx].speaker.dialogTextObj.use(k.text(this.#dialogParts[this.#idx].text));
@@ -274,7 +276,10 @@ export class DialogHandler {
   next() {
     if (!this.#currentDialog.next()) {
       if (this.#currentDialog.nextDialog !== null) {
+        console.log(this.#currentDialog);
+        console.log(this.#currentDialog.nextDialog);
         this.#currentDialog = this.#currentDialog.nextDialog;
+        console.log(this.#currentDialog);
         this.#currentDialog.restart();
       }
     }
@@ -289,18 +294,14 @@ export class DialogHandler {
   }
 }
 
-export const createDialogText = (npc) => {
-  npc.dialogTextObj = k.add([
+export const createDialogText = (character) => {
+  character.dialogTextObj = k.add([
     k.text(""),
     k.scale(0.5),
-    k.layer("ui"),
     k.origin("center"),
-    k.pos(npc.pos.add(8, -2)),
+    k.layer("dialog"),
+    k.z(11),
+    k.pos(character.pos.add(8, -2)),
   ]);
-  npc.dialogTextObj.hidden = true;
-};
-
-export const nextDialog = (npc) => {
-  npc.currentDialog = (npc.currentDialog + 1) % npc.dialog.length;
-  npc.dialogObj.use(k.text(npc.dialog[npc.currentDialog]));
+  character.dialogTextObj.hidden = true;
 };

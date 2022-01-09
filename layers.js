@@ -4,6 +4,7 @@ export const addLayers = () => {
   k.layers([
     "bg",
     "game",
+    "dialog",
     "ui",
   ], "game");
 };
