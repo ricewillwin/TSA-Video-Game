@@ -235,7 +235,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    // "NPC",
+     "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -301,4 +301,18 @@ export const loadLevel2 = () => k.scene("level2", async () => {
   });
 
   k.camScale(4);
+  loadLevel2Dialogs();
 });
+
+export const loadLevel2Dialogs = () => {
+  let tempDialog;
+  let tempUncreatedButtonSeries;
+  Objs.personSix.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.personSix],
+    null,
+    new DialogLine(player, "Hello."),
+    new DialogLine(Objs.bouncerLeft, "Welcome to the Billiards Room!"),
+    
+  )));
+  tempUncreatedButtonSeries.dialog = tempDialog;
+};
