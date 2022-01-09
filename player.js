@@ -3,7 +3,7 @@ import { spriteLoader } from "./spriteLoader.js";
 import { createDialogText } from "./ui/dialog.js";
 import { setGameListeners } from "./input.js";
 
-export const BASE_SPEED = 60;
+export const BASE_SPEED = 45;
 
 export var player = null;
 

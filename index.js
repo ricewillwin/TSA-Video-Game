@@ -20,13 +20,6 @@ k.scene("loading", () => {
 
 k.go("loading");
 
-await k.loadSprite("background", "./sprites/main_bg.png");
-await k.loadSound("menu", "./music/newtitlescreen.wav")
-
-await spriteLoader.loadNPCs();
-await spriteLoader.loadStructure();
-await spriteLoader.loadObjects();
-
 k.scene("menu", () => {
   const music = k.play("menu", {
     volume: 0.1,
@@ -61,6 +54,11 @@ k.scene("menu", () => {
       x: k.width()/2,
       y: k.height()/4 + menuTitle.height + 100,
     }, () => { 
+      
+      spriteLoader.loadNPCs();
+      spriteLoader.loadStructure();
+      spriteLoader.loadObjects();
+      
       loadLevel1();
       loadLevel1a();
       k.go("level1");
@@ -71,4 +69,6 @@ k.scene("menu", () => {
   k.onKeyPress(keys.INTERACT, () => {menuButtonSeries.push()});
 });
 
+await k.loadSprite("background", "./sprites/main_bg.png");
+await k.loadSound("menu", "./music/newtitlescreen.wav")
 k.go("menu");

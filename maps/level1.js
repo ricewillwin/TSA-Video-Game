@@ -2,6 +2,7 @@ import { k } from "../kaboom.js";
 import { initializePlayer, player } from "../player.js";
 import { GameMap } from "./index.js";
 import { loadLevel2, loadLevel2a } from "./level2.js";
+import { loadLevel3 } from "./level3.js";
 import {
   createDialogText,
   Dialog,
@@ -95,33 +96,36 @@ export const loadLevel1a = () => k.scene("level1Transition", async () => {
   thaw();
   const exposition = k.add([
     k.text("You are a spy during the Cold War"),
-    k.scale(1),
+    k.scale(1.5),
     k.origin("center"),
     k.pos(k.width()/2, k.height()/2),
   ]);
 
-  k.wait(5, () => {
-    exposition.use(k.text("A dossier with your name and image have been stolen by Russian operatives"));
+  k.wait(3, () => {
+    exposition.use(k.text("A dossier with your name and image\nhave been stolen by Russian operatives"));
+  });
+  
+  k.wait(6, () => {
+    exposition.use(k.text("To retrieve the dossier\n\nYou must disguise yourself as a security guard\n\nInfiltrate the party\n\nAnd steal it back."));
   });
 
   k.wait(10, () => {
-    exposition.use(k.text(
-      "To retrieve the dossier\nYou must disguise yourself as a security guard\nInfiltrate the party\nAnd steal it back."));
+    exposition.use(k.text("Like any good spy\n\nYou must be able to use people to your advantage\n\nSo remember to communicate with the members of the party\n\n(while maintaining your cover, of course)\n\nFind your information before your identity is compromised!"));
   });
 
-  k.wait(15, () => {
-    exposition.use(k.text(
-      "Like any good spy\nYou must be able to use people to your advantage\nSo remember to communicate with the members of the party\n(while maintaining your cover, of course)\nFind your information before your identity is compromised!"));
-  });
-
-  k.wait(27, () => {
+  k.wait(17, () => {
     exposition.use(k.text("Level Zero"));
     exposition.use(k.scale(3));
   });
-
-  k.wait(29, () => {
+  
+  k.wait(19, () => {
     k.go("level1");
   });
+
+  // k.onKeyPress("p", () => {
+  //   loadLevel3();
+  //   k.go("level3");
+  // });
 });
 
 export const loadLevel1 = () => k.scene("level1", async () => {
@@ -175,17 +179,94 @@ export const loadLevel1 = () => k.scene("level1", async () => {
   ]);
   createDialogText(Objs.bouncerRight);
 
+  const personOne = k.add([
+    k.sprite("guy_one", {anim: "idle", animSpeed: 0.3}),
+    k.pos(14*16,3.0*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+
+  const personTwo = k.add([
+    k.sprite("gal_one", {anim: "idle", animSpeed: 0.4}),
+    k.pos(12.5*16,2.7*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+
+  const personThree = k.add([
+    k.sprite("guy_eight", {anim: "idle", animSpeed: 0.2}),
+    k.pos(12*16,2.8*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+
+  const personFour = k.add([
+    k.sprite("guy_three", {anim: "idle", animSpeed: 0.5}),
+    k.pos(10.5*16,2.7*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+
+  const personFive = k.add([
+    k.sprite("gal_three", {anim: "idle", animSpeed: 0.1}),
+    k.pos(9.5*16,2.4*16),
+    k.solid(),
+    k.z(1),
+    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    "NPC",
+    {
+      dialogObj: null,
+      currentDialog: 0,
+      dialog: ["Press [Space] to go to next line of dialog",
+               "You're good, go in"]
+    },
+  ]);
+
   k.onCollide("player", "bouncer", () => {
-    player.keyone = "explained";
+    k.wait(2, () => {
+      player.keyone = "explained";
+    });
   });
 
 
   k.onCollide("player", "door", () => {
     if (player.keyone === "explained") {
+      music.stop()
       loadLevel2();
       loadLevel2a();
-      k.go("level2Transition");
-      music.stop();
+      k.go("level2Transistion");
     }
   });
 
