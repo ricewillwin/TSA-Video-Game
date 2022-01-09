@@ -61,7 +61,7 @@ k.scene("menu", () => {
       
       loadLevel1();
       loadLevel1a();
-      k.go("level1");
+      k.go("level1Transition");
       music.stop();
     }),
   ]);
