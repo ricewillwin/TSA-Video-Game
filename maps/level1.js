@@ -12,6 +12,7 @@ import {
   DialogPart,
 } from "../ui/dialog.js";
 import { UncreatedDialogButtonSeries } from "../ui/dialogButtonSeries.js";
+import { thaw } from "../input.js";
 
 export var mapObj = null;
 await k.loadSound("openworld", "./music/openworld.wav");
@@ -91,7 +92,7 @@ export const mapArray = {
 export const Objs = {};
 
 export const loadLevel1a = () => k.scene("level1Transition", async () => {
-
+  thaw();
   const exposition = k.add([
     k.text("You are a spy during the Cold War"),
     k.scale(1),
@@ -124,6 +125,7 @@ export const loadLevel1a = () => k.scene("level1Transition", async () => {
 });
 
 export const loadLevel1 = () => k.scene("level1", async () => {
+  thaw();
   const music = k.play("openworld", {
     volume: 0.1,
   });
@@ -374,5 +376,4 @@ export const loadLevel1aDialogs = () => {
     ),
   )));
   tempUncreatedButtonSeries.dialog = tempDialog;
-  console.log(tempDialog)
 };

@@ -8,6 +8,7 @@ export const loadLose = () => k.scene("lose", () => {
   k.add([
     k.text("You were found out"),
     k.scale(2),
+    k.origin("center"),
     k.pos(k.width()/2, k.height()/2),
     k.layer("ui"),
   ]);
@@ -15,5 +16,5 @@ export const loadLose = () => k.scene("lose", () => {
 
   k.wait(3, () => {
     k.go("level1");
-  })
+  });
 })

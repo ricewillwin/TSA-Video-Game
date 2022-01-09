@@ -63,6 +63,6 @@ export class UncreatedDialogButtonSeries {
    * @returns {DialogButtonSeries}
    */
   create() {
-    return new DialogButtonSeries(this.#dialog, this.#buttonComps);
+    return new DialogButtonSeries(this.#dialog, ...this.#buttonComps);
   }
 }

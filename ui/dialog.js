@@ -1,5 +1,5 @@
 import { k } from "../kaboom.js";
-import { setChoiceListeners, freeze } from "../input.js";
+import { setChoiceListeners, freeze, thaw } from "../input.js";
 import { loaded, loadLose } from "../maps/lose.js";
 
 /**
@@ -121,7 +121,7 @@ export class DialogLose extends DialogPart {
   }
 
   lose() {
-    freeze = true;
+    freeze();
     if (!loaded) loadLose();
     setTimeout(() => {
       k.go("lose");
@@ -218,7 +218,6 @@ export class Dialog {
       }
     }
     else if (this.#dialogParts[this.#idx].type === "choice") {
-      console.log(this.#dialogParts[this.#idx].uncreatedDialogButtonSeries);
       setChoiceListeners(this.#dialogParts[this.#idx].uncreatedDialogButtonSeries.create());
     } else if (this.#dialogParts[this.#idx].type === "lose") {
       this.#dialogParts[this.#idx].speaker.dialogTextObj.use(k.text(this.#dialogParts[this.#idx].text));
@@ -276,10 +275,7 @@ export class DialogHandler {
   next() {
     if (!this.#currentDialog.next()) {
       if (this.#currentDialog.nextDialog !== null) {
-        console.log(this.#currentDialog);
-        console.log(this.#currentDialog.nextDialog);
         this.#currentDialog = this.#currentDialog.nextDialog;
-        console.log(this.#currentDialog);
         this.#currentDialog.restart();
       }
     }
