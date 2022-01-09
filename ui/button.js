@@ -1,11 +1,11 @@
 import { k } from "../kaboom.js";
 
 const defaultPadding = 15;
-const defaultTextColor = [0, 0, 255];
-const defaultFillColor = [1, 1, 1];
+const defaultTextColor = [255, 255, 255];
+const defaultFillColor = [30, 30, 30];
 const defaultScale = 1;
-const normalOutline = [ 3, k.rgb(0, 0, 0) ]
-const selectedOutline = [ 4, k.rgb(0, 255, 0) ];
+const normalOutline = [ 2, k.rgb(50, 50, 50) ]
+const selectedOutline = [ 3, k.rgb(0, 255, 0) ];
 
 /**
  * @classdesc Handles the text and fill objects associated with the button.
@@ -15,6 +15,9 @@ export class Button {
   #buttonFill = null;
   #enabled = true;
   #onPush = () => {};
+  #scale = defaultScale;
+  #name;
+  #listeners = [];
 
   /**@constructor
    * Creates a button with given parameters.
@@ -29,14 +32,17 @@ export class Button {
    * @param {number=} padding padding of button around text; defaults to {@link defaultPadding}
    * @param {Function} onPush function to call when button is activated
    * @param {boolean=} enabled whether the button will activate when pushed
+   * @param {number=} fixedWidth
    * @throws ReferenceError
    */
-  constructor({ name, text="", x, y, scale=defaultScale, textColor=defaultTextColor, buttonColor=defaultFillColor, padding=defaultPadding }, onPush, enabled=true) {
+  constructor({ name, text="", x, y, scale=defaultScale, textColor=defaultTextColor, buttonColor=defaultFillColor, padding=defaultPadding, fixedWidth }, onPush, enabled=true) {
+    this.#scale = scale;
     let textObjComps = [
       k.layer("ui"),
     ];
     try {
       textObjComps.push(k.text(text === "" ? name : text));
+      this.#name = name;
     } catch (e) {
       if (e instanceof ReferenceError) {
         console.log(e.message)
@@ -46,10 +52,11 @@ export class Button {
       }
     }
     textObjComps = textObjComps.concat([
-      k.z(1),
+      k.z(16),
       k.scale(scale),
       k.color(...textColor),
       k.origin("center"),
+      k.fixed(),
     ]);
     try {
       textObjComps.push(k.pos(x, y));
@@ -68,13 +75,15 @@ export class Button {
     this.#buttonText = k.add(textObjComps);
 
     let fillObjComps = [
-      k.rect(this.#buttonText.width + padding, this.#buttonText.height + padding),
+      k.rect(fixedWidth !== undefined ? fixedWidth/scale : (this.#buttonText.width + padding), this.#buttonText.height + padding),
       k.layer("ui"),
       k.scale(scale),
+      k.z(15),
       k.color(...buttonColor),
       k.outline(...normalOutline),
       k.origin("center"),
       k.area(),
+      k.fixed(),
       k.pos(x, y),
       `${name}Button`,
       `${name}ButtonFill`,
@@ -111,10 +120,21 @@ export class Button {
     if (selected) {
       this.#buttonFill.unuse("outline");
       this.#buttonFill.use(k.outline(...selectedOutline));
+      this.#listeners.push(this.#buttonText.onUpdate(() => {
+        this.#buttonText.scale = k.wave(0.99*this.#scale, 1.05*this.#scale, k.time() * 1.5);
+      }));
+      this.#listeners.push(this.#buttonFill.onUpdate(() => {
+        this.#buttonFill.scale = k.wave(0.99*this.#scale, 1.05*this.#scale, k.time() * 1.5);
+      }));
     }
     else {
       this.#buttonFill.unuse("outline");
       this.#buttonFill.use(k.outline(...normalOutline))
+      this.#buttonText.scale = this.#scale;
+      this.#buttonFill.scale = this.#scale;
+      for (const idx in this.#listeners) {
+        this.#listeners[idx]();
+      }
     }
   }
 
@@ -124,6 +144,13 @@ export class Button {
   push() {
     if (this.#enabled) {
       this.#onPush();
+      console.log(`${this.#name} was pushed`)
     }
+  }
+
+  destroy() {
+    this.#buttonFill.destroy();
+    this.#buttonText.destroy();
+    return this;
   }
 }

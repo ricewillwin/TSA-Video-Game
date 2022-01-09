@@ -111,4 +111,11 @@ export class ButtonSeries {
   push() {
     this.curr.push();
   }
+
+  destroy() {
+    for (const idx in this.#buttons) {
+      this.#buttons[idx].destroy();
+    }
+    return this;
+  }
 }

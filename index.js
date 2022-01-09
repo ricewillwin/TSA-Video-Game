@@ -5,6 +5,7 @@ import { Button } from "./ui/button.js";
 import { ButtonSeries } from "./ui/buttonSeries.js"
 import { addLayers } from "./layers.js";
 import { spriteLoader } from "./spriteLoader.js";
+import { keys } from "./player.js";
 
 k.focus();
 addLayers();
@@ -60,12 +61,12 @@ k.scene("menu", () => {
       
       loadLevel1();
       loadLevel1a();
-      k.go("level1Transistion");
+      k.go("level1");
       music.stop();
     }),
   ]);
   
-  k.onKeyPress(["space", "enter"], () => {menuButtonSeries.push()});
+  k.onKeyPress(keys.INTERACT, () => {menuButtonSeries.push()});
 });
 
 await k.loadSprite("background", "./sprites/main_bg.png");

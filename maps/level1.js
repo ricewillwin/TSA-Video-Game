@@ -3,9 +3,20 @@ import { initializePlayer, player } from "../player.js";
 import { GameMap } from "./index.js";
 import { loadLevel2, loadLevel2a } from "./level2.js";
 import { loadLevel3 } from "./level3.js";
+import {
+  createDialogText,
+  Dialog,
+  DialogChoice,
+  DialogHandler,
+  DialogLine,
+  DialogLose,
+  DialogPart,
+} from "../ui/dialog.js";
+import { UncreatedDialogButtonSeries } from "../ui/dialogButtonSeries.js";
+import { thaw } from "../input.js";
 
 export var mapObj = null;
-await k.loadSound("openworld", "./music/openworld.wav")
+await k.loadSound("openworld", "./music/openworld.wav");
 
 export const mapArray = {
   map: [
@@ -33,7 +44,7 @@ export const mapArray = {
       k.solid(),
     ]),
     "(": (ctx) => ([
-      k.sprite( "door_left"),
+      k.sprite("door_left"),
       k.area(),
       k.solid(),
       "door",
@@ -73,14 +84,16 @@ export const mapArray = {
       k.sprite("pavement_junction_up"),
       k.layer("floor"),
       k.area(),
-    ])
+    ]),
   },
-  spawn: [ 17, 5 ],
+  spawn: [17, 4],
 
 };
 
-export const loadLevel1a = () => k.scene("level1Transistion", async () => {
+export const Objs = {};
 
+export const loadLevel1a = () => k.scene("level1Transition", async () => {
+  thaw();
   const exposition = k.add([
     k.text("You are a spy during the Cold War"),
     k.scale(1.5),
@@ -91,7 +104,7 @@ export const loadLevel1a = () => k.scene("level1Transistion", async () => {
   k.wait(3, () => {
     exposition.use(k.text("A dossier with your name and image\nhave been stolen by Russian operatives"));
   });
-
+  
   k.wait(6, () => {
     exposition.use(k.text("To retrieve the dossier\n\nYou must disguise yourself as a security guard\n\nInfiltrate the party\n\nAnd steal it back."));
   });
@@ -116,6 +129,7 @@ export const loadLevel1a = () => k.scene("level1Transistion", async () => {
 });
 
 export const loadLevel1 = () => k.scene("level1", async () => {
+  thaw();
   const music = k.play("openworld", {
     volume: 0.1,
   });
@@ -125,9 +139,9 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   await initializePlayer("player", mapObj);
 
-  const bouncerLeft = k.add([
-    k.sprite("bouncer_left", {anim: "idle"}),
-    k.pos(286,38),
+  Objs.bouncerLeft = k.add([
+    k.sprite("bouncer_left", { anim: "idle" }),
+    k.pos(286, 38),
     k.solid(),
     k.z(1),
     k.area({ width: 9, height: 16, offset: k.vec2(3, 0) }),
@@ -135,15 +149,19 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     "bouncer",
     {
       dialogObj: null,
+      dialogTextObj: null,
       currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialog: [
+        "Press [Space] to go to next line of dialog",
+        "You're good, go in",
+      ],
     },
   ]);
+  createDialogText(Objs.bouncerLeft);
 
-  const bouncerRight = k.add([
-    k.sprite("bouncer_right", {anim: "idle"}),
-    k.pos(242,38),
+  Objs.bouncerRight = k.add([
+    k.sprite("bouncer_right", { anim: "idle" }),
+    k.pos(242, 38),
     k.solid(),
     k.z(1),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
@@ -151,11 +169,15 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     "bouncer",
     {
       dialogObj: null,
+      dialogTextObj: null,
       currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialog: [
+        "Press [Space] to go to next line of dialog",
+        "You're good, go in",
+      ],
     },
   ]);
+  createDialogText(Objs.bouncerRight);
 
   const personOne = k.add([
     k.sprite("guy_one", {anim: "idle", animSpeed: 0.3}),
@@ -240,7 +262,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
 
   k.onCollide("player", "door", () => {
-    if (player.keyone == "explained") {
+    if (player.keyone === "explained") {
       music.stop()
       loadLevel2();
       loadLevel2a();
@@ -250,57 +272,58 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   k.camScale(4);
 
-
-
-
-
-
-  const redCar = k.add([
+  Objs.playerCar = k.add([
     k.sprite("car_red"),
-    k.pos((18*16),(5.5*16)),
+    k.pos((18*16), (5.5*16)),
     k.solid(),
     k.z(1),
-    k.area({width: 32, height: 16, offset: k.vec2(-32, 0)}),
+    k.area({ width: 32, height: 16, offset: k.vec2(-32, 0) }),
     k.rotate(90),
     "NPC",
     {
       dialogObj: null,
+      dialogTextObj: null,
       currentDialog: 0,
-      dialog: ["Go get those files",
-               "Don't get caught"]
+      dialog: [
+        "Go get those files",
+        "Don't get caught",
+      ],
     },
-    
   ]);
-  const yellowCar = k.add([
+  createDialogText(Objs.playerCar);
+
+  Objs.yellowCar = k.add([
     k.sprite("car_yellow"),
-    k.pos((23*16),(9.3*16)),
+    k.pos((23*16), (9.3*16)),
     k.solid(),
     k.z(1),
-    k.area({width: 32, height: 16}),
+    k.area({ width: 32, height: 16 }),
     k.rotate(270),
-    k.origin("center")
+    k.origin("center"),
   ]);
-  const greenCar = k.add([
+
+  Objs.greenCar = k.add([
     k.sprite("car_green"),
-    k.pos((7*16),(6.5*16)),
+    k.pos((7*16), (6.5*16)),
     k.solid(),
     k.z(1),
-    k.area({width: 32, height: 16}),
+    k.area({ width: 32, height: 16 }),
     k.rotate(90),
-    k.origin("center")
+    k.origin("center"),
   ]);
 
-  const blockade1 = k.add([
+  Objs.blockadeCar1 = k.add([
     k.sprite("car_red"),
-    k.pos((4.4*16),(4*16)),
+    k.pos((4.4*16), (4*16)),
     k.solid(),
     k.z(1),
     k.area(),
-    k.origin("center")
+    k.origin("center"),
   ]);
-  const blockade2 = k.add([
+
+  Objs.blockadeCar2 = k.add([
     k.sprite("car_blue"),
-    k.pos((4.5*16),(6*16)),
+    k.pos((4.5*16), (6*16)),
     k.solid(),
     k.z(1),
     k.area(),
@@ -308,80 +331,132 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     "NPC",
     {
       dialogObj: null,
+      dialogTextObj: null,
       currentDialog: 0,
-      dialog: ["Why do I exist?",
-               "Cars shouldn't be alive."]
+      dialog: [
+        "Why do I exist?",
+        "Cars shouldn't be alive.",
+      ],
     },
   ]);
-  const blockade3 = k.add([
+  createDialogText(Objs.blockadeCar2);
+
+  Objs.blockadeCar3 = k.add([
     k.sprite("car_green"),
-    k.pos((4.75*16),(8*16)),
-    k.solid(),
-    k.z(1),
-    k.area(),
-    k.origin("center")
-  ]);
-  const blockade4 = k.add([
-    k.sprite("car_striped"),
-    k.pos((4.6*16),(10*16)),
+    k.pos((4.75*16), (8*16)),
     k.solid(),
     k.z(1),
     k.area(),
     k.origin("center"),
-    k.rotate(180)
   ]);
 
-  const personHidden = k.add([
-    k.sprite("guy_seven", {anim: "idle"}),
-    k.pos(1*16,9.7*16),
-    k.solid(),
-    k.z(1),
-    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
-    {
-      dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
-    },
-  ]);
-
-
-
-  const blockade5 = k.add([
+  Objs.blockadeCar4 = k.add([
     k.sprite("car_striped"),
-    k.pos((29.6*16),(4*16)),
+    k.pos((4.6*16), (10*16)),
     k.solid(),
     k.z(1),
     k.area(),
-    k.origin("center")
+    k.origin("center"),
+    k.rotate(180),
   ]);
-  const blockade6 = k.add([
+
+  Objs.blockadeCar5 = k.add([
+    k.sprite("car_striped"),
+    k.pos((29.6*16), (4*16)),
+    k.solid(),
+    k.z(1),
+    k.area(),
+    k.origin("center"),
+  ]);
+
+  Objs.blockadeCar6 = k.add([
     k.sprite("car_blue"),
-    k.pos((29.2*16),(6*16)),
+    k.pos((29.2*16), (6*16)),
     k.solid(),
     k.z(1),
     k.area(),
     k.origin("center"),
-    k.rotate(180)
+    k.rotate(180),
   ]);
-  const blockade7 = k.add([
+
+  Objs.blockadeCar7 = k.add([
     k.sprite("car_green"),
-    k.pos((29.4*16),(8*16)),
+    k.pos((29.4*16), (8*16)),
     k.solid(),
     k.z(1),
     k.area(),
     k.origin("center"),
-    k.rotate(180)
+    k.rotate(180),
   ]);
-  const blockade8 = k.add([
+
+  Objs.blockadeCar8 = k.add([
     k.sprite("car_yellow"),
-    k.pos((29.5*16),(10*16)),
+    k.pos((29.5*16), (10*16)),
     k.solid(),
     k.z(1),
     k.area(),
     k.origin("center"),
   ]);
 
-  
+  loadLevel1aDialogs();
 });
+
+export const loadLevel1aDialogs = () => {
+  let tempDialog;
+  let tempUncreatedButtonSeries;
+  Objs.bouncerLeft.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.bouncerLeft],
+    null,
+    new DialogLine(player, "Hello, I'm here for the party."),
+    new DialogLine(Objs.bouncerLeft, "You're late. Who are you?"),
+    new DialogChoice(
+      player, (tempUncreatedButtonSeries = new UncreatedDialogButtonSeries(
+        {
+          text: "distract him",
+          dialog: new Dialog(
+            [player, Objs.bouncerLeft],
+            null,
+            new DialogLine(player, "Hey, look over there!"),
+            new DialogLine(player, "It's a distraction!"),
+            new DialogLine(Objs.bouncerLeft, "Nice try."),
+            new DialogLose(Objs.bouncerLeft),
+          ),
+        },
+        {
+          text: "be a guard",
+          dialog: new Dialog(
+            [player, Objs.bouncerLeft],
+            new Dialog(
+              [player, Objs.bouncerLeft],
+              null,
+              new DialogLine(Objs.bouncerLeft, "What do you want? Go in already!"),
+              new DialogLine(player, "Alright, alright. I was just being friendly."),
+              new DialogLine(Objs.bouncerLeft, "I still don't trust you."),
+              new DialogLine(Objs.bouncerLeft, ""),
+            ),
+            new DialogLine(player, "I'm actually a guard working here."),
+            new DialogLine(player, "I'm just a bit late, please don't tell anyone..."),
+            new DialogLine(Objs.bouncerLeft, "Hmm..."),
+            new DialogLine(Objs.bouncerLeft, "Alright..."),
+            new DialogLine(Objs.bouncerLeft, "I'll let you in, but I've got an eye on you."), // TODO: Let door open
+            new DialogLine(Objs.bouncerLeft, ""),
+          ),
+        },
+        {
+          text: "send him away",
+          dialog: new Dialog(
+            [player, Objs.bouncerLeft],
+            null,
+            new DialogLine(player, "There's an emergency on the south side of the building!"),
+            new DialogLine(player, "Someone just got shot!"),
+            new DialogLine(Objs.bouncerLeft, "..."),
+            new DialogLine(Objs.bouncerLeft, "You just arrived in a car."),
+            new DialogLine(Objs.bouncerLeft, "How do you know what's happening\non the south side?"),
+            new DialogLose(Objs.bouncerLeft),
+          ),
+        },
+      )),
+    ),
+  )));
+  tempUncreatedButtonSeries.dialog = tempDialog;
+};
