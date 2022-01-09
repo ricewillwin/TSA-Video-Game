@@ -311,7 +311,7 @@ export const loadLevel2Dialogs = () => {
     [player, Objs.personSix],
     null,
     new DialogLine(player, "Hello."),
-    new DialogLine(Objs.bouncerLeft, "Welcome to the Billiards Room!"),
+    new DialogLine(Objs.personSix, "Welcome to the Billiards Room!"),
     
   )));
   tempUncreatedButtonSeries.dialog = tempDialog;
