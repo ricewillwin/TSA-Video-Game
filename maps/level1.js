@@ -351,12 +351,14 @@ export const loadLevel1aDialogs = () => {
               new DialogLine(Objs.bouncerLeft, "What do you want? Go in already!"),
               new DialogLine(player, "Alright, alright. I was just being friendly."),
               new DialogLine(Objs.bouncerLeft, "I still don't trust you."),
+              new DialogLine(Objs.bouncerLeft, ""),
             ),
             new DialogLine(player, "I'm actually a guard working here."),
             new DialogLine(player, "I'm just a bit late, please don't tell anyone..."),
             new DialogLine(Objs.bouncerLeft, "Hmm..."),
             new DialogLine(Objs.bouncerLeft, "Alright..."),
             new DialogLine(Objs.bouncerLeft, "I'll let you in, but I've got an eye on you."), // TODO: Let door open
+            new DialogLine(Objs.bouncerLeft, ""),
           ),
         },
         {
@@ -368,7 +370,7 @@ export const loadLevel1aDialogs = () => {
             new DialogLine(player, "Someone just got shot!"),
             new DialogLine(Objs.bouncerLeft, "..."),
             new DialogLine(Objs.bouncerLeft, "You just arrived in a car."),
-            new DialogLine(Objs.bouncerLeft, "How do you know what's happening on the south side?"),
+            new DialogLine(Objs.bouncerLeft, "How do you know what's happening\non the south side?"),
             new DialogLose(Objs.bouncerLeft),
           ),
         },

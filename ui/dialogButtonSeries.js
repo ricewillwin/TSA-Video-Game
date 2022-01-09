@@ -1,6 +1,7 @@
 import { k } from "./../kaboom.js";
 import { ButtonSeries } from "./buttonSeries.js";
 import { DialogButton } from "./dialogButton.js";
+import { player } from "../player.js";
 
 /**
  *
@@ -21,9 +22,11 @@ export class DialogButtonSeries extends ButtonSeries {
     let buttons = [];
     for (let i = 0; i < buttonComps.length; i++) {
       buttons.push(new DialogButton(dialog, {
-        text: buttonComps[i].text,
-        x: k.height()/2,
-        y: k.width() - buttonSpacing/2 - buttonSpacing * i,
+        name: buttonComps[i].text,
+        x: k.width()/2,
+        y: k.height() - buttonSpacing/2 - buttonSpacing * i,
+        scale: 1.75,
+        fixedWidth: k.width() - 2*buttonSpacing,
       }, buttonComps[i].dialog));
     }
     super(buttons, 0);

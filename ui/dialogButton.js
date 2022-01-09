@@ -15,8 +15,8 @@ export class DialogButton extends Button {
    * @param {number=} padding
    * @param {Dialog} nextDialog
    */
-  constructor(currentDialog, { name, text="", x, y, scale, textColor, buttonColor, padding }, nextDialog) {
-    super({ name, text, x, y, scale, textColor, buttonColor, padding }, () => {
+  constructor(currentDialog, { name, text="", x, y, scale, textColor, buttonColor, padding, fixedWidth }, nextDialog) {
+    super({ name, text, x, y, scale, textColor, buttonColor, padding, fixedWidth }, () => {
       currentDialog.nextDialog = nextDialog;
     });
   }

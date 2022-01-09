@@ -67,10 +67,6 @@ k.scene("menu", () => {
       music.stop();
     }),
   ]);
-
-  k.onUpdate("press [Space] to startButton", (button) => {
-    button.scale = k.wave(1.75, 1.85, k.time() * 1.5);
-  })
   
   k.onKeyPress(keys.INTERACT, () => {menuButtonSeries.push()});
 });

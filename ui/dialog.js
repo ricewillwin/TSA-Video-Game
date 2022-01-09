@@ -217,7 +217,8 @@ export class Dialog {
       }
     }
     else if (this.#dialogParts[this.#idx].type === "choice") {
-      setChoiceListeners(this.#dialogParts[this.#idx].uncreatedDialogButtonSeries.create());
+      let dialogButtonSeries = this.#dialogParts[this.#idx].uncreatedDialogButtonSeries.create();
+      k.wait(0.1, () => setChoiceListeners(dialogButtonSeries))
     } else if (this.#dialogParts[this.#idx].type === "lose") {
       this.#dialogParts[this.#idx].speaker.dialogTextObj.use(k.text(this.#dialogParts[this.#idx].text));
       this.#dialogParts[this.#idx].lose();

@@ -199,6 +199,7 @@ export const setGameListeners = () => {
  * @param {DialogButtonSeries} buttonSeries ButtonSeries of dialog choice.
  */
 export const setChoiceListeners = (buttonSeries) => {
+  freeze();
   for (let i = 0; i < cancellers.length; i++) {
     cancellers[i]();
   }
@@ -207,14 +208,15 @@ export const setChoiceListeners = (buttonSeries) => {
   cancellers.push(k.onKeyPress(keys.INTERACT, () => {
     buttonSeries.push();
     delete buttonSeries.destroy();
+    thaw();
     setGameListeners();
   }));
 
-  cancellers.push(k.onKeyPress(keys.LEFT, () => {
+  cancellers.push(k.onKeyPress(keys.DOWN, () => {
     buttonSeries.back();
   }));
 
-  cancellers.push(k.onKeyPress(keys.RIGHT, () => {
+  cancellers.push(k.onKeyPress(keys.UP, () => {
     buttonSeries.fwd();
   }));
 };
