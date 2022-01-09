@@ -106,7 +106,7 @@ export const loadLevel1a = () => k.scene("level1Transition", async () => {
   });
   
   k.wait(6, () => {
-    exposition.use(k.text("To retrieve the dossier\n\nYou must disguise yourself as a security guard\n\nInfiltrate the party\n\nAnd steal it back."));
+    exposition.use(k.text("To retrieve the dossier\n\nYou must disguise yourself\n\nInfiltrate the party\n\nAnd steal it back."));
   });
 
   k.wait(10, () => {
@@ -179,7 +179,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
   ]);
   createDialogText(Objs.bouncerRight);
 
-  const personOne = k.add([
+  Objs.personOne = k.add([
     k.sprite("guy_one", {anim: "idle", animSpeed: 0.3}),
     k.pos(14*16,3.0*16),
     k.solid(),
@@ -194,7 +194,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     },
   ]);
 
-  const personTwo = k.add([
+  Objs.personTwo = k.add([
     k.sprite("gal_one", {anim: "idle", animSpeed: 0.4}),
     k.pos(12.5*16,2.7*16),
     k.solid(),
@@ -209,7 +209,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     },
   ]);
 
-  const personThree = k.add([
+  Objs.personThree = k.add([
     k.sprite("guy_eight", {anim: "idle", animSpeed: 0.2}),
     k.pos(12*16,2.8*16),
     k.solid(),
@@ -224,7 +224,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     },
   ]);
 
-  const personFour = k.add([
+  Objs.personFour = k.add([
     k.sprite("guy_three", {anim: "idle", animSpeed: 0.5}),
     k.pos(10.5*16,2.7*16),
     k.solid(),
@@ -239,7 +239,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     },
   ]);
 
-  const personFive = k.add([
+  Objs.personFive = k.add([
     k.sprite("gal_three", {anim: "idle", animSpeed: 0.1}),
     k.pos(9.5*16,2.4*16),
     k.solid(),
@@ -398,10 +398,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.origin("center"),
   ]);
 
-  loadLevel1aDialogs();
+  loadLevel1Dialogs();
 });
 
-export const loadLevel1aDialogs = () => {
+export const loadLevel1Dialogs = () => {
   let tempDialog;
   let tempUncreatedButtonSeries;
   Objs.bouncerLeft.dialogObj = new DialogHandler((tempDialog = new Dialog(
