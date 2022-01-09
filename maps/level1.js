@@ -86,7 +86,7 @@ export const mapArray = {
       k.area(),
     ]),
   },
-  spawn: [17, 4],
+  spawn: [17, 5],
 
 };
 
@@ -177,16 +177,13 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: [
-        "Press [Space] to go to next line of dialog",
-        "You're good, go in",
-      ],
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.personOne);
 
   Objs.personTwo = k.add([
     k.sprite("gal_one", { anim: "idle", animSpeed: 0.4 }),
@@ -194,16 +191,13 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: [
-        "Press [Space] to go to next line of dialog",
-        "You're good, go in",
-      ],
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.personTwo);
 
   Objs.personThree = k.add([
     k.sprite("guy_eight", { anim: "idle", animSpeed: 0.2 }),
@@ -211,16 +205,13 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: [
-        "Press [Space] to go to next line of dialog",
-        "You're good, go in",
-      ],
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.personThree);
 
   Objs.personFour = k.add([
     k.sprite("guy_three", { anim: "idle", animSpeed: 0.5 }),
@@ -228,16 +219,13 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: [
-        "Press [Space] to go to next line of dialog",
-        "You're good, go in",
-      ],
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.personFour);
 
   Objs.personFive = k.add([
     k.sprite("gal_three", { anim: "idle", animSpeed: 0.1 }),
@@ -245,16 +233,13 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: [
-        "Press [Space] to go to next line of dialog",
-        "You're good, go in",
-      ],
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.personFive);
 
   k.onCollide("player", "door", () => {
     if (player.bouncerPermission) {
@@ -274,15 +259,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.z(1),
     k.area({ width: 32, height: 16, offset: k.vec2(-32, 0) }),
     k.rotate(90),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
-      currentDialog: 0,
-      dialog: [
-        "Go get those files",
-        "Don't get caught",
-      ],
     },
   ]);
   createDialogText(Objs.playerCar);
@@ -323,15 +303,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.z(1),
     k.area(),
     k.origin("center"),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
-      currentDialog: 0,
-      dialog: [
-        "Why do I exist?",
-        "Cars shouldn't be alive.",
-      ],
     },
   ]);
   createDialogText(Objs.blockadeCar2);
