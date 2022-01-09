@@ -2,6 +2,7 @@ import { k } from "../kaboom.js";
 import { initializePlayer, player, BASE_SPEED } from "../player.js";
 import { GameMap } from "./index.js";
 import { loadLevel3, loadLevel3a } from "./level3.js"
+import { createDialogText } from "../ui/dialog.js";
 
 export var mapObj = null;
 
@@ -94,6 +95,8 @@ export const mapArray = {
   spawn: [ 7, 8.4 ],
 };
 
+export const Objs = {};
+
 export const loadLevel2a = () => k.scene("level2Transition", async () => {
   k.add([
     k.text("Level One"),
@@ -117,7 +120,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   await initializePlayer("player", mapObj);
 
-  const table_left = k.add([
+  Objs.table_left = k.add([
     k.sprite("table"),
     k.pos((7*16), (5*16)),
     k.origin("center"),
@@ -126,197 +129,174 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.area({ width: 48, height: 34, offset: k.vec2(0, -2)}),
   ]);
 
-  const bouncerRight = k.add([
+  Objs.bouncerRight = k.add([
     k.sprite("bouncer_right", {anim: "idle"}),
     k.pos((5*16), (0.4*16)),
     k.solid(),
     k.z(1),
     k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
+    // "NPC",
     "bouncer",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.bouncerRight);
 
-  const billiardguy1 = k.add([
+  Objs.billiardguy1 = k.add([
     k.sprite("billiardguy1", {anim: "idle", animSpeed: 0.2}),
     k.pos((4.5*16), (3.8*16)),
     k.solid(),
     k.z(2),
     k.area({ width: 10, height: 14, offset: k.vec2(3, 2) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Get out of mee way buddo",
-               "Com'on shoo",
-               "Really ya kiddo, move",
-               "The key to the next room is gamer"]
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.billiardguy1);
 
-  const billiardguy2 = k.add([
+  Objs.billiardguy2 = k.add([
     k.sprite("billiardguy2", {anim: "idle", animSpeed: 0.3}),
     k.pos((8.5*16), (4.2*16)),
     k.solid(),
     k.z(2),
     k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Boy I do love billiards",
-               "Billiards",
-               "Ever heard of Billiards",
-               "Billiards is the best game ever"]
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.billiardguy2);
 
-  const billiardguy3 = k.add([
+  Objs.billiardguy3 = k.add([
     k.sprite("billiardguy3", {anim: "idle", animSpeed: 0.3}),
     k.pos((12*16), (1.8*16)),
     k.solid(),
     k.z(2),
     k.area({ width: 7, height: 15, offset: k.vec2(4, 1) }),
-    "NPC",
+    // "NPC",
     "lighter_dude",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Here is my lighter",
-               "You took my lighter",
-               "I miss my lighter"]
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.billiardguy3);
 
-  const personOne = k.add([
+  Objs.personOne = k.add([
     k.sprite("guy_eight", {anim: "idle", animSpeed: 0.3}),
     k.pos(2.5*16,3*16),
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.personOne);
 
-  const personTwo = k.add([
+  Objs.personTwo = k.add([
     k.sprite("guy_three", {anim: "idle", animSpeed: 0.4}),
     k.pos(1.5*16,5.2*16),
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.personTwo);
 
-  const personSeven = k.add([
+  Objs.personSeven = k.add([
     k.sprite("gal_one", {anim: "idle", animSpeed: 0.2}),
     k.pos(2.1*16,5.3*16),
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.personSeven);
 
-  const personSix = k.add([
+  Objs.personSix = k.add([
     k.sprite("gal_two", {anim: "idle", animSpeed: 0.5}),
     k.pos(9.7*16,6.6*16),
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.personSix);
 
-  const personThree = k.add([
+  Objs.personThree = k.add([
     k.sprite("gal_three", {anim: "idle", animSpeed: 0.4}),
     k.pos(9.5*16,7.2*16),
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.personThree);
 
-  const personFour = k.add([
+  Objs.personFour = k.add([
     k.sprite("guy_two", {anim: "idle", animSpeed: 0.6}),
     k.pos(2*16,2.9*16),
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.personFour);
 
-  const personFive = k.add([
+  Objs.personFive = k.add([
     k.sprite("guy_four", {anim: "idle", animSpeed: 0.2}),
     k.pos(10.3*16,7.1*16),
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    "NPC",
+    // "NPC",
     {
       dialogObj: null,
-      currentDialog: 0,
-      dialog: ["Press [Space] to go to next line of dialog",
-               "You're good, go in"]
+      dialogTextObj: null,
     },
   ]);
+  createDialogText(Objs.personFive);
 
   
 
   k.onCollide("player", "lighter_dude", () => {
-    player.keytwo = "lighter";
-    console.log()
-    billiardguy3.use(k.sprite("billiardguy3"));
-    k.wait(1, () => {
-      if (billiardguy3.dialog.indexOf("Here is my lighter") !== -1) {
-        billiardguy3.dialog.splice(billiardguy3.dialog.indexOf("Here is my lighter"), billiardguy3.dialog.indexOf("Here is my lighter")+1);
-      }
-    });
-  }),
+    player.hasLighter = true; // TODO
+  });
 
   k.onCollide("player", "nextdoor", () => {
-    if(player.keytwo === "lighter") {
+    if(player.hasLighter) {
       music.stop()
       loadLevel3();
       loadLevel3a();
-      k.go("level3Transistion");
+      k.go("level3Transition");
     }
   });
 
