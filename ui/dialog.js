@@ -186,9 +186,8 @@ export class Dialog {
   /**
    *
    */
-  restart() {
+  reset() {
     this.#idx = 0;
-    this.update();
   }
 
   /**
@@ -269,14 +268,16 @@ export class DialogHandler {
   }
 
   restart() {
-    this.#currentDialog.restart();
+    this.#started = false;
+    this.#currentDialog.reset();
   }
 
   next() {
     if (!this.#currentDialog.next()) {
       if (this.#currentDialog.nextDialog !== null) {
         this.#currentDialog = this.#currentDialog.nextDialog;
-        this.#currentDialog.restart();
+        this.#currentDialog.reset();
+        this.#currentDialog.update();
       }
     }
   }

@@ -30,6 +30,7 @@ export const setGameListeners = () => {
         player.dialogTextObj.pos = player.pos.add(8, -10);
       }
       if (tooFar()) {
+        touchingNPC.dialogObj.restart();
         touchingNPC.dialogObj.hide();
         touchingNPC = null;
       }
