@@ -144,7 +144,6 @@ export class Button {
   push() {
     if (this.#enabled) {
       this.#onPush();
-      console.log(`${this.#name} was pushed`)
     }
   }
 
