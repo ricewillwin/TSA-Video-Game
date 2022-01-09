@@ -457,6 +457,7 @@ export const loadLevel1Dialogs = () => {
             new DialogLine(Objs.bouncerRight, "*sputters*"),
             new DialogLine(Objs.bouncerRight, "but..."),
             new DialogLine(Objs.bouncerRight, "you can't out-bounce\nthe bouncer..."),
+            new DialogLine(Objs.bouncerRight, ""),
           ),
         },
         {
