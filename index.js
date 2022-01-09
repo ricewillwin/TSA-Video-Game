@@ -12,8 +12,9 @@ addLayers();
 
 k.scene("loading", () => {
   k.add([
-    k.text("loading"),
+    k.text("loading..."),
     k.origin("center"),
+    k.scale(4),
     k.pos(k.width()/2, k.height()/2),
   ])
 })
