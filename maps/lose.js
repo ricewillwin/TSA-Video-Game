@@ -47,16 +47,22 @@ const type1 = async () => {
   found.hidden = true;
   out.hidden = true;
 
-  await k.wait(0.5, () => you.hidden = false)
-  await k.wait(0.5, () => were.hidden = false)
-  await k.wait(0.5, () => found.hidden = false)
-  await k.wait(0.5, () => out.hidden = false)
-  await k.wait(0.5, () => {
-    you.hidden = true;
-    were.hidden = true;
-    found.hidden = true;
-    out.hidden = true;
-  })
+  await k.wait(0.75, () => {
+    you.hidden = false;
+    k.shake(5);
+  });
+  await k.wait(0.75, () => {
+    were.hidden = false;
+    k.shake(5);
+  });
+  await k.wait(0.75, () => {
+    found.hidden = false;
+    k.shake(5);
+  });
+  await k.wait(0.75, () => {
+    out.hidden = false;
+    k.shake(15);
+  });
 }
 
 const type2 = async () => {
@@ -93,16 +99,22 @@ const type2 = async () => {
   found.hidden = true;
   out.hidden = true;
 
-  await k.wait(0.5, () => you.hidden = false)
-  await k.wait(0.5, () => were.hidden = false)
-  await k.wait(0.5, () => found.hidden = false)
-  await k.wait(0.5, () => out.hidden = false)
-  await k.wait(0.5, () => {
-    you.hidden = true;
-    were.hidden = true;
-    found.hidden = true;
-    out.hidden = true;
-  })
+  await k.wait(0.75, () => {
+    you.hidden = false;
+    k.shake(5);
+  });
+  await k.wait(0.75, () => {
+    were.hidden = false;
+    k.shake(5);
+  });
+  await k.wait(0.75, () => {
+    found.hidden = false;
+    k.shake(5);
+  });
+  await k.wait(0.75, () => {
+    out.hidden = false;
+    k.shake(15);
+  });
 }
 
 const type3 = async () => {
@@ -113,11 +125,22 @@ const type3 = async () => {
     k.layer("ui"),
   ]);
 
-  await k.wait(0.5, () => text.use(k.text("YOU")));
-  await k.wait(0.5, () => text.use(k.text("WERE")));
-  await k.wait(0.5, () => text.use(k.text("FOUND")));
-  await k.wait(0.5, () => text.use(k.text("OUT")));
-  await k.wait(0.5, () => text.hidden = true);
+  await k.wait(0.75, () => {
+    text.use(k.text("YOU"));
+    k.shake(5);
+  });
+  await k.wait(0.75, () => {
+    text.use(k.text("WERE"));
+    k.shake(5);
+  });
+  await k.wait(0.75, () => {
+    text.use(k.text("FOUND"));
+    k.shake(5);
+  });
+  await k.wait(0.75, () => {
+    text.use(k.text("OUT"));
+    k.shake(15);
+  });
 }
 
 const type4 = async () => {
@@ -154,14 +177,20 @@ const type4 = async () => {
   found.hidden = true;
   out.hidden = true;
 
-  await k.wait(0.5, () => you.hidden = false)
-  await k.wait(0.5, () => were.hidden = false)
-  await k.wait(0.5, () => found.hidden = false)
-  await k.wait(0.5, () => out.hidden = false)
-  await k.wait(0.5, () => {
-    you.hidden = true;
-    were.hidden = true;
-    found.hidden = true;
-    out.hidden = true;
-  })
+  await k.wait(0.75, () => {
+    you.hidden = false;
+    k.shake(5);
+  });
+  await k.wait(0.75, () => {
+    were.hidden = false;
+    k.shake(5);
+  });
+  await k.wait(0.75, () => {
+    found.hidden = false;
+    k.shake(5);
+  });
+  await k.wait(0.75, () => {
+    out.hidden = false;
+    k.shake(15);
+  });
 }
