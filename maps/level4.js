@@ -91,7 +91,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   createDialogText(Objs.auctioneer);
 
   Objs.chair11p = k.add([
-    k.sprite("auction_gal_one"),
+    k.sprite("auction_brownhair"),
     k.pos(2.75*16+1,3*16-2),
     k.solid(),
     k.z(1),
@@ -129,7 +129,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   Objs.chair14p = k.add([
-    k.sprite("auction_guy_two"),
+    k.sprite("auction_redhair"),
     k.pos(7.25*16+1,3*16-2),
     k.solid(),
     k.z(1),
@@ -151,7 +151,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   Objs.chair15p = k.add([
-    k.sprite("auction_gal_two"),
+    k.sprite("auction_blondehair"),
     k.pos(8.75*16+1,3*16-2),
     k.solid(),
     k.z(1),
@@ -181,7 +181,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   Objs.chair21p = k.add([
-    k.sprite("auction_guy_one"),
+    k.sprite("auction_blackhair"),
     k.pos(2.75*16+1,4.5*16-2),
     k.solid(),
     k.z(1),
@@ -203,7 +203,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   Objs.chair22p = k.add([
-    k.sprite("auction_gal_two"),
+    k.sprite("auction_blondehair"),
     k.pos(4.25*16+1,4.5*16-2),
     k.solid(),
     k.z(1),
@@ -241,7 +241,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   Objs.chair25p = k.add([
-    k.sprite("auction_gal_one"),
+    k.sprite("auction_brownhair"),
     k.pos(8.75*16+1,4.5*16-2),
     k.solid(),
     k.z(1),
@@ -263,7 +263,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   Objs.chair26p = k.add([
-    k.sprite("auction_gal_two"),
+    k.sprite("auction_blondehair"),
     k.pos(10.25*16+1,4.5*16-2),
     k.solid(),
     k.z(1),
@@ -301,7 +301,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   Objs.chair33p = k.add([
-    k.sprite("auction_guy_one"),
+    k.sprite("auction_blackhair"),
     k.pos(5.75*16+1,6*16-2),
     k.solid(),
     k.z(1),
@@ -331,7 +331,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   Objs.chair35p = k.add([
-    k.sprite("auction_guy_two"),
+    k.sprite("auction_redhair"),
     k.pos(8.75*16+1,6*16-2),
     k.solid(),
     k.z(1),
@@ -353,7 +353,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   ]);
 
   Objs.chair36p = k.add([
-    k.sprite("auction_gal_one"),
+    k.sprite("auction_brownhair"),
     k.pos(10.25*16+1,6*16-2),
     k.solid(),
     k.z(1),

@@ -54,7 +54,7 @@ export const spriteLoader = {
         }
       }
     });
-    await k.loadSprite("billiardguy1", "./sprites/NPCs/billiardguy1.png", {
+    await k.loadSprite("billiardguy_redhair", "./sprites/NPCs/billiardguy1.png", {
       sliceX: 2,
       sliceY: 1,
       anims: {
@@ -65,7 +65,7 @@ export const spriteLoader = {
         }
       }
     });
-    await k.loadSprite("billiardguy2", "./sprites/NPCs/billiardguy2.png", {
+    await k.loadSprite("billiardguy_brownhair", "./sprites/NPCs/billiardguy2.png", {
       sliceX: 2,
       sliceY: 1,
       anims: {
@@ -76,7 +76,7 @@ export const spriteLoader = {
         }
       }
     });
-    await k.loadSprite("billiardguy3", "./sprites/NPCs/billiardguy3.png", {
+    await k.loadSprite("lighterguy", "./sprites/NPCs/billiardguy3.png", {
       sliceX: 15,
       sliceY: 1,
       anims: {
@@ -88,7 +88,7 @@ export const spriteLoader = {
       }
     });
     await k.loadSpriteAtlas("./sprites/NPCs/NPCs.png", {
-      "guy_one": {
+      "tanshirt_blackpants": {
         "y": 0 * 16,
         "x": 0,
         "width": 64,
@@ -102,7 +102,7 @@ export const spriteLoader = {
           }
         }
       },
-      "guy_two": {
+      "brownshirt_tanpants": {
         "y": 1 * 16,
         "x": 0,
         "width": 64,
@@ -116,7 +116,7 @@ export const spriteLoader = {
           }
         }
       },
-      "guy_three": {
+      "brownshirt_greypants": {
         "y": 2 * 16,
         "x": 0,
         "width": 64,
@@ -130,7 +130,7 @@ export const spriteLoader = {
           }
         }
       },
-      "guy_nine": {
+      "redshirt_blackpants": {
         "y": 3 * 16,
         "x": 0,
         "width": 64,
@@ -144,7 +144,7 @@ export const spriteLoader = {
           }
         }
       },
-      "guy_four": {
+      "greenshirt_blackpants": {
         "y": 4 * 16,
         "x": 0,
         "width": 64,
@@ -158,7 +158,7 @@ export const spriteLoader = {
           }
         }
       },
-      "guy_five": {
+      "blueshirt_tanpants": {
         "y": 5 * 16,
         "x": 0,
         "width": 64,
@@ -172,7 +172,7 @@ export const spriteLoader = {
           }
         }
       },
-      "guy_six": {
+      "whiteshirt_blackpants": {
         "y": 6 * 16,
         "x": 0,
         "width": 64,
@@ -186,7 +186,7 @@ export const spriteLoader = {
           }
         }
       },
-      "gal_one": {
+      "whitehair_reddress": {
         "y": 7 * 16,
         "x": 0,
         "width": 64,
@@ -200,7 +200,7 @@ export const spriteLoader = {
           }
         }
       },
-      "gal_two": {
+      "redhair_purpledress": {
         "y": 8 * 16,
         "x": 0,
         "width": 64,
@@ -214,7 +214,7 @@ export const spriteLoader = {
           }
         }
       },
-      "gal_three": {
+      "brownhair_bluedress": {
         "y": 9 * 16,
         "x": 0,
         "width": 64,
@@ -228,7 +228,7 @@ export const spriteLoader = {
           }
         }
       },
-      "gal_four": {
+      "blondehair_whitedress": {
         "y": 10 * 16,
         "x": 0,
         "width": 64,
@@ -242,7 +242,7 @@ export const spriteLoader = {
           }
         }
       },
-      "guy_seven": {
+      "blueshirt_blackpants": {
         "y": 11 * 16,
         "x": 0,
         "width": 64,
@@ -256,7 +256,7 @@ export const spriteLoader = {
           }
         }
       },
-      "guy_eight": {
+      "greenshirt_tanpants": {
         "y": 12 * 16,
         "x": 0,
         "width": 64,
@@ -271,7 +271,7 @@ export const spriteLoader = {
         }
       },
     });
-    await k.loadSprite("dancers_one", "./sprites/NPCs/dancers1.png", {
+    await k.loadSprite("dancers_purplegreen", "./sprites/NPCs/dancers1.png", {
       sliceX: 4,
       sliceY: 1,
       anims: {
@@ -282,7 +282,7 @@ export const spriteLoader = {
         }
       }
     });
-    await k.loadSprite("dancers_two", "./sprites/NPCs/dancers2.png", {
+    await k.loadSprite("dancers_whitered", "./sprites/NPCs/dancers2.png", {
       sliceX: 4,
       sliceY: 1,
       anims: {
@@ -293,10 +293,10 @@ export const spriteLoader = {
         }
       }
     });
-    await k.loadSprite("auction_gal_one", "./sprites/NPCs/auctiongal1.png");
-    await k.loadSprite("auction_gal_two", "./sprites/NPCs/auctiongal2.png");
-    await k.loadSprite("auction_guy_one", "./sprites/NPCs/auctionguy1.png");
-    await k.loadSprite("auction_guy_two", "./sprites/NPCs/auctionguy2.png");
+    await k.loadSprite("auction_brownhair", "./sprites/NPCs/auctiongal1.png");
+    await k.loadSprite("auction_blondehair", "./sprites/NPCs/auctiongal2.png");
+    await k.loadSprite("auction_blackhair", "./sprites/NPCs/auctionguy1.png");
+    await k.loadSprite("auction_redhair", "./sprites/NPCs/auctionguy2.png");
     await k.loadSprite("auctioneer", "./sprites/NPCs/auctiontalker.png", {
       sliceX: 2,
       sliceY: 1,

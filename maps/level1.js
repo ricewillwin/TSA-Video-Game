@@ -17,6 +17,7 @@ import { thaw } from "../input.js";
 
 export var mapObj = null;
 await k.loadSound("openworld", "./music/openworld.wav");
+export let music;
 
 export const mapArray = {
   map: [
@@ -132,7 +133,7 @@ export const loadLevel1a = () => k.scene("level1Transition", async () => {
 
 export const loadLevel1 = () => k.scene("level1", async () => {
   thaw();
-  const music = k.play("openworld", {
+  music = k.play("openworld", {
     volume: 0.1,
   });
   music.loop();
@@ -171,8 +172,8 @@ export const loadLevel1 = () => k.scene("level1", async () => {
   ]);
   createDialogText(Objs.bouncerRight);
 
-  Objs.personOne = k.add([
-    k.sprite("guy_one", { anim: "idle", animSpeed: 0.3 }),
+  Objs.tanshirt_blackpants = k.add([
+    k.sprite("tanshirt_blackpants", { anim: "idle", animSpeed: 0.3 }),
     k.pos(14*16, 3.0*16),
     k.solid(),
     k.z(1),
@@ -183,10 +184,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personOne);
+  createDialogText(Objs.tanshirt_blackpants);
 
-  Objs.personTwo = k.add([
-    k.sprite("gal_one", { anim: "idle", animSpeed: 0.4 }),
+  Objs.whitehair_reddress = k.add([
+    k.sprite("whitehair_reddress", { anim: "idle", animSpeed: 0.4 }),
     k.pos(12.5*16, 2.7*16),
     k.solid(),
     k.z(1),
@@ -197,10 +198,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personTwo);
+  createDialogText(Objs.whitehair_reddress);
 
-  Objs.personThree = k.add([
-    k.sprite("guy_eight", { anim: "idle", animSpeed: 0.2 }),
+  Objs.whiteshirt_blackpants = k.add([
+    k.sprite("whiteshirt_blackpants", { anim: "idle", animSpeed: 0.2 }),
     k.pos(12*16, 2.8*16),
     k.solid(),
     k.z(1),
@@ -211,10 +212,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personThree);
+  createDialogText(Objs.whiteshirt_blackpants);
 
-  Objs.personFour = k.add([
-    k.sprite("guy_three", { anim: "idle", animSpeed: 0.5 }),
+  Objs.brownshirt_greypants = k.add([
+    k.sprite("brownshirt_greypants", { anim: "idle", animSpeed: 0.5 }),
     k.pos(10.5*16, 2.7*16),
     k.solid(),
     k.z(1),
@@ -225,10 +226,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personFour);
+  createDialogText(Objs.brownshirt_greypants);
 
-  Objs.personFive = k.add([
-    k.sprite("gal_three", { anim: "idle", animSpeed: 0.1 }),
+  Objs.brownhair_bluedress = k.add([
+    k.sprite("brownhair_bluedress", { anim: "idle", animSpeed: 0.1 }),
     k.pos(9.5*16, 2.4*16),
     k.solid(),
     k.z(1),
@@ -239,7 +240,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personFive);
+  createDialogText(Objs.brownhair_bluedress);
 
   k.onCollide("player", "door", () => {
     if (player.bouncerPermission) {

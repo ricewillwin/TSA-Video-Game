@@ -144,8 +144,8 @@ export const loadLevel2 = () => k.scene("level2", async () => {
   ]);
   createDialogText(Objs.bouncerRight);
 
-  Objs.billiardguy1 = k.add([
-    k.sprite("billiardguy1", {anim: "idle", animSpeed: 0.2}),
+  Objs.billiardguy_redhair = k.add([
+    k.sprite("billiardguy_redhair", {anim: "idle", animSpeed: 0.2}),
     k.pos((4.5*16), (3.8*16)),
     k.solid(),
     k.z(2),
@@ -156,10 +156,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.billiardguy1);
+  createDialogText(Objs.billiardguy_redhair);
 
-  Objs.billiardguy2 = k.add([
-    k.sprite("billiardguy2", {anim: "idle", animSpeed: 0.3}),
+  Objs.billiardguy_brownhair = k.add([
+    k.sprite("billiardguy_brownhair", {anim: "idle", animSpeed: 0.3}),
     k.pos((8.5*16), (4.2*16)),
     k.solid(),
     k.z(2),
@@ -170,10 +170,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.billiardguy2);
+  createDialogText(Objs.billiardguy_brownhair);
 
-  Objs.billiardguy3 = k.add([
-    k.sprite("billiardguy3", {anim: "idle", animSpeed: 0.3}),
+  Objs.lighterguy = k.add([
+    k.sprite("lighterguy", {anim: "idle", animSpeed: 0.3}),
     k.pos((12*16), (1.8*16)),
     k.solid(),
     k.z(2),
@@ -185,10 +185,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.billiardguy3);
+  createDialogText(Objs.lighterguy);
 
-  Objs.personOne = k.add([
-    k.sprite("guy_eight", {anim: "idle", animSpeed: 0.3}),
+  Objs.redshirt_blackpants = k.add([
+    k.sprite("redshirt_blackpants", {anim: "idle", animSpeed: 0.3}),
     k.pos(2.5*16,3*16),
     k.solid(),
     k.z(1),
@@ -199,10 +199,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personOne);
+  createDialogText(Objs.redshirt_blackpants);
 
-  Objs.personTwo = k.add([
-    k.sprite("guy_three", {anim: "idle", animSpeed: 0.4}),
+  Objs.brownshirt_greypants = k.add([
+    k.sprite("brownshirt_greypants", {anim: "idle", animSpeed: 0.4}),
     k.pos(1.5*16,5.2*16),
     k.solid(),
     k.z(1),
@@ -213,10 +213,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personTwo);
+  createDialogText(Objs.brownshirt_greypants);
 
-  Objs.personSeven = k.add([
-    k.sprite("gal_one", {anim: "idle", animSpeed: 0.2}),
+  Objs.whitehair_reddress = k.add([
+    k.sprite("whitehair_reddress", {anim: "idle", animSpeed: 0.2}),
     k.pos(2.1*16,5.3*16),
     k.solid(),
     k.z(1),
@@ -227,10 +227,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personSeven);
+  createDialogText(Objs.whitehair_reddress);
 
-  Objs.personSix = k.add([
-    k.sprite("gal_two", {anim: "idle", animSpeed: 0.5}),
+  Objs.redhair_purpledress = k.add([
+    k.sprite("redhair_purpledress", {anim: "idle", animSpeed: 0.5}),
     k.pos(9.7*16,6.6*16),
     k.solid(),
     k.z(1),
@@ -241,10 +241,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personSix);
+  createDialogText(Objs.redhair_purpledress);
 
-  Objs.personThree = k.add([
-    k.sprite("gal_three", {anim: "idle", animSpeed: 0.4}),
+  Objs.brownhair_bluedress = k.add([
+    k.sprite("brownhair_bluedress", {anim: "idle", animSpeed: 0.4}),
     k.pos(9.5*16,7.2*16),
     k.solid(),
     k.z(1),
@@ -255,10 +255,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personThree);
+  createDialogText(Objs.brownhair_bluedress);
 
-  Objs.personFour = k.add([
-    k.sprite("guy_two", {anim: "idle", animSpeed: 0.6}),
+  Objs.brownshirt_tanpants = k.add([
+    k.sprite("brownshirt_tanpants", {anim: "idle", animSpeed: 0.6}),
     k.pos(2*16,2.9*16),
     k.solid(),
     k.z(1),
@@ -269,10 +269,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personFour);
+  createDialogText(Objs.brownshirt_tanpants);
 
-  Objs.personFive = k.add([
-    k.sprite("guy_four", {anim: "idle", animSpeed: 0.2}),
+  Objs.greenshirt_blackpants = k.add([
+    k.sprite("greenshirt_blackpants", {anim: "idle", animSpeed: 0.2}),
     k.pos(10.3*16,7.1*16),
     k.solid(),
     k.z(1),
@@ -283,7 +283,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personFive);
+  createDialogText(Objs.greenshirt_blackpants);
 
   
 
@@ -307,11 +307,11 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 export const loadLevel2Dialogs = () => {
   let tempDialog;
   let tempUncreatedButtonSeries;
-  Objs.personSix.dialogObj = new DialogHandler((tempDialog = new Dialog(
-    [player, Objs.personSix],
+  Objs.redhair_purpledress.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.redhair_purpledress],
     null,
     new DialogLine(player, "Hello."),
-    new DialogLine(Objs.personSix, "Welcome to the Billiards Room!"),
+    new DialogLine(Objs.redhair_purpledress, "Welcome to the Billiards Room!"),
     
   )));
   tempUncreatedButtonSeries.dialog = tempDialog;
