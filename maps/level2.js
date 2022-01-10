@@ -2,8 +2,18 @@ import { k } from "../kaboom.js";
 import { initializePlayer, player, BASE_SPEED } from "../player.js";
 import { GameMap } from "./index.js";
 import { loadLevel3, loadLevel3a } from "./level3.js"
-import { createDialogText } from "../ui/dialog.js";
 
+import {
+  createDialogText,
+  Dialog,
+  DialogChoice,
+  DialogHandler,
+  DialogLine,
+  DialogLose,
+  DialogPart,
+} from "../ui/dialog.js";
+import { UncreatedDialogButtonSeries } from "../ui/dialogButtonSeries.js";
+import { thaw } from "../input.js";
 export var mapObj = null;
 
 export const mapArray = {
@@ -150,7 +160,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(2),
     k.area({ width: 10, height: 14, offset: k.vec2(3, 2) }),
-    // "NPC",
+     "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -164,7 +174,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(2),
     k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
-    // "NPC",
+     "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -193,7 +203,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    // "NPC",
+     "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -207,7 +217,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    // "NPC",
+     "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -221,7 +231,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    // "NPC",
+    "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -235,7 +245,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-     "NPC",
+    // "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -249,7 +259,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    // "NPC",
+     "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -263,7 +273,7 @@ export const loadLevel2 = () => k.scene("level2", async () => {
     k.solid(),
     k.z(1),
     k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    // "NPC",
+     "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -307,12 +317,136 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 export const loadLevel2Dialogs = () => {
   let tempDialog;
   let tempUncreatedButtonSeries;
-  Objs.personSix.dialogObj = new DialogHandler((tempDialog = new Dialog(
-    [player, Objs.personSix],
+  Objs.personThree.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.personThree],
     null,
     new DialogLine(player, "Hello."),
-    new DialogLine(Objs.personSix, "Welcome to the Billiards Room!"),
+    new DialogLine(Objs.personThree, "Welcome to the Billiards Room!"),
     
   )));
+  Objs.personSeven.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.personSeven],
+    null,
+    new DialogLine(player, "Hello."),
+    new DialogLine(Objs.personSeven, "Talk to the man with the lighter\n to get a clue about how to move on."),
+    
+  )));
+  Objs.personFour.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.personFour],
+    null,
+    new DialogLine(player, "Hello."),
+    new DialogLine(Objs.personFour, "If only we had a lighter to get into the next room."),
+    
+  )));
+  Objs.personOne.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.personOne],
+    null,
+    new DialogLine(player, "Hello."),
+    new DialogLine(Objs.personOne, "If only we had a lighter to get into the next room."),
+    
+  )));
+  Objs.personTwo.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.personTwo],
+    null,
+    new DialogLine(player, "Hello."),
+    new DialogLine(Objs.personTwo, "Talk to the man with the lighter\n to get a clue about how to move on."),
+    
+  )));
+  Objs.billiardguy1.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.billiardguy1],
+    null,
+    new DialogLine(player, "Are you good at Billiards?"),
+    new DialogLine(Objs.billiardguy1, "Yes the best."),
+    new DialogLine(Objs.billiardguy1, "Don't tell Vladimir, but he is horrible."),
+  )));
+  
+  Objs.billiardguy2.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.billiardguy2],
+    null,
+    new DialogLine(player, "Are you going to win at this game of Billiards?"),
+    new DialogLine(Objs.billiardguy2, "One hundred percent. \nIn fact, I am willing to bet on it."),
+    new DialogChoice(
+      player, (tempUncreatedButtonSeries = new UncreatedDialogButtonSeries(
+        {
+          text: "sure",
+          dialog: new Dialog(
+            [player, Objs.billiardguy2],
+            null,
+            new DialogLine(player,"sure"),
+            new DialogLine(Objs.billiardguy2,"Actually, I am feeling a little sick.\n It must be gambling addiction." ),
+            new DialogLine(Objs.billiardguy2, "Educational lesson: don't gamble under 18, or if it is illegal.")
+          ),
+        },
+        {
+          text: "no",
+          dialog: new Dialog(
+            [player, Objs.billiardguy2],
+            new Dialog(
+              [player, Objs.billiardguy2],
+              null,
+              new DialogLine(player,"no"),
+              new DialogLine(Objs.billiardguy2,"Fine then. Since I am under 18, I should gamble anyways.")
+            ),
+            
+          ),
+        },
+        {
+          text: "maybe later",
+          dialog: new Dialog(
+            [player, Objs.billiardguy2],
+            null,
+            new DialogLine(player,"maybe later"),
+            new DialogLine(Objs.billiardguy2,"Fine then. Since I am under 18, I should gamble anyways.")
+          ),
+        },
+      )),
+    ),
+  )));
+  Objs.billiardguy3.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.billiardguy3],
+    null,
+    new DialogLine(billiardguy3, "Want to talk about fire? It is my favorite thing."),
+    
+    new DialogChoice(
+      player, (tempUncreatedButtonSeries = new UncreatedDialogButtonSeries(
+        {
+          text: "sure",
+          dialog: new Dialog(
+            [player, Objs.billiardguy3],
+            null,
+            new DialogLine(player,"sure"),
+            new DialogLine(Objs.billiardguy3,"Fire is extremely dangerous, so take caution with the /nlighter I just gave you" ),
+            
+          ),
+        },
+        {
+          text: "no",
+          dialog: new Dialog(
+            [player, Objs.billiardguy3],
+            new Dialog(
+              [player, Objs.billiardguy3],
+              null,
+              new DialogLine(player,"no"),
+              new DialogLine(billiarguy3,"good job on being safe around fire.\nunfortunately, you need it to move on"),
+              //add a wait here
+              new DialogLose()
+            ),
+            
+          ),
+        },
+        {
+          text: "maybe later",
+          dialog: new Dialog(
+            [player, Objs.billiardguy3],
+            null,
+            new DialogLine(player,"maybe later"),
+            new DialogLine(Objs.billiardguy3,"Fine then. Meet me later.")
+          ),
+        },
+      )),
+    ),
+  )));
+
+  
   tempUncreatedButtonSeries.dialog = tempDialog;
 };
