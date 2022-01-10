@@ -25,12 +25,14 @@ export const mapArray = {
       k.sprite("wall_stone"),
       k.area(),
       k.solid(),
+      "struct",
       "tile",
     ]),
     "(": (ctx) => ([
       k.sprite( "door_left"),
       k.area(),
       k.solid(),
+      "struct",
       "tile",
       "nextdoor",
     ]),
@@ -38,6 +40,7 @@ export const mapArray = {
       k.sprite("door_right"),
       k.area(),
       k.solid(),
+      "struct",
       "tile",
       "nextdoor",
     ]),
@@ -91,287 +94,197 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   createDialogText(Objs.auctioneer);
 
   Objs.chair11p = k.add([
-    k.sprite("auction_gal_one"),
+    k.sprite("auction_brownhair"),
     k.pos(2.75*16+1,3*16-2),
-    k.solid(),
-    k.z(1),
-    k.area(),
-    // "NPC",
-    {
-      dialogObj: null,
-      dialogTextObj: null,
-    },
   ]);
-  createDialogText(Objs.chair11p);
 
   Objs.chair11= k.add([
     k.sprite("chair_auction"),
-    k.pos(2.75*16,3*16),
+    k.pos(3.25*16,3.5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair12 = k.add([
     k.sprite("chair_auction"),
-    k.pos(4.25*16,3*16),
+    k.pos(4.75*16,3.5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair13 = k.add([
     k.sprite("chair_auction"),
-    k.pos(5.75*16,3*16),
+    k.pos(6.25*16,3.5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair14p = k.add([
-    k.sprite("auction_guy_two"),
+    k.sprite("auction_redhair"),
     k.pos(7.25*16+1,3*16-2),
-    k.solid(),
-    k.z(1),
-    k.area(),
-    // "NPC",
-    {
-      dialogObj: null,
-      dialogTextObj: null,
-    },
   ]);
-  createDialogText(Objs.chair14p);
 
   Objs.chair14 = k.add([
     k.sprite("chair_auction"),
-    k.pos(7.25*16,3*16),
+    k.pos(7.75*16,3.5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair15p = k.add([
-    k.sprite("auction_gal_two"),
+    k.sprite("auction_blondehair"),
     k.pos(8.75*16+1,3*16-2),
-    k.solid(),
-    k.z(1),
-    k.area(),
-    // "NPC",
-    {
-      dialogObj: null,
-      dialogTextObj: null,
-    },
   ]);
-  createDialogText(Objs.chair15p);
 
   Objs.chair15 = k.add([
     k.sprite("chair_auction"),
-    k.pos(8.75*16,3*16),
+    k.pos(9.25*16,3.5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
   
   Objs.chair16 = k.add([
     k.sprite("chair_auction"),
-    k.pos(10.25*16,3*16),
+    k.pos(10.75*16,3.5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair21p = k.add([
-    k.sprite("auction_guy_one"),
+    k.sprite("auction_blackhair"),
     k.pos(2.75*16+1,4.5*16-2),
-    k.solid(),
-    k.z(1),
-    k.area(),
-    // "NPC",
-    {
-      dialogObj: null,
-      dialogTextObj: null,
-    },
   ]);
-  createDialogText(Objs.chair21p);
 
   Objs.chair21 = k.add([
     k.sprite("chair_auction"),
-    k.pos(2.75*16,4.5*16),
+    k.pos(3.25*16,5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair22p = k.add([
-    k.sprite("auction_gal_two"),
+    k.sprite("auction_blondehair"),
     k.pos(4.25*16+1,4.5*16-2),
-    k.solid(),
-    k.z(1),
-    k.area(),
-    // "NPC",
-    {
-      dialogObj: null,
-      dialogTextObj: null,
-    },
   ]);
-  createDialogText(Objs.chair22p);
 
   Objs.chair22 = k.add([
     k.sprite("chair_auction"),
-    k.pos(4.255*16,4.5*16),
+    k.pos(4.755*16,5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair23 = k.add([
     k.sprite("chair_auction"),
-    k.pos(5.75*16,4.5*16),
+    k.pos(6.25*16,5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair24 = k.add([
     k.sprite("chair_auction"),
-    k.pos(7.25*16,4.5*16),
+    k.pos(7.75*16,5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair25p = k.add([
-    k.sprite("auction_gal_one"),
+    k.sprite("auction_brownhair"),
     k.pos(8.75*16+1,4.5*16-2),
-    k.solid(),
-    k.z(1),
-    k.area(),
-    // "NPC",
-    {
-      dialogObj: null,
-      dialogTextObj: null,
-    },
   ]);
-  createDialogText(Objs.chair25p);
 
   Objs.chair25 = k.add([
     k.sprite("chair_auction"),
-    k.pos(8.75*16,4.5*16),
+    k.pos(9.25*16,5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair26p = k.add([
-    k.sprite("auction_gal_two"),
+    k.sprite("auction_blondehair"),
     k.pos(10.25*16+1,4.5*16-2),
-    k.solid(),
-    k.z(1),
-    k.area(),
-    // "NPC",
-    {
-      dialogObj: null,
-      dialogTextObj: null,
-    },
   ]);
-  createDialogText(Objs.chair26p);
 
   Objs.chair26 = k.add([
     k.sprite("chair_auction"),
-    k.pos(10.25*16,4.5*16),
+    k.pos(10.75*16,5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
   
   Objs.chair31 = k.add([
     k.sprite("chair_auction"),
-    k.pos(2.75*16,6*16),
+    k.pos(3.25*16,6.5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair32 = k.add([
     k.sprite("chair_auction"),
-    k.pos(4.25*16,6*16),
+    k.pos(4.75*16,6.5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair33p = k.add([
-    k.sprite("auction_guy_one"),
+    k.sprite("auction_blackhair"),
     k.pos(5.75*16+1,6*16-2),
-    k.solid(),
-    k.z(1),
-    k.area(),
-    // "NPC",
-    {
-      dialogObj: null,
-      dialogTextObj: null,
-    },
   ]);
-  createDialogText(Objs.chair33p);
 
   Objs.chair33 = k.add([
     k.sprite("chair_auction"),
-    k.pos(5.75*16,6*16),
+    k.pos(6.25*16,6.5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair34 = k.add([
     k.sprite("chair_auction"),
-    k.pos(7.25*16,6*16),
+    k.pos(7.75*16,6.5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair35p = k.add([
-    k.sprite("auction_guy_two"),
+    k.sprite("auction_redhair"),
     k.pos(8.75*16+1,6*16-2),
-    k.solid(),
-    k.z(1),
-    k.area(),
-    // "NPC",
-    {
-      dialogObj: null,
-      dialogTextObj: null,
-    },
   ]);
-  createDialogText(Objs.chair35p);
 
   Objs.chair35 = k.add([
     k.sprite("chair_auction"),
-    k.pos(8.755*16,6*16),
+    k.pos(9.255*16,6.5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.chair36p = k.add([
-    k.sprite("auction_gal_one"),
+    k.sprite("auction_brownhair"),
     k.pos(10.25*16+1,6*16-2),
-    k.solid(),
-    k.z(1),
-    k.area(),
-    // "NPC",
-    {
-      dialogObj: null,
-      dialogTextObj: null,
-    },
   ]);
-  createDialogText(Objs.chair36p);
 
   Objs.chair36 = k.add([
     k.sprite("chair_auction"),
-    k.pos(10.25*16,6*16),
+    k.pos(10.75*16,6.5*16),
+    k.origin("center"),
     k.solid(),
-    k.z(1),
-    k.area(),
+    k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
   ]);
 
   Objs.bouncerRight_1 = k.add([
@@ -480,4 +393,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   createDialogText(Objs.bouncerRight_4);
 
   k.camScale(4);
+  for (const idx in Objs) {
+    Objs[idx].onUpdate(() => Objs[idx].use(k.z(Objs[idx].pos.y)));
+  }
 });

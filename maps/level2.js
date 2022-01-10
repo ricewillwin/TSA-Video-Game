@@ -2,7 +2,17 @@ import { k } from "../kaboom.js";
 import { initializePlayer, player, BASE_SPEED } from "../player.js";
 import { GameMap } from "./index.js";
 import { loadLevel3, loadLevel3a } from "./level3.js"
-import { createDialogText } from "../ui/dialog.js";
+import {
+  createDialogText,
+  Dialog,
+  DialogChoice,
+  DialogHandler,
+  DialogLine,
+  DialogLose,
+  DialogPart,
+} from "../ui/dialog.js";
+import { UncreatedDialogButtonSeries } from "../ui/dialogButtonSeries.js";
+import { thaw } from "../input.js";
 
 export var mapObj = null;
 
@@ -26,30 +36,35 @@ export const mapArray = {
       k.sprite("wall_stone"),
       k.area(),
       k.solid(),
+      "struct",
     ]),
     "(": (ctx) => ([
       k.sprite( "door_left"),
       k.area(),
       k.solid(),
       "nextdoor",
+      "struct",
     ]),
     ")": (ctx) => ([
       k.sprite("door_right"),
       k.area(),
       k.solid(),
       "nextdoor",
+      "struct",
     ]),
     "{": (ctx) => ([
       k.sprite( "door_left"),
       k.area(),
       k.solid(),
       "exitdoor",
+      "struct",
     ]),
     "}": (ctx) => ([
       k.sprite("door_right"),
       k.area(),
       k.solid(),
       "exitdoor",
+      "struct",
     ]),
     "_": (ctx) => ([
       k.sprite("sidewalk"),
@@ -131,10 +146,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   Objs.bouncerRight = k.add([
     k.sprite("bouncer_right", {anim: "idle"}),
-    k.pos((5*16), (0.4*16)),
+    k.pos((5.5*16), (0.9*16)),
     k.solid(),
-    k.z(1),
-    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 9, height: 5, offset: k.vec2(0.5, 3) }),
     // "NPC",
     "bouncer",
     {
@@ -144,36 +159,36 @@ export const loadLevel2 = () => k.scene("level2", async () => {
   ]);
   createDialogText(Objs.bouncerRight);
 
-  Objs.billiardguy1 = k.add([
-    k.sprite("billiardguy1", {anim: "idle", animSpeed: 0.2}),
-    k.pos((4.5*16), (3.8*16)),
+  Objs.billiardguy_redhair = k.add([
+    k.sprite("billiardguy_redhair", {anim: "idle", animSpeed: 0.2}),
+    k.pos((5*16), (4.3*16)),
     k.solid(),
-    k.z(2),
-    k.area({ width: 10, height: 14, offset: k.vec2(3, 2) }),
-    // "NPC",
+    k.origin("center"),
+    k.area({ width: 5, height: 5, offset: k.vec2(-0.5, 3) }),
+     "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.billiardguy1);
+  createDialogText(Objs.billiardguy_redhair);
 
-  Objs.billiardguy2 = k.add([
-    k.sprite("billiardguy2", {anim: "idle", animSpeed: 0.3}),
-    k.pos((8.5*16), (4.2*16)),
+  Objs.billiardguy_brownhair = k.add([
+    k.sprite("billiardguy_brownhair", {anim: "idle", animSpeed: 0.3}),
+    k.pos((9*16), (4.7*16)),
     k.solid(),
-    k.z(2),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
-    // "NPC",
+    k.origin("center"),
+    k.area({ width: 5, height: 5, offset: k.vec2(-0.5, 3) }),
+     "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.billiardguy2);
+  createDialogText(Objs.billiardguy_brownhair);
 
-  Objs.billiardguy3 = k.add([
-    k.sprite("billiardguy3", {anim: "idle", animSpeed: 0.3}),
+  Objs.lighterguy = k.add([
+    k.sprite("lighterguy", {anim: "idle", animSpeed: 0.3}),
     k.pos((12*16), (1.8*16)),
     k.solid(),
     k.z(2),
@@ -185,105 +200,105 @@ export const loadLevel2 = () => k.scene("level2", async () => {
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.billiardguy3);
+  createDialogText(Objs.lighterguy);
 
-  Objs.personOne = k.add([
-    k.sprite("guy_eight", {anim: "idle", animSpeed: 0.3}),
-    k.pos(2.5*16,3*16),
+  Objs.redshirt_blackpants = k.add([
+    k.sprite("redshirt_blackpants", {anim: "idle", animSpeed: 0.3}),
+    k.pos(3*16,3.5*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    // "NPC",
+    k.origin("center"),
+    k.area({ width: 7, height: 5, offset: k.vec2(-0.5, 3) }),
+     "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personOne);
+  createDialogText(Objs.redshirt_blackpants);
 
-  Objs.personTwo = k.add([
-    k.sprite("guy_three", {anim: "idle", animSpeed: 0.4}),
-    k.pos(1.5*16,5.2*16),
+  Objs.brownshirt_greypants = k.add([
+    k.sprite("brownshirt_greypants", {anim: "idle", animSpeed: 0.4}),
+    k.pos(2*16,5.7*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    // "NPC",
+    k.origin("center"),
+    k.area({ width: 7, height: 5, offset: k.vec2(-0.5, 3) }),
+     "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personTwo);
+  createDialogText(Objs.brownshirt_greypants);
 
-  Objs.personSeven = k.add([
-    k.sprite("gal_one", {anim: "idle", animSpeed: 0.2}),
-    k.pos(2.1*16,5.3*16),
+  Objs.whitehair_reddress = k.add([
+    k.sprite("whitehair_reddress", {anim: "idle", animSpeed: 0.2}),
+    k.pos(2.6*16,5.8*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    // "NPC",
+    k.origin("center"),
+    k.area({ width: 6, height: 5, offset: k.vec2(0, 3) }),
+    "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personSeven);
+  createDialogText(Objs.whitehair_reddress);
 
-  Objs.personSix = k.add([
-    k.sprite("gal_two", {anim: "idle", animSpeed: 0.5}),
-    k.pos(9.7*16,6.6*16),
-    k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    // "NPC",
-    {
-      dialogObj: null,
-      dialogTextObj: null,
-    },
-  ]);
-  createDialogText(Objs.personSix);
-
-  Objs.personThree = k.add([
-    k.sprite("gal_three", {anim: "idle", animSpeed: 0.4}),
-    k.pos(9.5*16,7.2*16),
-    k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    // "NPC",
-    {
-      dialogObj: null,
-      dialogTextObj: null,
-    },
-  ]);
-  createDialogText(Objs.personThree);
-
-  Objs.personFour = k.add([
-    k.sprite("guy_two", {anim: "idle", animSpeed: 0.6}),
-    k.pos(2*16,2.9*16),
-    k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
-    // "NPC",
-    {
-      dialogObj: null,
-      dialogTextObj: null,
-    },
-  ]);
-  createDialogText(Objs.personFour);
-
-  Objs.personFive = k.add([
-    k.sprite("guy_four", {anim: "idle", animSpeed: 0.2}),
+  Objs.redhair_purpledress = k.add([
+    k.sprite("redhair_purpledress", {anim: "idle", animSpeed: 0.5}),
     k.pos(10.3*16,7.1*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 5, height: 5, offset: k.vec2(0, 3) }),
     // "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
     },
   ]);
-  createDialogText(Objs.personFive);
+  createDialogText(Objs.redhair_purpledress);
+
+  Objs.brownhair_bluedress = k.add([
+    k.sprite("brownhair_bluedress", {anim: "idle", animSpeed: 0.4}),
+    k.pos(10*16,7.7*16),
+    k.solid(),
+    k.origin("center"),
+    k.area({ width: 6, height: 5, offset: k.vec2(0, 3) }),
+     "NPC",
+    {
+      dialogObj: null,
+      dialogTextObj: null,
+    },
+  ]);
+  createDialogText(Objs.brownhair_bluedress);
+
+  Objs.brownshirt_tanpants = k.add([
+    k.sprite("brownshirt_tanpants", {anim: "idle", animSpeed: 0.6}),
+    k.pos(2.5*16,3.4*16),
+    k.solid(),
+    k.origin("center"),
+    k.area({ width: 7, height: 5, offset: k.vec2(-0.5, 3) }),
+     "NPC",
+    {
+      dialogObj: null,
+      dialogTextObj: null,
+    },
+  ]);
+  createDialogText(Objs.brownshirt_tanpants);
+
+  Objs.greenshirt_blackpants = k.add([
+    k.sprite("greenshirt_blackpants", {anim: "idle", animSpeed: 0.2}),
+    k.pos(10.8*16,7.6*16),
+    k.solid(),
+    k.origin("center"),
+    k.area({ width: 8, height: 5, offset: k.vec2(0, 3) }),
+    // "NPC",
+    {
+      dialogObj: null,
+      dialogTextObj: null,
+    },
+  ]);
+  createDialogText(Objs.greenshirt_blackpants);
 
   
 
@@ -301,4 +316,143 @@ export const loadLevel2 = () => k.scene("level2", async () => {
   });
 
   k.camScale(4);
+  loadLevel2Dialogs();
+  for (const idx in Objs) {
+    Objs[idx].onUpdate(() => Objs[idx].use(k.z(Objs[idx].pos.y)));
+  }
 });
+
+export const loadLevel2Dialogs = () => {
+  let tempDialog;
+  let tempUncreatedButtonSeries;
+  Objs.brownhair_bluedress.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.brownhair_bluedress],
+    null,
+    new DialogLine(player, "Hello."),
+    new DialogLine(Objs.brownhair_bluedress, "Welcome to the Billiards Room!"),
+    
+  )));
+  Objs.whitehair_reddress.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.whitehair_reddress],
+    null,
+    new DialogLine(player, "Hello."),
+    new DialogLine(Objs.whitehair_reddress, "Talk to the man with the lighter\n to get a clue about how to move on."),
+    
+  )));
+  Objs.brownshirt_tanpants.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.brownshirt_tanpants],
+    null,
+    new DialogLine(player, "Hello."),
+    new DialogLine(Objs.brownshirt_tanpants, "If only we had a lighter to get into the next room."),
+    
+  )));
+  Objs.redshirt_blackpants.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.redshirt_blackpants],
+    null,
+    new DialogLine(player, "Hello."),
+    new DialogLine(Objs.redshirt_blackpants, "If only we had a lighter to get into the next room."),
+    
+  )));
+  Objs.brownshirt_greypants.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.brownshirt_greypants],
+    null,
+    new DialogLine(player, "Hello."),
+    new DialogLine(Objs.brownshirt_greypants, "Talk to the man with the lighter\n to get a clue about how to move on."),
+    
+  )));
+  Objs.billiardguy_redhair.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.billiardguy_redhair],
+    null,
+    new DialogLine(player, "Are you good at Billiards?"),
+    new DialogLine(Objs.billiardguy_redhair, "Yes the best."),
+    new DialogLine(Objs.billiardguy_redhair, "Don't tell Vladimir, but he is horrible."),
+  )));
+  
+  Objs.billiardguy_brownhair.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.billiardguy_brownhair],
+    null,
+    new DialogLine(player, "Are you going to win at this game of Billiards?"),
+    new DialogLine(Objs.billiardguy_brownhair, "One hundred percent. \nIn fact, I am willing to bet on it."),
+    new DialogChoice(
+      player, (tempUncreatedButtonSeries = new UncreatedDialogButtonSeries(
+        {
+          text: "sure",
+          dialog: new Dialog(
+            [player, Objs.billiardguy_brownhair],
+            null,
+            new DialogLine(player,"sure"),
+            new DialogLine(Objs.billiardguy_brownhair,"Actually, I am feeling a little sick.\n It must be gambling addiction." ),
+            new DialogLine(Objs.billiardguy_brownhair, "Educational lesson: don't gamble under 18, or if it is illegal.")
+          ),
+        },
+        {
+          text: "no",
+          dialog: new Dialog(
+            [player, Objs.billiardguy_brownhair],
+            new Dialog(
+              [player, Objs.billiardguy_brownhair],
+              null,
+              new DialogLine(player,"no"),
+              new DialogLine(Objs.billiardguy_brownhair,"Fine then. Since I am under 18, I should gamble anyways.")
+            ),
+            
+          ),
+        },
+        {
+          text: "maybe later",
+          dialog: new Dialog(
+            [player, Objs.billiardguy_brownhair],
+            null,
+            new DialogLine(player,"maybe later"),
+            new DialogLine(Objs.billiardguy_brownhair,"Fine then. Since I am under 18, I should gamble anyways.")
+          ),
+        },
+      )),
+    ),
+  )));
+  tempUncreatedButtonSeries.dialog = tempDialog;
+  Objs.lighterguy.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.lighterguy],
+    null,
+    new DialogLine(Objs.lighterguy, "Want to talk about fire? It is my favorite thing."),
+    
+    new DialogChoice(
+      player, (tempUncreatedButtonSeries = new UncreatedDialogButtonSeries(
+        {
+          text: "sure",
+          dialog: new Dialog(
+            [player, Objs.lighterguy],
+            null,
+            new DialogLine(player,"sure"),
+            new DialogLine(Objs.lighterguy,"Fire is extremely dangerous, so take caution with the /nlighter I just gave you" ),
+            
+          ),
+        },
+        {
+          text: "no",
+          dialog: new Dialog(
+            [player, Objs.lighterguy],
+            new Dialog(
+              [player, Objs.lighterguy],
+              null,
+              new DialogLine(player,"no"),
+              new DialogLine(Objs.lighterguy, "good job on being safe around fire.\nunfortunately, you need it to move on"),
+              new DialogLose(player),
+            ),
+            
+          ),
+        },
+        {
+          text: "maybe later",
+          dialog: new Dialog(
+            [player, Objs.lighterguy],
+            null,
+            new DialogLine(player, "maybe later"),
+            new DialogLine(Objs.lighterguy, "Fine then. Meet me later.")
+          ),
+        },
+      )),
+    ),
+  )));
+  tempUncreatedButtonSeries.dialog = tempDialog;
+};
