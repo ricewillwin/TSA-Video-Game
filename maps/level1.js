@@ -90,7 +90,7 @@ export const mapArray = {
       k.area(),
     ]),
   },
-  spawn: [17, 5],
+  spawn: [18, 5],
 
 };
 
