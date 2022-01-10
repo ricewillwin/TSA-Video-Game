@@ -324,8 +324,8 @@ export const createDialogText = (character) => {
     k.scale(0.5),
     k.origin("center"),
     k.layer("dialog"),
-    k.z(11),
-    k.pos(character.pos.add(8, -2)),
+    k.z(10000),
+    k.pos(character.pos.add(8, -10)),
   ]);
   character.dialogTextObj.hidden = true;
 };

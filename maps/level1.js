@@ -43,18 +43,21 @@ export const mapArray = {
       k.sprite("wall_stone"),
       k.area(),
       k.solid(),
+      "struct",
     ]),
     "(": (ctx) => ([
       k.sprite("door_left"),
       k.area(),
       k.solid(),
       "door",
+      "struct",
     ]),
     ")": (ctx) => ([
       k.sprite("door_right"),
       k.area(),
       k.solid(),
       "door",
+      "struct",
     ]),
     "_": (ctx) => ([
       k.sprite("sidewalk"),
@@ -95,33 +98,33 @@ export const Objs = {};
 
 export const loadLevel1a = () => k.scene("level1Transition", async () => {
   thaw();
-  const exposition = k.add([
-    k.text("You are a spy during the Cold War"),
-    k.scale(1.5),
-    k.origin("center"),
-    k.pos(k.width()/2, k.height()/2),
-  ]);
+  // const exposition = k.add([
+  //   k.text("You are a spy during the Cold War"),
+  //   k.scale(1.5),
+  //   k.origin("center"),
+  //   k.pos(k.width()/2, k.height()/2),
+  // ]);
+  //
+  // k.wait(3, () => {
+  //   exposition.use(k.text("A dossier with your name and image\nhave been stolen by Russian operatives"));
+  // });
+  //
+  // k.wait(6, () => {
+  //   exposition.use(k.text(
+  //     "To retrieve the dossier\n\nYou must disguise yourself\n\nInfiltrate the party\n\nAnd steal it back."));
+  // });
+  //
+  // k.wait(10, () => {
+  //   exposition.use(k.text(
+  //     "Like any good spy\n\nYou must be able to use people to your advantage\n\nSo remember to communicate with the members of the party\n\n(while maintaining your cover, of course)\n\nFind your information before your identity is compromised!"));
+  // });
+  //
+  // k.wait(17, () => {
+  //   exposition.use(k.text("Level Zero"));
+  //   exposition.use(k.scale(3));
+  // });
 
-  k.wait(3, () => {
-    exposition.use(k.text("A dossier with your name and image\nhave been stolen by Russian operatives"));
-  });
-
-  k.wait(6, () => {
-    exposition.use(k.text(
-      "To retrieve the dossier\n\nYou must disguise yourself\n\nInfiltrate the party\n\nAnd steal it back."));
-  });
-
-  k.wait(10, () => {
-    exposition.use(k.text(
-      "Like any good spy\n\nYou must be able to use people to your advantage\n\nSo remember to communicate with the members of the party\n\n(while maintaining your cover, of course)\n\nFind your information before your identity is compromised!"));
-  });
-
-  k.wait(17, () => {
-    exposition.use(k.text("Level Zero"));
-    exposition.use(k.scale(3));
-  });
-
-  k.wait(19, () => {
+  k.wait(1, () => {
     k.go("level1");
   });
 
@@ -144,10 +147,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   Objs.bouncerLeft = k.add([
     k.sprite("bouncer_left", { anim: "idle" }),
-    k.pos(286, 38),
+    k.pos(294, 46),
     k.solid(),
-    k.z(1),
-    k.area({ width: 9, height: 16, offset: k.vec2(3, 0) }),
+    k.origin("center"),
+    k.area({ width: 9, height: 5, offset: k.vec2(-0.5, 3) }),
     "NPC",
     "bouncer",
     {
@@ -159,10 +162,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   Objs.bouncerRight = k.add([
     k.sprite("bouncer_right", { anim: "idle" }),
-    k.pos(242, 38),
+    k.pos(250, 46),
     k.solid(),
-    k.z(1),
-    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 9, height: 5, offset: k.vec2(0.5, 3) }),
     "NPC",
     "bouncer",
     {
@@ -174,10 +177,11 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   Objs.tanshirt_blackpants = k.add([
     k.sprite("tanshirt_blackpants", { anim: "idle", animSpeed: 0.3 }),
-    k.pos(14*16, 3.0*16),
+    k.pos(14.5*16, 3.5*16),
     k.solid(),
     k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 7, height: 5, offset: k.vec2(-0.5, 3) }),
     // "NPC",
     {
       dialogObj: null,
@@ -188,10 +192,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   Objs.whitehair_reddress = k.add([
     k.sprite("whitehair_reddress", { anim: "idle", animSpeed: 0.4 }),
-    k.pos(12.5*16, 2.7*16),
+    k.pos(13*16, 3.2*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 6, height: 5, offset: k.vec2(0, 3) }),
     // "NPC",
     {
       dialogObj: null,
@@ -202,10 +206,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   Objs.whiteshirt_blackpants = k.add([
     k.sprite("whiteshirt_blackpants", { anim: "idle", animSpeed: 0.2 }),
-    k.pos(12*16, 2.8*16),
+    k.pos(12.5*16, 3.3*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 7, height: 5, offset: k.vec2(-0.5, 3) }),
     // "NPC",
     {
       dialogObj: null,
@@ -216,10 +220,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   Objs.brownshirt_greypants = k.add([
     k.sprite("brownshirt_greypants", { anim: "idle", animSpeed: 0.5 }),
-    k.pos(10.5*16, 2.7*16),
+    k.pos(11*16, 3.3*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 7, height: 5, offset: k.vec2(-0.5, 3) }),
     // "NPC",
     {
       dialogObj: null,
@@ -230,10 +234,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   Objs.brownhair_bluedress = k.add([
     k.sprite("brownhair_bluedress", { anim: "idle", animSpeed: 0.1 }),
-    k.pos(9.5*16, 2.4*16),
+    k.pos(10*16, 2.9*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 6, height: 5, offset: k.vec2(0, 3) }),
     // "NPC",
     {
       dialogObj: null,
@@ -255,10 +259,10 @@ export const loadLevel1 = () => k.scene("level1", async () => {
 
   Objs.playerCar = k.add([
     k.sprite("car_red"),
-    k.pos((18*16), (5.5*16)),
+    k.pos((18.5*16), (6*16)),
+    k.origin("center"),
+    k.area({ width: 32, height: 16, offset: k.vec2(0, 0) }),
     k.solid(),
-    k.z(1),
-    k.area({ width: 32, height: 16, offset: k.vec2(-32, 0) }),
     k.rotate(90),
     // "NPC",
     {
@@ -272,17 +276,15 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.sprite("car_yellow"),
     k.pos((23*16), (9.3*16)),
     k.solid(),
-    k.z(1),
+    k.origin("center"),
     k.area({ width: 32, height: 16 }),
     k.rotate(270),
-    k.origin("center"),
   ]);
 
   Objs.greenCar = k.add([
     k.sprite("car_green"),
     k.pos((7*16), (6.5*16)),
     k.solid(),
-    k.z(1),
     k.area({ width: 32, height: 16 }),
     k.rotate(90),
     k.origin("center"),
@@ -292,7 +294,6 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.sprite("car_red"),
     k.pos((4.4*16), (4*16)),
     k.solid(),
-    k.z(1),
     k.area(),
     k.origin("center"),
   ]);
@@ -301,7 +302,6 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.sprite("car_blue"),
     k.pos((4.5*16), (6*16)),
     k.solid(),
-    k.z(1),
     k.area(),
     k.origin("center"),
     // "NPC",
@@ -316,7 +316,6 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.sprite("car_green"),
     k.pos((4.75*16), (8*16)),
     k.solid(),
-    k.z(1),
     k.area(),
     k.origin("center"),
   ]);
@@ -325,7 +324,6 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.sprite("car_striped"),
     k.pos((4.6*16), (10*16)),
     k.solid(),
-    k.z(1),
     k.area(),
     k.origin("center"),
     k.rotate(180),
@@ -335,7 +333,6 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.sprite("car_striped"),
     k.pos((29.6*16), (4*16)),
     k.solid(),
-    k.z(1),
     k.area(),
     k.origin("center"),
   ]);
@@ -344,7 +341,6 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.sprite("car_blue"),
     k.pos((29.2*16), (6*16)),
     k.solid(),
-    k.z(1),
     k.area(),
     k.origin("center"),
     k.rotate(180),
@@ -354,7 +350,6 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.sprite("car_green"),
     k.pos((29.4*16), (8*16)),
     k.solid(),
-    k.z(1),
     k.area(),
     k.origin("center"),
     k.rotate(180),
@@ -364,12 +359,14 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.sprite("car_yellow"),
     k.pos((29.5*16), (10*16)),
     k.solid(),
-    k.z(1),
     k.area(),
     k.origin("center"),
   ]);
 
   loadLevel1Dialogs();
+  for (const idx in Objs) {
+    Objs[idx].onUpdate(() => Objs[idx].use(k.z(Objs[idx].pos.y)));
+  }
 });
 
 export const loadLevel1Dialogs = () => {

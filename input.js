@@ -1,6 +1,7 @@
 import { k } from "./kaboom.js";
 import { keys, player, playerHandler } from "./player.js";
 import { createDialogText } from "./ui/dialog.js";
+import { Objs } from "./maps/level1.js";
 
 let cancellers = [];
 export const maxDistance = 3 * 16;
@@ -219,6 +220,10 @@ export const setChoiceListeners = (buttonSeries) => {
   cancellers.push(k.onKeyPress(keys.UP, () => {
     buttonSeries.fwd();
   }));
+
+  k.onUpdate("struct", (s) => {
+    s.use(k.z(s.pos.y));
+  });
 };
 
 export const tooFar = () => {

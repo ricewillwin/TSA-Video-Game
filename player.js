@@ -32,6 +32,9 @@ export const createPlayer = async (name, pos) => {
   if (player !== null) k.destroy(player);
   player = k.add(addPlayerOpts(name, pos));
   createDialogText(player);
+  player.onUpdate(() => {
+    player.use(k.z(player.pos.y));
+  })
 };
 
 export const keys = {
@@ -55,7 +58,7 @@ export const addPlayerOpts = (name, pos) => [
   k.origin("center"),
   k.layer("game"),
   k.pos(pos),
-  k.area({width: 7, height: 6, offset: k.vec2(0, 6)}),
+  k.area({ width: 8, height: 5, offset: k.vec2(0, 3) }),
   k.solid(),
   k.z(10),
   "player",
@@ -63,9 +66,9 @@ export const addPlayerOpts = (name, pos) => [
     currentHoriz: null,
     currentVert: null,
     speed: BASE_SPEED,
-    bouncerPermission: false,
-    hasLighter: false,
-    hasNapkin: false,
+    bouncerPermission: true,
+    hasLighter: true,
+    hasNapkin: true,
     documents: null,
     dialogTextObj: null,
   },

@@ -36,30 +36,35 @@ export const mapArray = {
       k.sprite("wall_stone"),
       k.area(),
       k.solid(),
+      "struct",
     ]),
     "(": (ctx) => ([
       k.sprite( "door_left"),
       k.area(),
       k.solid(),
       "nextdoor",
+      "struct",
     ]),
     ")": (ctx) => ([
       k.sprite("door_right"),
       k.area(),
       k.solid(),
       "nextdoor",
+      "struct",
     ]),
     "{": (ctx) => ([
       k.sprite( "door_left"),
       k.area(),
       k.solid(),
       "exitdoor",
+      "struct",
     ]),
     "}": (ctx) => ([
       k.sprite("door_right"),
       k.area(),
       k.solid(),
       "exitdoor",
+      "struct",
     ]),
     "_": (ctx) => ([
       k.sprite("sidewalk"),
@@ -141,10 +146,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   Objs.bouncerRight = k.add([
     k.sprite("bouncer_right", {anim: "idle"}),
-    k.pos((5*16), (0.4*16)),
+    k.pos((5.5*16), (0.9*16)),
     k.solid(),
-    k.z(1),
-    k.area({ width: 9, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 9, height: 5, offset: k.vec2(0.5, 3) }),
     // "NPC",
     "bouncer",
     {
@@ -156,10 +161,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   Objs.billiardguy_redhair = k.add([
     k.sprite("billiardguy_redhair", {anim: "idle", animSpeed: 0.2}),
-    k.pos((4.5*16), (3.8*16)),
+    k.pos((5*16), (4.3*16)),
     k.solid(),
-    k.z(2),
-    k.area({ width: 10, height: 14, offset: k.vec2(3, 2) }),
+    k.origin("center"),
+    k.area({ width: 5, height: 5, offset: k.vec2(-0.5, 3) }),
      "NPC",
     {
       dialogObj: null,
@@ -170,10 +175,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   Objs.billiardguy_brownhair = k.add([
     k.sprite("billiardguy_brownhair", {anim: "idle", animSpeed: 0.3}),
-    k.pos((8.5*16), (4.2*16)),
+    k.pos((9*16), (4.7*16)),
     k.solid(),
-    k.z(2),
-    k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
+    k.origin("center"),
+    k.area({ width: 5, height: 5, offset: k.vec2(-0.5, 3) }),
      "NPC",
     {
       dialogObj: null,
@@ -199,10 +204,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   Objs.redshirt_blackpants = k.add([
     k.sprite("redshirt_blackpants", {anim: "idle", animSpeed: 0.3}),
-    k.pos(2.5*16,3*16),
+    k.pos(3*16,3.5*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 7, height: 5, offset: k.vec2(-0.5, 3) }),
      "NPC",
     {
       dialogObj: null,
@@ -213,10 +218,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   Objs.brownshirt_greypants = k.add([
     k.sprite("brownshirt_greypants", {anim: "idle", animSpeed: 0.4}),
-    k.pos(1.5*16,5.2*16),
+    k.pos(2*16,5.7*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 7, height: 5, offset: k.vec2(-0.5, 3) }),
      "NPC",
     {
       dialogObj: null,
@@ -227,10 +232,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   Objs.whitehair_reddress = k.add([
     k.sprite("whitehair_reddress", {anim: "idle", animSpeed: 0.2}),
-    k.pos(2.1*16,5.3*16),
+    k.pos(2.6*16,5.8*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 6, height: 5, offset: k.vec2(0, 3) }),
     "NPC",
     {
       dialogObj: null,
@@ -241,10 +246,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   Objs.redhair_purpledress = k.add([
     k.sprite("redhair_purpledress", {anim: "idle", animSpeed: 0.5}),
-    k.pos(9.7*16,6.6*16),
+    k.pos(10.3*16,7.1*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 5, height: 5, offset: k.vec2(0, 3) }),
     // "NPC",
     {
       dialogObj: null,
@@ -255,10 +260,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   Objs.brownhair_bluedress = k.add([
     k.sprite("brownhair_bluedress", {anim: "idle", animSpeed: 0.4}),
-    k.pos(9.5*16,7.2*16),
+    k.pos(10*16,7.7*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 6, height: 5, offset: k.vec2(0, 3) }),
      "NPC",
     {
       dialogObj: null,
@@ -269,10 +274,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   Objs.brownshirt_tanpants = k.add([
     k.sprite("brownshirt_tanpants", {anim: "idle", animSpeed: 0.6}),
-    k.pos(2*16,2.9*16),
+    k.pos(2.5*16,3.4*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 7, height: 5, offset: k.vec2(-0.5, 3) }),
      "NPC",
     {
       dialogObj: null,
@@ -283,10 +288,10 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   Objs.greenshirt_blackpants = k.add([
     k.sprite("greenshirt_blackpants", {anim: "idle", animSpeed: 0.2}),
-    k.pos(10.3*16,7.1*16),
+    k.pos(10.8*16,7.6*16),
     k.solid(),
-    k.z(1),
-    k.area({ width: 7, height: 16, offset: k.vec2(4, 0) }),
+    k.origin("center"),
+    k.area({ width: 8, height: 5, offset: k.vec2(0, 3) }),
     // "NPC",
     {
       dialogObj: null,
@@ -312,6 +317,9 @@ export const loadLevel2 = () => k.scene("level2", async () => {
 
   k.camScale(4);
   loadLevel2Dialogs();
+  for (const idx in Objs) {
+    Objs[idx].onUpdate(() => Objs[idx].use(k.z(Objs[idx].pos.y)));
+  }
 });
 
 export const loadLevel2Dialogs = () => {

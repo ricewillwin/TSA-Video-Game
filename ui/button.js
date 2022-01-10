@@ -52,7 +52,7 @@ export class Button {
       }
     }
     textObjComps = textObjComps.concat([
-      k.z(16),
+      k.z(100001),
       k.scale(scale),
       k.color(...textColor),
       k.origin("center"),
@@ -78,7 +78,7 @@ export class Button {
       k.rect(fixedWidth !== undefined ? fixedWidth/scale : (this.#buttonText.width + padding), this.#buttonText.height + padding),
       k.layer("ui"),
       k.scale(scale),
-      k.z(15),
+      k.z(100000),
       k.color(...buttonColor),
       k.outline(...normalOutline),
       k.origin("center"),
