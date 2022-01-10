@@ -264,7 +264,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.area({ width: 32, height: 16, offset: k.vec2(0, 0) }),
     k.solid(),
     k.rotate(90),
-    // "NPC",
+    "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -304,7 +304,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.area(),
     k.origin("center"),
-    // "NPC",
+    "NPC",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -391,7 +391,7 @@ export const loadLevel1Dialogs = () => {
           ),
         },
         {
-          text: "be a guard",
+          text: "pretend to be a guard",
           dialog: new Dialog(
             [player, Objs.bouncerLeft],
             new Dialog(
@@ -485,6 +485,99 @@ export const loadLevel1Dialogs = () => {
         },
       )),
     ),
+  )));
+  tempUncreatedButtonSeries.dialog = tempDialog;
+
+  Objs.playerCar.dialogObj = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.playerCar],
+    null,
+    new DialogLine(Objs.playerCar, "press [SPACE] to\nmove through dialog"),
+    new DialogLine(Objs.playerCar, "or press [ENTER] to\nmove through dialog"),
+    new DialogLine(Objs.playerCar, "or press [E] to\nmove through dialog"),
+    new DialogLine(Objs.playerCar, "press [SPACE] to\nmove through dialog"),
+    new DialogLine(Objs.playerCar, "or press [ENTER] to\nmove through dialog"),
+    new DialogLine(Objs.playerCar, "or press [E] to\nmove through dialog"),
+    new DialogLine(Objs.playerCar, "press [SPACE] to\nmove through dialog"),
+    new DialogLine(Objs.playerCar, "or press [ENTER] to\nmove through dialog"),
+    new DialogLine(Objs.playerCar, "or press [E] to\nmove through dialog"),
+    new DialogLine(Objs.playerCar, "press [SPACE] to\nmove through dialog"),
+    new DialogLine(Objs.playerCar, "or press [ENTER] to\nmove through dialog"),
+    new DialogLine(Objs.playerCar, "or press [E] to\nmove through dialog"),
+    new DialogLine(Objs.playerCar, "there aren't any easter eggs here"),
+    new DialogLine(Objs.playerCar, "you can move on"),
+    new DialogButton(player, (tempUncreatedButtonSeries = new UncreatedDialogButtonSeries(
+      {
+        text: "move on",
+        dialog: new Dialog(
+          [player, Objs.playerCar],
+          null,
+          new DialogLine(Objs.playerCar, ""),
+          new DialogLine(Objs.playerCar, "you lied"),
+          new DialogLine(Objs.playerCar, "you said you would move on"),
+          new DialogLine(Objs.playerCar, "you will lose if you continue"),
+          new DialogLine(Objs.playerCar, "why do you do this to yourself?"),
+          new DialogLine(Objs.playerCar, "are you really okay with your car\ncalling the guards on you?"),
+          new DialogLine(Objs.playerCar, "don't say I didn't warn you"),
+          new DialogLose(Objs.playerCar),
+        ),
+      },
+      {
+        text: "persist",
+        dialog: new Dialog(
+          [player, Objs.playerCar],
+          null,
+          new DialogLine(Objs.playerCar, "you will lose if you continue"),
+          new DialogLine(Objs.playerCar, "why do you do this to yourself?"),
+          new DialogLine(Objs.playerCar, "are you really okay with your car\ncalling the guards on you?"),
+          new DialogLine(Objs.playerCar, "don't say I didn't warn you"),
+          new DialogLose(Objs.playerCar),
+        ),
+      },
+    ))),
+  )));
+  tempUncreatedButtonSeries.dialog = tempDialog;
+
+  Objs.blockadeCar2 = new DialogHandler(new Dialog(
+    [player, Objs.blockadeCar2],
+    null,
+    new DialogLine(Objs.blockadeCar2, "Why are we still here?"),
+    new DialogLine(Objs.blockadeCar2, "Just to suffer?"),
+    new DialogLine(Objs.blockadeCar2, "Every night, I can feel my leg..."),
+    new DialogLine(Objs.blockadeCar2, "...and my arm..."),
+    new DialogLine(Objs.blockadeCar2, "...even my fingers."),
+    new DialogLine(Objs.blockadeCar2, "The body I've lost..."),
+    new DialogLine(Objs.blockadeCar2, "...the comrades I've lost..."),
+  ));
+
+  Objs.tanshirt_blackpants = new DialogHandler((tempDialog = new Dialog(
+    [player, Objs.tanshirt_blackpants],
+    null,
+    new DialogLine(Objs.tanshirt_blackpants, "That bouncer over there..."),
+    new DialogLine(Objs.tanshirt_blackpants, "...he seems a little..."),
+    new DialogLine(Objs.tanshirt_blackpants, "...off."),
+    new DialogChoice(player, (tempUncreatedButtonSeries = new UncreatedDialogButtonSeries(
+      {
+        text: "tell me about it",
+        dialog: new Dialog(
+          [player, Objs.tanshirt_blackpants],
+          null,
+          new DialogLine(player, "Yeah, more than a little."),
+          new DialogLine(Objs.tanshirt_blackpants, "Ah. I see you've met him."),
+          new DialogLine(Objs.tanshirt_blackpants, "Well, I need say no more."),
+        ),
+      },
+      {
+        text: "what do you mean?",
+        dialog: new Dialog(
+          [player, Objs.tanshirt_blackpants],
+          null,
+          new DialogLine(player, "...off?"),
+          new DialogLine(Objs.tanshirt_blackpants, "..."),
+          new DialogLine(Objs.tanshirt_blackpants, "you'll find out soon enough."),
+          new DialogLine(Objs.tanshirt_blackpants, ""),
+        ),
+      },
+    ))),
   )));
   tempUncreatedButtonSeries.dialog = tempDialog;
 };
