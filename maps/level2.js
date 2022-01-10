@@ -402,6 +402,7 @@ export const loadLevel2Dialogs = () => {
       )),
     ),
   )));
+  tempUncreatedButtonSeries.dialog = tempDialog;
   Objs.lighterguy.dialogObj = new DialogHandler((tempDialog = new Dialog(
     [player, Objs.lighterguy],
     null,
@@ -445,7 +446,5 @@ export const loadLevel2Dialogs = () => {
       )),
     ),
   )));
-
-  
   tempUncreatedButtonSeries.dialog = tempDialog;
 };
