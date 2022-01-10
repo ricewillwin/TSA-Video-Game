@@ -193,6 +193,10 @@ export const setGameListeners = () => {
       touchingNPC = n;
     }
   }));
+
+  k.onUpdate("obj", (s) => {
+    s.use(k.z(s.pos.y));
+  });
 };
 
 /**
@@ -220,10 +224,6 @@ export const setChoiceListeners = (buttonSeries) => {
   cancellers.push(k.onKeyPress(keys.UP, () => {
     buttonSeries.fwd();
   }));
-
-  k.onUpdate("struct", (s) => {
-    s.use(k.z(s.pos.y));
-  });
 };
 
 export const tooFar = () => {

@@ -43,21 +43,21 @@ export const mapArray = {
       k.sprite("wall_stone"),
       k.area(),
       k.solid(),
-      "struct",
+      "obj",
     ]),
     "(": (ctx) => ([
       k.sprite("door_left"),
       k.area(),
       k.solid(),
       "door",
-      "struct",
+      "obj",
     ]),
     ")": (ctx) => ([
       k.sprite("door_right"),
       k.area(),
       k.solid(),
       "door",
-      "struct",
+      "obj",
     ]),
     "_": (ctx) => ([
       k.sprite("sidewalk"),
@@ -151,6 +151,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.origin("center"),
     k.area({ width: 9, height: 5, offset: k.vec2(-0.5, 3) }),
+    "obj",
     "NPC",
     "bouncer",
     {
@@ -166,6 +167,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.origin("center"),
     k.area({ width: 9, height: 5, offset: k.vec2(0.5, 3) }),
+    "obj",
     "NPC",
     "bouncer",
     {
@@ -182,6 +184,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.z(1),
     k.origin("center"),
     k.area({ width: 7, height: 5, offset: k.vec2(-0.5, 3) }),
+    "obj",
     // "NPC",
     {
       dialogObj: null,
@@ -196,6 +199,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.origin("center"),
     k.area({ width: 6, height: 5, offset: k.vec2(0, 3) }),
+    "obj",
     // "NPC",
     {
       dialogObj: null,
@@ -210,6 +214,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.origin("center"),
     k.area({ width: 7, height: 5, offset: k.vec2(-0.5, 3) }),
+    "obj",
     // "NPC",
     {
       dialogObj: null,
@@ -224,6 +229,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.origin("center"),
     k.area({ width: 7, height: 5, offset: k.vec2(-0.5, 3) }),
+    "obj",
     // "NPC",
     {
       dialogObj: null,
@@ -238,6 +244,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.origin("center"),
     k.area({ width: 6, height: 5, offset: k.vec2(0, 3) }),
+    "obj",
     // "NPC",
     {
       dialogObj: null,
@@ -264,6 +271,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.area({ width: 32, height: 16, offset: k.vec2(0, 0) }),
     k.solid(),
     k.rotate(90),
+    "obj",
     "NPC",
     {
       dialogObj: null,
@@ -279,6 +287,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.origin("center"),
     k.area({ width: 32, height: 16 }),
     k.rotate(270),
+    "obj",
   ]);
 
   Objs.greenCar = k.add([
@@ -288,6 +297,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.area({ width: 32, height: 16 }),
     k.rotate(90),
     k.origin("center"),
+    "obj",
   ]);
 
   Objs.blockadeCar1 = k.add([
@@ -296,6 +306,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.area(),
     k.origin("center"),
+    "obj",
   ]);
 
   Objs.blockadeCar2 = k.add([
@@ -305,6 +316,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.area(),
     k.origin("center"),
     "NPC",
+    "obj",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -318,6 +330,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.area(),
     k.origin("center"),
+    "obj",
   ]);
 
   Objs.blockadeCar4 = k.add([
@@ -327,6 +340,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.area(),
     k.origin("center"),
     k.rotate(180),
+    "obj",
   ]);
 
   Objs.blockadeCar5 = k.add([
@@ -335,6 +349,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.area(),
     k.origin("center"),
+    "obj",
   ]);
 
   Objs.blockadeCar6 = k.add([
@@ -344,6 +359,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.area(),
     k.origin("center"),
     k.rotate(180),
+    "obj",
   ]);
 
   Objs.blockadeCar7 = k.add([
@@ -353,6 +369,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.area(),
     k.origin("center"),
     k.rotate(180),
+    "obj",
   ]);
 
   Objs.blockadeCar8 = k.add([
@@ -361,6 +378,7 @@ export const loadLevel1 = () => k.scene("level1", async () => {
     k.solid(),
     k.area(),
     k.origin("center"),
+    "obj",
   ]);
 
   loadLevel1Dialogs();

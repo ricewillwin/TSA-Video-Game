@@ -25,14 +25,14 @@ export const mapArray = {
       k.sprite("wall_stone"),
       k.area(),
       k.solid(),
-      "struct",
+      "obj",
       "tile",
     ]),
     "(": (ctx) => ([
       k.sprite( "door_left"),
       k.area(),
       k.solid(),
-      "struct",
+      "obj",
       "tile",
       "nextdoor",
     ]),
@@ -40,7 +40,7 @@ export const mapArray = {
       k.sprite("door_right"),
       k.area(),
       k.solid(),
-      "struct",
+      "obj",
       "tile",
       "nextdoor",
     ]),
@@ -86,6 +86,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.z(1),
     k.area({ width: 8, height: 16, offset: k.vec2(3, 0) }),
     // "NPC",
+    "obj",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -96,6 +97,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
   Objs.chair11p = k.add([
     k.sprite("auction_brownhair"),
     k.pos(2.75*16+1,3*16-2),
+    "obj",
   ]);
 
   Objs.chair11= k.add([
@@ -112,6 +114,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair13 = k.add([
@@ -120,11 +123,13 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair14p = k.add([
     k.sprite("auction_redhair"),
     k.pos(7.25*16+1,3*16-2),
+    "obj",
   ]);
 
   Objs.chair14 = k.add([
@@ -133,11 +138,13 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair15p = k.add([
     k.sprite("auction_blondehair"),
     k.pos(8.75*16+1,3*16-2),
+    "obj",
   ]);
 
   Objs.chair15 = k.add([
@@ -146,6 +153,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
   
   Objs.chair16 = k.add([
@@ -154,11 +162,13 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair21p = k.add([
     k.sprite("auction_blackhair"),
     k.pos(2.75*16+1,4.5*16-2),
+    "obj",
   ]);
 
   Objs.chair21 = k.add([
@@ -167,11 +177,13 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair22p = k.add([
     k.sprite("auction_blondehair"),
     k.pos(4.25*16+1,4.5*16-2),
+    "obj",
   ]);
 
   Objs.chair22 = k.add([
@@ -180,6 +192,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair23 = k.add([
@@ -188,6 +201,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair24 = k.add([
@@ -196,11 +210,13 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair25p = k.add([
     k.sprite("auction_brownhair"),
     k.pos(8.75*16+1,4.5*16-2),
+    "obj",
   ]);
 
   Objs.chair25 = k.add([
@@ -209,11 +225,13 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair26p = k.add([
     k.sprite("auction_blondehair"),
     k.pos(10.25*16+1,4.5*16-2),
+    "obj",
   ]);
 
   Objs.chair26 = k.add([
@@ -222,6 +240,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
   
   Objs.chair31 = k.add([
@@ -230,6 +249,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair32 = k.add([
@@ -238,11 +258,13 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair33p = k.add([
     k.sprite("auction_blackhair"),
     k.pos(5.75*16+1,6*16-2),
+    "obj",
   ]);
 
   Objs.chair33 = k.add([
@@ -251,6 +273,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair34 = k.add([
@@ -259,11 +282,13 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair35p = k.add([
     k.sprite("auction_redhair"),
     k.pos(8.75*16+1,6*16-2),
+    "obj",
   ]);
 
   Objs.chair35 = k.add([
@@ -272,11 +297,13 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.chair36p = k.add([
     k.sprite("auction_brownhair"),
     k.pos(10.25*16+1,6*16-2),
+    "obj",
   ]);
 
   Objs.chair36 = k.add([
@@ -285,6 +312,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.origin("center"),
     k.solid(),
     k.area({ width: 7, height: 12, offset: k.vec2(0.5, 1) }),
+    "obj",
   ]);
 
   Objs.bouncerRight_1 = k.add([
@@ -295,6 +323,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.area(),
     // "NPC",
     "bouncer",
+    "obj",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -310,6 +339,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.area(),
     // "NPC",
     "bouncer",
+    "obj",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -325,6 +355,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.area(),
     // "NPC",
     "bouncer",
+    "obj",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -340,6 +371,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.area(),
     // "NPC",
     "bouncer",
+    "obj",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -355,6 +387,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.area(),
     // "NPC",
     "bouncer",
+    "obj",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -370,6 +403,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.area(),
     // "NPC",
     "bouncer",
+    "obj",
     {
       dialogObj: null,
       dialogTextObj: null,
@@ -385,6 +419,7 @@ export const loadLevel4 = () => k.scene("level4", async () => {
     k.area(),
     // "NPC",
     "bouncer",
+    "obj",
     {
       dialogObj: null,
       dialogTextObj: null,
